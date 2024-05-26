@@ -12,13 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->integer('user_id', true);
+            $table->string('user_first_name', 50);
+            $table->string('user_last_name', 50);
+            $table->string('user_email', 70);
+            $table->string('user_username', 20);
+            $table->string('user_password', 70);
+            $table->string('user_address', 30)->nullable();
+            $table->decimal('user_phone_number', 10, 0)->nullable();
+            $table->string('user_image_url', 100)->nullable()->default('/images/users/nf.jpg');
+            $table->integer('role_id')->default(1)->index('fk_user_role_id');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
@@ -35,6 +38,11 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+        
+        Schema::create('roles', function (Blueprint $table) {
+            $table->integer('role_id')->primary();
+            $table->string('role_name', 20);
+        });
     }
 
     /**
@@ -45,5 +53,6 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('roles');
     }
 };

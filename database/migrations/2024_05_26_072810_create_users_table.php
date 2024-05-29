@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('user_password', 70);
             $table->string('user_address', 30)->nullable();
             $table->decimal('user_phone_number', 10, 0)->nullable();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
             $table->string('user_image_url', 100)->nullable()->default('/images/users/nf.jpg');
             $table->integer('role_id')->default(1)->index('fk_user_role_id');
         });
@@ -44,10 +46,7 @@ return new class extends Migration
             $table->string('role_name', 20);
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
+    
     public function down(): void
     {
         Schema::dropIfExists('users');

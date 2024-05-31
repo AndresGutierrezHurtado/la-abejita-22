@@ -9,6 +9,7 @@
 
         <!-- Styles and Resources -->
         <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon">
+        <script src="https://kit.fontawesome.com/eb36e646d1.js" crossorigin="anonymous"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     </head>

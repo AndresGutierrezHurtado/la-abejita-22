@@ -12,7 +12,7 @@
 
             <div class="text-center flex flex-col items-center justify-center gap-2 py-5">                
                 <a href="{{ route('index') }}">
-                    <div class="size-[150px] bg-center bg-no-repeat bg-cover bg-[url(/public/images/logo.png)] mx-auto rounded-full"></div>    
+                    <div class="size-[130px] bg-center bg-no-repeat bg-cover bg-[url(/public/images/logo.png)] mx-auto rounded-full"></div>    
                 </a>
                 <h1 class="text-3xl font-bold tracking-tight capitalize">Crea tu cuenta</h1>
                 <p>Crea tu cuenta para unirte a nuestra comunidad.</p>
@@ -73,11 +73,27 @@
                 <div class="flex-grow border-t border-gray-400"></div>
             </div>
 
-        @if (Route::has('register'))
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md" href="{{ route('login') }}">
-                ¿Ya tienes una cuenta creada?
-            </a>
-        @endif
+            <div class="flex flex-col gap-4 mb-5">
+                <button class="flex gap-3 items-center justify-center font-semibold text-sky-600 bg-zinc-100 rounded-lg py-1 px-5 border">
+                    <i class="fa-brands fa-facebook text-xl"></i>
+                    Regístrate con facebook
+                </button>
+
+                <button class="flex gap-3 items-center justify-center font-semibold text-slate-600 bg-zinc-100 rounded-lg py-1 px-5 border">
+                    <i class="fa-brands fa-google text-xl"></i>
+                    Regístrate con google
+                </button>
+
+            </div>
+            
+            @if (Route::has('login'))
+                <p>
+                    ¿Ya tienes una cuenta creada?
+                    <a class="text-amber-400 font-semibold hover:underline" href="{{ route('login') }}">
+                        Inicia sesión    
+                    </a>
+                </p>
+            @endif
         </div>
     </main>
 

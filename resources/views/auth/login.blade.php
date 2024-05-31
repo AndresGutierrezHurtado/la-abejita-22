@@ -8,14 +8,14 @@
     <x-auth-session-status class="mb-4" :status="session('status')" />
     <main class="w-full min-h-screen flex items-center justify-center bg-center bg-no-repeat bg-cover bg-[url(/public/images/banner.jpg)] relative">
         <div class="absolute inset-0 bg-gradient-to-b from-black to-black opacity-[20%]"></div>
-        <div class=" w-full p-10 bg-white shadow-lg rounded-md max-w-[500px] mx-auto z-50">
+        <div class=" w-full p-10 bg-white shadow-lg rounded-md max-w-[550px] mx-auto z-50">
 
             <div class="text-center flex flex-col items-center justify-center gap-2 py-5">                
                 <a href="{{ route('index') }}">
-                    <div class="size-[150px] bg-center bg-no-repeat bg-cover bg-[url(/public/images/logo.png)] mx-auto rounded-full"></div>    
+                    <div class="size-[130px] bg-center bg-no-repeat bg-cover bg-[url(/public/images/logo.png)] mx-auto rounded-full"></div>    
                 </a>
                 <h1 class="text-3xl font-bold tracking-tight capitalize">Inicia sesión</h1>
-                <p>Accede a tu cuenta para disfrutar de una mejor experiencia.</p>
+                <p class="text-lg">Accede a tu cuenta para disfrutar de una mejor experiencia.</p>
             </div>
             
             <form method="POST" action="{{ route('login') }}" class="">
@@ -48,16 +48,19 @@
                     </label>
                 </div>
 
-                <div class="flex flex-col justify-center gap-3 items-center mt-4">
+                <div class="flex flex-col gap-3 mt-4">
+                    @if (Route::has('password.request'))
+                        <p>
+                            ¿Olvidaste tu contraseña?, 
+                            <a class="text-amber-400 font-semibold hover:underline" href="{{ route('password.request') }}">
+                                Recupérala    
+                            </a>
+                        </p>
+                    @endif
+
                     <button type="submit" class="mr-3 bg-amber-500 duration-300 hover:bg-amber-500/[0.80] hover:shadow-md px-5 py-1 rounded-md font-semibold w-full">
                         Inicia sesión
                     </button>
-
-                    @if (Route::has('password.request'))
-                        <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md" href="{{ route('password.request') }}">
-                            ¿Olvidaste tu contraseña?
-                        </a>
-                    @endif
                 </div>
             </form>
 
@@ -66,11 +69,27 @@
                 <span class="flex-shrink mx-2 text-gray-400">Ó</span>
                 <div class="flex-grow border-t border-gray-400"></div>
             </div>
+
+            <div class="flex flex-col gap-4 mb-5">
+                <button class="flex gap-3 items-center justify-center font-semibold text-sky-600 bg-zinc-100 rounded-lg py-1 px-5 border">
+                    <i class="fa-brands fa-facebook text-xl"></i>
+                    Ingresa con facebook
+                </button>
+
+                <button class="flex gap-3 items-center justify-center font-semibold text-slate-600 bg-zinc-100 rounded-lg py-1 px-5 border">
+                    <i class="fa-brands fa-google text-xl"></i>
+                    Ingresa con google
+                </button>
+
+            </div>
             
             @if (Route::has('register'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md" href="{{ route('register') }}">
-                    ¿No tienes cuenta aún?
-                </a>
+                <p>
+                    ¿No tienes cuenta aún?, 
+                    <a class="text-amber-400 font-semibold hover:underline" href="{{ route('register') }}">
+                        Regístrate    
+                    </a>
+                </p>
             @endif
         </div>
     </main>

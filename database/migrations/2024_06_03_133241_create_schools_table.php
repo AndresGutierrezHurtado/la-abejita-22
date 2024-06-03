@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->foreign(['school_id'], 'fk_product_school_id')->references(['school_id'])->on('schools')->onUpdate('cascade')->onDelete('cascade');
+        Schema::create('schools', function (Blueprint $table) {
+            $table->integer('school_id')->primary();
+            $table->string('school_name', 100);
+            $table->string('schoold_address', 200);
+            $table->string('school_image_url', 100);
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropForeign('fk_product_school_id');
-        });
+        Schema::dropIfExists('schools');
     }
 };

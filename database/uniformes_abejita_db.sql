@@ -3,6 +3,26 @@ DROP DATABASE IF EXISTS `la-abejita-22-db`;
 CREATE DATABASE `la-abejita-22-db`;
 USE `la-abejita-22-db`;
 
+-- Creation of the password_reset_tokens table
+CREATE TABLE `password_reset_tokens` (
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `sessions` (
+  `id` varchar(255) NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(45) DEFAULT NULL,
+  `user_agent` text DEFAULT NULL,
+  `payload` longtext NOT NULL,
+  `last_activity` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `sessions_user_id_index` (`user_id`),
+  KEY `sessions_last_activity_index` (`last_activity`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- Creation of the Users table
 CREATE TABLE `users` (
   `user_id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -39,33 +59,17 @@ CREATE TABLE `products` (
   `product_name` VARCHAR(100) NOT NULL, 
   `product_description` VARCHAR(100) NOT NULL, 
   `product_stock` INT NOT NULL, 
-  `product_image_url` VARCHAR(100) DEFAULT '/images/products/nf.jpg',
-  `school_id` INT NOT NULL
+  `product_image_url` VARCHAR(100) DEFAULT '/images/products/nf.jpg'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Inserting data into the Products table
-INSERT INTO `products` (`product_id`, `product_name`, `product_description`, `product_image_url`, `school_id`) VALUES
-(1, 'Camisa blanca', 'Camisa blanca para uniforme escolar.', '/images/products/nf.jpg', 1),
-(2, 'Jardinera', 'Jardinera de mezclilla para uniforme escolar.', '/images/products/nf.jpg', 1),
-(3, 'Pantalón gris', 'Pantalón de vestir gris para uniforme escolar.', '/images/products/nf.jpg', 1),
-(4, 'Chaleco negro', 'Chaleco formal para uniforme escolar.', '/images/products/nf.jpg', 1),
-(5, 'Blazer escolar', 'Blazer para uniforme escolar.', '/images/products/nf.jpg', 1),
-(6, 'Corbata', 'Corbata azul obscura para uniforme escolar.', '/images/products/nf.jpg', 1);
-
--- Creation of the Schools table
-CREATE TABLE `schools` (
-  `school_id` INT PRIMARY KEY NOT NULL,
-  `school_name` VARCHAR(100) NOT NULL,
-  `schoold_address` VARCHAR(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Inserting data into the Schools table
-INSERT INTO `schools` (`school_id`,`school_name`,`schoold_address`) VALUES
-(1, 'IED El Ensueño', 'Tv. 70c #11 a 67a, Bogotá'),
-(2, 'Colegio Angela Restrepo Moreno', 'Cl. 69 Sur #71g-12, Bogotá'),
-(3, 'Colegio Emma Reyes', 'Cra. 80b #6-71, Bogotá'),
-(4, 'Colegio María Mercedes Carranza', 'El Perdomo, Tv. 70g #65 Sur-2, Bogotá'),
-(5, 'Colegio Distrital Agudelo Restrepo IED', 'Tv. 70d, Bogotá');
+INSERT INTO `products` (`product_id`, `product_name`, `product_description`, `product_image_url`) VALUES
+(1, 'Camisa blanca', 'Camisa blanca para uniforme escolar.', '/images/products/nf.jpg'),
+(2, 'Jardinera', 'Jardinera de mezclilla para uniforme escolar.', '/images/products/nf.jpg'),
+(3, 'Pantalón gris', 'Pantalón de vestir gris para uniforme escolar.', '/images/products/nf.jpg'),
+(4, 'Chaleco negro', 'Chaleco formal para uniforme escolar.', '/images/products/nf.jpg'),
+(5, 'Blazer escolar', 'Blazer para uniforme escolar.', '/images/products/nf.jpg'),
+(6, 'Corbata', 'Corbata azul obscura para uniforme escolar.', '/images/products/nf.jpg');
 
 -- Creation of the Sizes table
 CREATE TABLE `sizes` (
@@ -82,6 +86,40 @@ INSERT INTO `sizes` (`size_id`, `size_name`) VALUES
 (5, 'XL'),
 (6, 'XXL'),
 (7, 'XXXL');
+
+-- Creation of the Schools table
+CREATE TABLE `schools` (
+  `school_id` INT PRIMARY KEY NOT NULL,
+  `school_name` VARCHAR(100) NOT NULL,
+  `schoold_address` VARCHAR(200) NOT NULL,
+  `school_image_url` VARCHAR(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Inserting data into the Schools table
+INSERT INTO `schools` (`school_id`,`school_name`,`schoold_address`, `school_image_url`) VALUES
+(1, 'IED El Ensueño', 'Tv. 70c #11 a 67a, Bogotá', '/images/schools/nf.jpg'),
+(2, 'Colegio Angela Restrepo Moreno', 'Cl. 69 Sur #71g-12, Bogotá', '/images/schools/nf.jpg'),
+(3, 'Colegio Emma Reyes', 'Cra. 80b #6-71, Bogotá', '/images/schools/nf.jpg'),
+(4, 'Colegio María Mercedes Carranza', 'El Perdomo, Tv. 70g #65 Sur-2, Bogotá', '/images/schools/nf.jpg'),
+(5, 'Colegio Distrital Agudelo Restrepo IED', 'Tv. 70d, Bogotá', '/images/schools/nf.jpg');
+
+-- Creación de la tabla intermedia product_school
+CREATE TABLE `school_products` (
+  `product_school_id` INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  `product_id` INT NOT NULL,
+  `school_id` INT NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Insertar datos de ejemplo en la tabla product_school
+INSERT INTO `school_products` (`product_id`, `school_id`) VALUES
+(1, 1), -- Camisa blanca asociada con IED El Ensueño
+(2, 1), -- Jardinera asociada con IED El Ensueño
+(3, 1), -- Pantalón gris asociado con IED El Ensueño
+(4, 2), -- Chaleco negro asociado con Colegio Angela Restrepo Moreno
+(5, 3), -- Blazer escolar asociado con Colegio Emma Reyes
+(6, 4), -- Corbata asociada con Colegio María Mercedes Carranza
+(1, 2), -- Camisa blanca también asociada con Colegio Angela Restrepo Moreno
+(3, 3); -- Pantalón gris también asociado con Colegio Emma Reyes
 
 -- Creation of the Products Sizes table
 CREATE TABLE `products_sizes` (
@@ -146,13 +184,6 @@ REFERENCES `roles`(`role_id`)
 ON UPDATE CASCADE
 ON DELETE CASCADE;
 
-ALTER TABLE `products` 
-ADD CONSTRAINT `fk_product_school_id`
-FOREIGN KEY (`school_id`)
-REFERENCES `schools`(`school_id`)
-ON UPDATE CASCADE
-ON DELETE CASCADE;
-
 ALTER TABLE `products_sizes` 
 ADD CONSTRAINT `fk_product_size_product_id`
 FOREIGN KEY (`product_id`)
@@ -189,5 +220,17 @@ ON DELETE CASCADE,
 ADD CONSTRAINT `fk_sold_product_order_id`
 FOREIGN KEY (`order_id`)
 REFERENCES `orders`(`order_id`)
+ON UPDATE CASCADE
+ON DELETE CASCADE;
+
+ALTER TABLE `school_products`
+ADD CONSTRAINT `school_product_product_id`
+FOREIGN KEY (`product_id`) 
+REFERENCES `products`(`product_id`)
+ON UPDATE CASCADE
+ON DELETE CASCADE,
+ADD CONSTRAINT `school_product_school_id`
+FOREIGN KEY (`school_id`) 
+REFERENCES `schools`(`school_id`)
 ON UPDATE CASCADE
 ON DELETE CASCADE;

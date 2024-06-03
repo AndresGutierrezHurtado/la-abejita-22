@@ -57,15 +57,19 @@
                     <p class="max-w-[600px]">Busca aquí el colegio junto a su uniforme.</p>
                 </div>
                 <div class="grid grid-cols-[repeat(auto-fill,_minmax(230px,_1fr))] gap-10">
-                    <article class="w-full min-[200px] max-w-[250px] border border-zinc-300 bg-white rounded-xl mx-auto">
-                        <div class="flex justify-center items-center p-2">
-                            <img src="/images/schools/agm-escudo.jpg" alt="logo-agm" class="max-h-[190px]">
-                        </div>
-                        <hr class="border-zinc-300">
-                        <div class="p-3 text-xl font-bold text-center">
-                            <h1>Colegio Ángela Restrepo Moreno IED</h1>
-                        </div>
-                    </article>
+                    @foreach ( $schools as $school)
+
+                        <article class="w-full min-[200px] max-w-[250px] border border-zinc-300 bg-white rounded-xl mx-auto">
+                            <a href="" class="flex justify-center items-center p-2">
+                                <img src="{{$school -> school_image_url}}" alt="logo-agm" class=" max-h-[190px]">
+                            </a>
+                            <hr class="border-zinc-300">
+                            <div class="p-3 text-xl font-bold text-center">
+                                <h1>{{$school -> school_name}}</h1>
+                            </div>
+                        </article>
+
+                    @endforeach
                 </div>
                 <button class="w-fit py-1 px-10 bg-amber-500 rounded-md font-semibold text-lg mx-auto shadow-sm ">
                     Ver más colegios
@@ -173,49 +177,65 @@
         <section class="w-full flex flex-col items-center">
             <div class="w-full max-w-[1200px] py-10">
                 <!-- Recuadro con formulario de envío --> 
-                <div class="flex bg-white rounded-lg overflow-hidden">
-                    <div class="p-5">
-                        <h1>¡Queremos escucharte!</h1>
+                <div class="flex bg-white rounded-lg overflow-hidden shadow-lg">
+                    <div class="p-5 flex flex-col gap-3 md:px-8">
+                        <h1 class="text-2xl font-bold tracking-tight">¡Queremos escucharte!</h1>
                         <p>Te invitamos a compartir todas sus preguntas, quejas y reclamos para que juntos podamos mejorar y brindarles una experiencia excepcional.</p>
-                        <form action="">
+                        <form action="" class="w-full flex flex-col gap-4">
                             @csrf
-                            <div>
-                                <label for="">Nombre</label>
-                                <input type="text" id="" name="" placeholder="" class="">
-                                <label for="">Correo Electrónico</label>
-                                <input type="email" id="" name="" placeholder="" class="">
+                            <div class="flex w-full gap-4">
+                                <div class="flex flex-col gap-2 w-full md:w-1/2">
+                                    <x-input-label for="user_full_name" value="Nombre" />
+                                    <x-text-input type="email" id="user_full_name" class="" name="user_full_name" required autofocus />
+                                </div>
+                                <div class="flex flex-col gap-2 w-full md:w-1/2">
+                                    <x-input-label for="user_email" value="Correo Electrónico" />
+                                    <x-text-input type="email" id="user_email" class="" name="user_email" required autofocus />
+                                </div>
                             </div>
-                            <div>
-                                <label for="">Asunto</label>
-                                <input type="text" id="" name="" placeholder="" class="">
+                            <div class="flex flex-col gap-2 w-full">
+                                <x-input-label for="email_subject" value="Asunto" />
+                                <x-text-input type="text" id="email_subject" class="" name="email_subject" required autofocus />
                             </div>
-                            <div>
-                                <label for="">Mensaje</label>
-                                <textarea id="" name="" ></textarea>
+                            <div class="flex flex-col gap-2 w-full">
+                                <x-input-label for="email_message" value="Mensaje" />
+                                <x-text-input type="text" id="email_message" class="" name="email_message" required autofocus />
                             </div>
-                            <button>Enviar</button>
+                            <button class="py-1 px-7 bg-slate-100 rounded-md font-semibold text-slate-600 w-fit border">Enviar</button>
                         </form>
                     </div>
-                    <div class="bg-orange-400 w-full max-w-[300px] p-5">
-                        <h1>Contáctanos</h1>
+                    <div class="bg-orange-400 w-full max-w-[300px] p-5 flex flex-col gap-3">
+                        <h1 class="text-2xl font-bold tracking-tight">Contáctanos</h1>
                         <p>Especialistas en uniformes escolares en Bogotá, Colombia. Descubre calidad y variedad en nuestras tiendas.</p>
-                        <div>
+                        <div class="flex flex-col gap-4">
                             <span class="flex items-center gap-2">
-                                <i class="fa-solid fa-location-dot"></i>
-                                <p>Dirección: Diagonal 60 D Sur 70 c 31</p>
+                                <div class="size-[40px] flex-none flex items-center justify-center rounded-full border border-black">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <p><a class="font-semibold">Dirección:</a> Diagonal 60 D Sur 70 c 31</p>
                             </span>
                             <span class="flex items-center gap-2">
-                                <i class="fa-solid fa-phone"></i>
-                                <p>Teléfono: 312 4852078</p>
+                                <div class="size-[40px] flex-none flex items-center justify-center rounded-full border border-black">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <p><a class="font-semibold">Teléfono:</a> 312 4852078</p>
                             </span>
                             <span class="flex items-center gap-2">
-                                <i class="fa-regular fa-envelope"></i>
-                                <p>Correo: Laabejita.uni@gmail.com</p>
+                                <div class="size-[40px] flex-none flex items-center justify-center rounded-full border border-black">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div>
+                                <p><a class="font-semibold">Correo:</a> Laabejita.uni@gmail.com</p>
                             </span>
+                        </div>
 
-                            <div>
+                        <div class="w-full flex justify-center items-center gap-5 mt-2 text-2xl">
+                            <div class="size-[50px] flex-none flex items-center justify-center rounded-full border border-black duration-300 hover:scale-105 hover:shadow-lg cursor-pointer">
                                 <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="size-[50px] flex-none flex items-center justify-center rounded-full border border-black duration-300 hover:scale-105 hover:shadow-lg cursor-pointer">
                                 <i class="fab fa-facebook"></i>
+                            </div>
+                            <div class="size-[50px] flex-none flex items-center justify-center rounded-full border border-black duration-300 hover:scale-105 hover:shadow-lg cursor-pointer">
                                 <i class="fab fa-instagram"></i>
                             </div>
                         </div>

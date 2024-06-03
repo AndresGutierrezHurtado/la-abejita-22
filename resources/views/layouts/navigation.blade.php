@@ -7,7 +7,7 @@
                 <a href="{{ url('/') }}">Inicio</a>
             </li>
             <li class="hover:scale-105 hover:text-amber-500 duration-300">
-                <a href="{{ url('/') }}">Colegios</a>
+                <a href="{{ url('/colegios') }}">Colegios</a>
             </li>
             <li class="hover:scale-105 hover:text-amber-500 duration-300">
                 <a href="{{ url('/') }}">Sobre Nosotros</a>

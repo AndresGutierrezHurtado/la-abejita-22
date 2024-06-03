@@ -6,6 +6,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SchoolController::class, 'index'])->name('index');
 
+Route::get('/colegios', [SchoolController::class, 'schools'])->name('colegios');
+
+Route::get('/colegios/{id}', [SchoolController::class, 'school']);
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

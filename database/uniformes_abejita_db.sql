@@ -91,16 +91,16 @@ INSERT INTO `sizes` (`size_id`, `size_name`) VALUES
 CREATE TABLE `schools` (
   `school_id` INT PRIMARY KEY NOT NULL,
   `school_name` VARCHAR(100) NOT NULL,
-  `schoold_address` VARCHAR(200) NOT NULL,
+  `school_address` VARCHAR(200) NOT NULL,
   `school_image_url` VARCHAR(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Inserting data into the Schools table
-INSERT INTO `schools` (`school_id`,`school_name`,`schoold_address`, `school_image_url`) VALUES
-(1, 'IED El Ensueño', 'Tv. 70c #11 a 67a, Bogotá', '/images/schools/nf.jpg'),
-(2, 'Colegio Angela Restrepo Moreno', 'Cl. 69 Sur #71g-12, Bogotá', '/images/schools/nf.jpg'),
-(3, 'Colegio Emma Reyes', 'Cra. 80b #6-71, Bogotá', '/images/schools/nf.jpg'),
-(4, 'Colegio María Mercedes Carranza', 'El Perdomo, Tv. 70g #65 Sur-2, Bogotá', '/images/schools/nf.jpg'),
+INSERT INTO `schools` (`school_id`,`school_name`,`school_address`, `school_image_url`) VALUES
+(1, 'IED El Ensueño', 'Tv. 70c #11 a 67a, Bogotá', '/images/schools/1.jpg'),
+(2, 'Colegio Angela Restrepo Moreno', 'Cl. 69 Sur #71g-12, Bogotá', '/images/schools/2.jpg'),
+(3, 'Colegio Emma Reyes', 'Cra. 80b #6-71, Bogotá', '/images/schools/3.jpg'),
+(4, 'Colegio María Mercedes Carranza', 'El Perdomo, Tv. 70g #65 Sur-2, Bogotá', '/images/schools/4.jpg'),
 (5, 'Colegio Distrital Agudelo Restrepo IED', 'Tv. 70d, Bogotá', '/images/schools/nf.jpg');
 
 -- Creación de la tabla intermedia product_school

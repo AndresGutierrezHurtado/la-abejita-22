@@ -57,10 +57,10 @@
                     <p class="max-w-[600px]">Busca aquí el colegio junto a su uniforme.</p>
                 </div>
                 <div class="grid grid-cols-[repeat(auto-fill,_minmax(230px,_1fr))] gap-10">
-                    @foreach ( $schools as $school)
+                    @foreach ( $schools as $school )
 
-                        <article class="w-full min-[200px] max-w-[250px] border border-zinc-300 bg-white rounded-xl mx-auto">
-                            <a href="" class="flex justify-center items-center p-2">
+                        <article class="w-full max-w-[250px] border border-zinc-300 bg-white rounded-xl mx-auto">
+                            <a href="/colegios/{{$school -> school_id}}" class="flex justify-center items-center p-2">
                                 <img src="{{$school -> school_image_url}}" alt="logo-agm" class=" max-h-[190px]">
                             </a>
                             <hr class="border-zinc-300">
@@ -71,9 +71,9 @@
 
                     @endforeach
                 </div>
-                <button class="w-fit py-1 px-10 bg-amber-500 rounded-md font-semibold text-lg mx-auto shadow-sm ">
+                <a href="{{url('/colegios')}}" class="w-fit py-1 px-10 bg-amber-500 rounded-md font-semibold text-lg mx-auto shadow-sm ">
                     Ver más colegios
-                </button>
+                </a>
             </div>
         </section>
         <section class="w-full flex flex-col items-center bg-zinc-800">
@@ -199,7 +199,8 @@
                             </div>
                             <div class="flex flex-col gap-2 w-full">
                                 <x-input-label for="email_message" value="Mensaje" />
-                                <x-text-input type="text" id="email_message" class="" name="email_message" required autofocus />
+                                <textarea name="email_message" id="email_message" required autofocus
+                                class="border-gray-300 rounded-md shadow-sm resize-none h-[100px]"></textarea>
                             </div>
                             <button class="py-1 px-7 bg-slate-100 rounded-md font-semibold text-slate-600 w-fit border">Enviar</button>
                         </form>

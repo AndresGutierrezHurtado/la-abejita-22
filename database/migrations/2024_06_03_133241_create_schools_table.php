@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('schools', function (Blueprint $table) {
             $table->integer('school_id')->primary();
             $table->string('school_name', 100);
-            $table->string('schoold_address', 200);
+            $table->string('school_address', 200);
             $table->string('school_image_url', 100);
         });
     }

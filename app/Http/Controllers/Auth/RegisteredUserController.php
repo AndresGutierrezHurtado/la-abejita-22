@@ -16,7 +16,7 @@ class RegisteredUserController extends Controller
 {
 
     public function create(): View {
-        return view('auth.register', ['title' => 'Registro']);
+        return view('auth.register');
     }
 
     public function store(Request $request): RedirectResponse {
@@ -34,13 +34,12 @@ class RegisteredUserController extends Controller
             'user_last_name' => $request->user_last_name,
             'user_username' => $request->user_username,
             'user_email' => $request->user_email,
+            'role_id' => $request->role_id,
             'user_password' => Hash::make($request->user_password),
         ]);
 
         event(new Registered($user));
 
-        Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('login', absolute: false));
     }
 }

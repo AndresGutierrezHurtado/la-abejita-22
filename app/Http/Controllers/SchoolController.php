@@ -21,7 +21,7 @@ class SchoolController extends Controller
 
     public function school($id) {
         $school = School::find($id);
-        $products = $school -> products()->with('sizes')->get();
+        $products = $school -> products()->with('sizes')->paginate(8);
 
         return view('school', compact('school', 'products'));
     }

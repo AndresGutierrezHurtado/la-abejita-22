@@ -15,7 +15,6 @@ return new class extends Migration
             $table->integer('product_id', true);
             $table->string('product_name', 100);
             $table->string('product_description', 100);
-            $table->integer('product_stock');
             $table->string('product_image_url', 100)->nullable()->default('/images/products/nf.jpg');
         });
     }

@@ -20,15 +20,13 @@ class User extends Authenticatable
         'user_username',
         'user_email',
         'user_password',
+        'role_id',
     ];
 
     protected $hidden = [
         'user_password',
+        'role_id',
         'remember_token',
-    ];
-
-    protected $casts = [
-        'email_verified_at' => 'datetime',
     ];
 
     // Mutator para el campo de la contraseña
@@ -41,5 +39,10 @@ class User extends Authenticatable
     public function getAuthPassword()
     {
         return $this->user_password;
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
     }
 }

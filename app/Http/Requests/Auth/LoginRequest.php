@@ -29,7 +29,7 @@ class LoginRequest extends FormRequest
 
         $credentials = [
             'user_email' => $this->input('user_email'),
-            'password' => $this->input('user_password')
+            'user_password' => $this->input('user_password')
         ];
 
         if (! Auth::attempt($credentials, $this->boolean('remember'))) {

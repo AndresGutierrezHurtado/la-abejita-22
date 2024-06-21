@@ -4,13 +4,13 @@
 
 @section('content')
     <main class="flex flex-col">
-        <section class="w-full min-h-[400px] flex justify-center bg-center bg-no-repeat bg-cover bg-[url(/public/images/banner.jpg)] relative">
+        <section class="w-full min-h-[400px] px-5 flex justify-center bg-center bg-no-repeat bg-cover bg-[url(/public/images/banner.jpg)] relative">
             <div class="absolute inset-0 bg-gradient-to-b from-black to-black opacity-[20%]"></div>
-            <div class="flex justify-between gap-5 w-full max-w-[1200px] z-10">
+            <div class="flex flex-col sm:flex-row justify-between gap-5 w-full max-w-[1200px] z-10">
                 <div class="flex flex-col justify-center items-center gap-4 text-center text-white h-full max-w-[750px]">
                     <h1 class="text-5xl font-bold tracking-tight mb-2">Uniformes Escolares</h1>
                     <p class="font-semibold text-[18px]">¡Bienvenidos a nuestra tienda en línea de uniformes escolares en Bogotá! Somos una empresa dedicada a 
-                        ofrecer uniformes de alta calidad y durabilidad para estudiantes de todos los niveles escolares.</p>
+                        ofrecer uniformes de alta calidad y durabilidad para estudiantes.</p>
                     <button class="py-1 px-8 rounded-xl bg-white shadow-lg font-semibold text-zinc-800 text-lg w-fit duration-300 hover:bg-zinc-200">
                         Ver más
                     </button>
@@ -21,7 +21,7 @@
                     <!-- Container mi cuenta -->
                     <article class="flex flex-col items-center gap-4 bg-black text-white text-center h-fit px-5 py-10 max-w-[280px]">
                         <h1 class="text-2xl font-bold mb-2">¡Bienvenido, {{ Auth::user() -> user_username }}!</h1>
-                        <p>Nos alegra que seas un {{Auth::user() -> role_id }} de esta gran comunidad.</p>
+                        <p>Nos alegra que seas un {{ Auth::user() -> role -> role_name }} de esta gran comunidad.</p>
                         <div></div>
                         <a href="{{ url('/profile') }}" type="button">Mi Cuenta</a>
 
@@ -35,10 +35,10 @@
                             </a>
                         </form>
                         
-                    </article> 
+                    </article>
                 @else
-                    <!-- Container mi cuenta -->
-                    <article class="flex flex-col items-center gap-5 bg-black text-white text-center h-fit px-7 py-10 max-w-[320px]">
+                    <!-- Container inicio sesión -->
+                    <article class="flex flex-col items-center gap-5 bg-black text-white text-center h-fit px-7 py-10 max-w-[320px] min-w-[260px] mx-auto rounded-md sm:rounded-t-none mb-[20px]">
                     <h1 class="text-3xl font-bold mb-2">Invitado</h1>
                         <p>Inicia sesión para poder disfrutar de una mejor experiencia de compras.</p>
                         <a href="{{ url('/login') }}" class="bg-white font-semibold w-fit py-1 px-7 text-black rounded-full hover:bg-zinc-200 duration-300 text-lg"> 
@@ -71,11 +71,12 @@
 
                     @endforeach
                 </div>
-                <a href="{{url('/colegios')}}" class="w-fit py-1 px-10 bg-amber-500 rounded-md font-semibold text-lg mx-auto shadow-sm ">
+                <a href="{{url('/colegios')}}" id="about" class="w-fit py-1 px-10 bg-amber-500 rounded-md font-semibold text-lg mx-auto shadow-sm ">
                     Ver más colegios
                 </a>
             </div>
         </section>
+
         <section class="w-full flex flex-col items-center bg-zinc-800">
             <div class="w-full max-w-[1200px] flex gap-10 py-10 text-white">
                 <div class="w-full md:w-1/2 flex flex-col gap-2">
@@ -125,6 +126,7 @@
                 </div>
             </div>
         </section>
+
         <section class="w-full flex flex-col items-center">
             <div class="w-full max-w-[1200px] flex flex-col gap-5 py-10">
                 <div class="w-full text-center flex flex-col items-center gap-3">
@@ -174,38 +176,41 @@
                 </div>
             </div>
         </section>
-        <section class="w-full flex flex-col items-center">
+        
+        <section id="contact" class="w-full flex flex-col items-center">
             <div class="w-full max-w-[1200px] py-10">
                 <!-- Recuadro con formulario de envío --> 
-                <div class="flex bg-white rounded-lg overflow-hidden shadow-lg">
+                <div class="flex flex-col md:flex-row bg-white rounded-lg overflow-hidden shadow-lg">
+
                     <div class="p-5 flex flex-col gap-3 md:px-8">
                         <h1 class="text-2xl font-bold tracking-tight">¡Queremos escucharte!</h1>
                         <p>Te invitamos a compartir todas sus preguntas, quejas y reclamos para que juntos podamos mejorar y brindarles una experiencia excepcional.</p>
-                        <form action="" class="w-full flex flex-col gap-4">
+                        <form action="POST" class="w-full flex flex-col gap-4">
                             @csrf
                             <div class="flex w-full gap-4">
                                 <div class="flex flex-col gap-2 w-full md:w-1/2">
                                     <x-input-label for="user_full_name" value="Nombre" />
-                                    <x-text-input type="email" id="user_full_name" class="" name="user_full_name" required autofocus />
+                                    <x-text-input type="email" id="user_full_name" class="" name="user_full_name" required />
                                 </div>
                                 <div class="flex flex-col gap-2 w-full md:w-1/2">
                                     <x-input-label for="user_email" value="Correo Electrónico" />
-                                    <x-text-input type="email" id="user_email" class="" name="user_email" required autofocus />
+                                    <x-text-input type="email" id="user_email" class="" name="user_email" required />
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 w-full">
                                 <x-input-label for="email_subject" value="Asunto" />
-                                <x-text-input type="text" id="email_subject" class="" name="email_subject" required autofocus />
+                                <x-text-input type="text" id="email_subject" class="" name="email_subject" required />
                             </div>
                             <div class="flex flex-col gap-2 w-full">
                                 <x-input-label for="email_message" value="Mensaje" />
-                                <textarea name="email_message" id="email_message" required autofocus
+                                <textarea name="email_message" id="email_message" required
                                 class="border-gray-300 rounded-md shadow-sm resize-none h-[100px]"></textarea>
                             </div>
                             <button class="py-1 px-7 bg-slate-100 rounded-md font-semibold text-slate-600 w-fit border">Enviar</button>
                         </form>
                     </div>
-                    <div class="bg-orange-400 w-full max-w-[300px] p-5 flex flex-col gap-3">
+                    
+                    <div class="bg-orange-400 w-full md:max-w-[300px] p-5 flex flex-col gap-3">
                         <h1 class="text-2xl font-bold tracking-tight">Contáctanos</h1>
                         <p>Especialistas en uniformes escolares en Bogotá, Colombia. Descubre calidad y variedad en nuestras tiendas.</p>
                         <div class="flex flex-col gap-4">

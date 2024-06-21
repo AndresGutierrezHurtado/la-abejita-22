@@ -6,6 +6,7 @@
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
+    
     <main class="w-full min-h-screen flex items-center justify-center bg-center bg-no-repeat bg-cover bg-[url(/public/images/banner.jpg)] relative">
         <div class="absolute inset-0 bg-gradient-to-b from-black to-black opacity-[20%]"></div>
         <div class=" w-full p-10 bg-white shadow-lg rounded-md max-w-[550px] mx-auto z-50">
@@ -24,18 +25,20 @@
                 <!-- Email Address -->
                 <div>
                     <x-input-label for="user_email" value="Correo" />
-                    <x-text-input id="user_email" class="block mt-1 w-full" type="email" name="user_email" :value="old('user_email')" required autofocus autocomplete="user_email" />
+                    <x-text-input id="user_email" class="block mt-1 w-full" 
+                                    type="email" 
+                                    name="user_email" 
+                                    required autofocus/>
                     <x-input-error :messages="$errors->get('user_email')" class="mt-2" />
                 </div>
 
                 <!-- Password -->
                 <div class="mt-4">
                     <x-input-label for="user_password" value="Contraseña" />
-
                     <x-text-input id="user_password" class="block mt-1 w-full"
                                     type="password"
                                     name="user_password"
-                                    required autocomplete="user_password" />
+                                    required/>
 
                     <x-input-error :messages="$errors->get('user_password')" class="mt-2" />
                 </div>

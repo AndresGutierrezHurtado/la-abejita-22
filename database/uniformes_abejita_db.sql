@@ -34,6 +34,8 @@ CREATE TABLE `users` (
   `user_address` VARCHAR(30) DEFAULT NULL, 
   `user_phone_number` DECIMAL(10,0) DEFAULT NULL, 
   `user_image_url` VARCHAR(100) DEFAULT '/images/users/nf.jpg',
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `role_id` INT NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -50,26 +52,29 @@ CREATE TABLE `roles` (
 
 -- Inserting data into the Roles table
 INSERT INTO `roles` (`role_id`, `role_name`) VALUES
-(1, 'client'),
-(2, 'administrator');
+(1, 'cliente'),
+(2, 'administrador');
 
 -- Creation of the Products table
 CREATE TABLE `products` (
   `product_id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
   `product_name` VARCHAR(100) NOT NULL, 
-  `product_description` VARCHAR(100) NOT NULL, 
-  `product_stock` INT NOT NULL, 
+  `product_description` VARCHAR(100) NOT NULL,
   `product_image_url` VARCHAR(100) DEFAULT '/images/products/nf.jpg'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Inserting data into the Products table
 INSERT INTO `products` (`product_id`, `product_name`, `product_description`, `product_image_url`) VALUES
-(1, 'Camisa blanca', 'Camisa blanca para uniforme escolar.', '/images/products/nf.jpg'),
-(2, 'Jardinera', 'Jardinera de mezclilla para uniforme escolar.', '/images/products/nf.jpg'),
-(3, 'Pantalón gris', 'Pantalón de vestir gris para uniforme escolar.', '/images/products/nf.jpg'),
-(4, 'Chaleco negro', 'Chaleco formal para uniforme escolar.', '/images/products/nf.jpg'),
-(5, 'Blazer escolar', 'Blazer para uniforme escolar.', '/images/products/nf.jpg'),
-(6, 'Corbata', 'Corbata azul obscura para uniforme escolar.', '/images/products/nf.jpg');
+(1, 'Blazer escolar', 'Blazer para uniforme escolar.', '/images/products/1.jpg'),
+(2, 'Chaleco negro', 'Chaleco formal para uniforme escolar.', '/images/products/2.jpg'),
+(3, 'Camisa blanca', 'Camisa blanca para uniforme escolar.', '/images/products/3.jpg'),
+(4, 'Pantalón gris', 'Pantalón de vestir gris para uniforme escolar.', '/images/products/4.jpg'),
+(5, 'Corbata', 'Corbata azul obscura para uniforme escolar.', '/images/products/5.jpg'),
+(6, 'Jardinera', 'Jardinera de mezclilla para uniforme escolar.', '/images/products/6.jpg'),
+(7, 'Chaqueta sudadera', 'Chaqueta estilo sudadera para uniforme escolar.', '/images/products/7.jpg'),
+(8, 'Pantalón sudadera', 'Pantalón estilo sudadera para uniforme escolar.', '/images/products/8.jpg'),
+(9, 'Camiseta polo', 'Camiseta tipo polo para uniforme escolar.', '/images/products/9.jpg'),
+(10, 'Pantaloneta', 'Pantaloneta para actividades deportivas escolares.', '/images/products/10.jpg');
 
 -- Creation of the Sizes table
 CREATE TABLE `sizes` (
@@ -86,6 +91,58 @@ INSERT INTO `sizes` (`size_id`, `size_name`) VALUES
 (5, 'XL'),
 (6, 'XXL'),
 (7, 'XXXL');
+
+-- Creation of the Products Sizes table
+CREATE TABLE `products_sizes` (
+  `product_size_id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `product_id` INT NOT NULL,
+  `product_size_stock` INT NOT NULL,
+  `product_size_price` DECIMAL(10,2) NOT NULL,
+  `size_id` INT NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Inserting data into the Products Sizes table with Colombian prices
+INSERT INTO `products_sizes` (`product_id`, `product_size_stock`, `product_size_price`, `size_id`) VALUES
+-- Blazer escolar
+(1, 10, 85000.00, 3),  -- M
+(1, 8, 85000.00, 4),   -- L
+(1, 5, 85000.00, 5),   -- XL
+-- Chaleco negro
+(2, 10, 65000.00, 2),  -- S
+(2, 8, 65000.00, 3),   -- M
+(2, 6, 65000.00, 4),   -- L
+-- Camisa blanca
+(3, 15, 52000.00, 2),  -- S
+(3, 20, 52000.00, 3),  -- M
+(3, 18, 52000.00, 4),  -- L
+-- Pantalón gris
+(4, 12, 98000.00, 3),  -- M
+(4, 10, 98000.00, 4),  -- L
+(4, 8, 98000.00, 5),   -- XL
+-- Corbata
+(5, 25, 32000.00, 1),   -- XS
+(5, 20, 32000.00, 2),   -- S
+(5, 15, 32000.00, 3),   -- M
+-- Jardinera
+(6, 8, 118000.00, 3),   -- M
+(6, 6, 118000.00, 4),   -- L
+(6, 4, 118000.00, 5),   -- XL
+-- Chaqueta sudadera
+(7, 15, 76000.00, 2),  -- S
+(7, 20, 76000.00, 3),  -- M
+(7, 18, 76000.00, 4),  -- L
+-- Pantalón sudadera
+(8, 12, 65000.00, 3),  -- M
+(8, 10, 65000.00, 4),  -- L
+(8, 8, 65000.00, 5),   -- XL
+-- Camiseta polo
+(9, 20, 42000.00, 2),  -- S
+(9, 25, 42000.00, 3),  -- M
+(9, 18, 42000.00, 4),  -- L
+-- Pantaloneta
+(10, 25, 32000.00, 2),  -- S
+(10, 30, 32000.00, 3),  -- M
+(10, 20, 32000.00, 4);  -- L
 
 -- Creation of the Schools table
 CREATE TABLE `schools` (
@@ -110,39 +167,46 @@ CREATE TABLE `school_products` (
   `school_id` INT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Insertar datos de ejemplo en la tabla product_school
+-- Insertar datos de ejemplo en la tabla school_products
 INSERT INTO `school_products` (`product_id`, `school_id`) VALUES
-(1, 1), -- Camisa blanca asociada con IED El Ensueño
-(2, 1), -- Jardinera asociada con IED El Ensueño
-(3, 1), -- Pantalón gris asociado con IED El Ensueño
-(4, 2), -- Chaleco negro asociado con Colegio Angela Restrepo Moreno
-(5, 3), -- Blazer escolar asociado con Colegio Emma Reyes
-(6, 4), -- Corbata asociada con Colegio María Mercedes Carranza
-(1, 2), -- Camisa blanca también asociada con Colegio Angela Restrepo Moreno
-(3, 3); -- Pantalón gris también asociado con Colegio Emma Reyes
-
--- Creation of the Products Sizes table
-CREATE TABLE `products_sizes` (
-  `product_size_id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `product_id` INT NOT NULL,
-  `size_id` INT NOT NULL,
-  `price` DECIMAL(10,2) NOT NULL,
-  FOREIGN KEY (`product_id`) REFERENCES `products`(`product_id`),
-  FOREIGN KEY (`size_id`) REFERENCES `sizes`(`size_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Inserting data into the Products Sizes table
-INSERT INTO `products_sizes` (`product_id`, `size_id`, `price`) VALUES
-(1, 1, 29000), -- Camisa blanca, XS
-(1, 2, 30000), -- Camisa blanca, S
-(1, 3, 31000), -- Camisa blanca, M
-(1, 4, 32000), -- Camisa blanca, L
-(1, 5, 33000), -- Camisa blanca, XL
-(2, 1, 59000), -- Jardinera, XS
-(2, 2, 60000), -- Jardinera, S
-(2, 3, 61000), -- Jardinera, M
-(2, 4, 62000), -- Jardinera, L
-(2, 5, 63000); -- Jardinera, XL
+-- Colegio El Ensueño
+(1, 1), -- Blazer escolar
+(2, 1), -- Chaleco negro
+(3, 1), -- Camisa blanca
+(4, 1), -- Pantalón gris
+(5, 1), -- Corbata
+(6, 1), -- Jardinera
+(7, 1), -- Chaqueta sudadera
+(8, 1), -- Pantalón sudadera
+(9, 1), -- Camiseta polo
+(10, 1), -- Pantaloneta
+-- Colegio Angela Restrepo Moreno
+(1, 2), -- Blazer escolar
+(2, 2), -- Chaleco negro
+(3, 2), -- Camisa blanca
+(4, 2), -- Pantalón gris
+(5, 2), -- Corbata
+(6, 2), -- Jardinera
+(7, 2), -- Chaqueta sudadera
+(8, 2), -- Pantalón sudadera
+(9, 2), -- Camiseta polo
+(10, 2), -- Pantaloneta
+-- Colegio Emma Reyes
+(1, 3), -- Blazer escolar
+(2, 3), -- Chaleco negro
+(3, 3), -- Camisa blanca
+(4, 3), -- Pantalón gris
+(5, 3), -- Corbata
+(6, 3), -- Jardinera
+(7, 3), -- Chaqueta sudadera
+(8, 3), -- Pantalón sudadera
+(9, 3), -- Camiseta polo
+(10, 3), -- Pantaloneta
+-- Colegio María Mercedes Carranza
+(4, 4), -- Pantalón gris
+-- Colegio Distrital Agudelo Restrepo IED
+(3, 5), -- Camisa blanca
+(4, 5); -- Pantalón gris
 
 -- Creation of the Orders table
 CREATE TABLE `orders` (
@@ -202,7 +266,6 @@ FOREIGN KEY (`user_id`)
 REFERENCES `users`(`user_id`)
 ON UPDATE CASCADE
 ON DELETE CASCADE;
-
 
 ALTER TABLE `payments_details` 
 ADD CONSTRAINT `fk_payment_detail_order_id`

@@ -19,7 +19,8 @@
             </div>
             <form method="POST" action="{{ route('register') }}">
                 @csrf
-
+                <!-- Uknow -->
+                 <input type="hidden" name="role_id" value="1">
                 <!-- First Name -->
                 <div>
                     <x-input-label for="user_first_name" value="Nombres" />

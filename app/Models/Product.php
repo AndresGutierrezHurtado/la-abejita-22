@@ -20,6 +20,6 @@ class Product extends Model
     public function sizes()
     {
         return $this->belongsToMany(Size::class, 'products_sizes', 'product_id', 'size_id')
-                    ->withPivot('price');
+                    ->withPivot('product_size_price');
     }
 }

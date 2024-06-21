@@ -19,18 +19,30 @@
                 @if (Route::has('login'))
                     @auth
                     <!-- Container mi cuenta -->
-                    <article class="flex flex-col items-center gap-4 bg-black text-white text-center h-fit px-5 py-10 max-w-[280px]">
-                        <h1 class="text-2xl font-bold mb-2">¡Bienvenido, {{ Auth::user() -> user_username }}!</h1>
-                        <p>Nos alegra que seas un {{ Auth::user() -> role -> role_name }} de esta gran comunidad.</p>
+                    <article class="flex flex-col items-center gap-4 bg-black text-white text-center h-fit px-5 py-10 max-w-[280px] min-w-[260px] mx-auto rounded-md sm:rounded-t-none mb-[20px]">
+                        <h1 class="text-2xl font-bold mb-2">¡Bienvenido, {{ Auth::user() -> user_first_name }}!</h1>
+                        <p>Nos alegra que seas un <a class="font-semibold text-amber-100">{{ Auth::user() -> role -> role_name }}</a> de esta gran comunidad.</p>
                         <div></div>
-                        <a href="{{ url('/profile') }}" type="button">Mi Cuenta</a>
-
+                        <a href="{{ url('/profile') }}" type="button"
+                            class="rounded-md px-3 py-1 border-2 border-white font-semibold">
+                            <i class="fa-solid fa-user mr-2"></i>
+                            Mi Cuenta
+                        </a>
+                        @if (Auth::user() -> role -> role_name == 'administrador')
+                            <a href="" type="button"
+                            class="rounded-md px-3 py-1 border-2 border-white font-semibold">
+                                <i class="fa-solid fa-gear mr-2"></i>
+                                Administrador
+                            </a>
+                        @endif
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
                             <a href="{{ url('/logout') }}" type="button" 
                             onclick="event.preventDefault(); 
-                            this.closest('form').submit();">
+                            this.closest('form').submit();"
+                            class="bg-red-600 duration-300 hover:bg-red-700 border-2 border-transparent rounded-md px-3 py-1 font-semibold">
+                            <i class="fa-solid fa-right-from-bracket mr-2"></i>
                             Cerrar Sesión
                             </a>
                         </form>
@@ -51,7 +63,7 @@
             </div>
         </section>
         <section class="w-full flex justify-center">
-            <div class="w-full max-w-[1200px] flex flex-col gap-5 py-10">
+            <div class="w-full max-w-[1200px] flex flex-col gap-10 py-10">
                 <div class="w-full text-center flex flex-col items-center gap-3">
                     <h1 class="text-5xl font-bold tracking-tight">Colegios</h1>
                     <p class="max-w-[600px]">Busca aquí el colegio junto a su uniforme.</p>
@@ -59,7 +71,7 @@
                 <div class="grid grid-cols-[repeat(auto-fill,_minmax(230px,_1fr))] gap-10">
                     @foreach ( $schools as $school )
 
-                        <article class="w-full max-w-[250px] border border-zinc-300 bg-white rounded-xl mx-auto">
+                        <article class="w-full max-w-[250px] border border-zinc-300 bg-white rounded-xl mx-auto shadow-md duration-300 hover:shadow-lg hover:scale-[1.03]">
                             <a href="/colegios/{{$school -> school_id}}" class="flex justify-center items-center p-2">
                                 <img src="{{$school -> school_image_url}}" alt="logo-agm" class=" max-h-[190px]">
                             </a>
@@ -71,7 +83,7 @@
 
                     @endforeach
                 </div>
-                <a href="{{url('/colegios')}}" id="about" class="w-fit py-1 px-10 bg-amber-500 rounded-md font-semibold text-lg mx-auto shadow-sm ">
+                <a href="{{url('/colegios')}}" id="about" class="w-fit py-1 px-10 bg-amber-500 rounded-md font-semibold text-lg mx-auto shadow-sm duration-300 hover:translate-y-1 hover:shadow-md hover:scale-[1.02]">
                     Ver más colegios
                 </a>
             </div>
@@ -165,13 +177,15 @@
                                 recíbe los productos en la comodidad de tu casa.
                             </p>
                         </article>
-                        <article class="w-full max-w-[310px] flex flex-col gap-2 items-center text-center">
-                            <span class="size-[60px] flex items-center justify-center rounded-full bg-yellow-400">
-                                <i class="fa-solid fa-gem text-[35px] text-white"></i>
-                            </span>
-                            <h3 class="text-xl font-extrabold tracking-tight">Elige tu talla</h3>
-                            <p class="text-md">¿Tienes dudas sobre cuál talla escoger? <br> Aquí te enseñamos como.</p>
-                        </article>
+                        <a href="{{ url('/tallas') }}">
+                            <article class="w-full max-w-[310px] flex flex-col gap-2 items-center text-center">
+                                <span class="size-[60px] flex items-center justify-center rounded-full bg-yellow-400">
+                                    <i class="fa-solid fa-gem text-[35px] text-white"></i>
+                                </span>
+                                <h3 class="text-xl font-extrabold tracking-tight">Elige tu talla</h3>
+                                <p class="text-md">¿Tienes dudas sobre cuál talla escoger? <br> Aquí te enseñamos como.</p>
+                            </article>
+                        </a>
                     </div>
                 </div>
             </div>

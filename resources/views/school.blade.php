@@ -23,8 +23,8 @@
             <div class="grid grid-cols-[repeat(auto-fill,_minmax(230px,_1fr))] gap-10">
 
                 @foreach ($products as $product)
-                    <article class="bg-white p-5 rounded-md shadow-md h-fit w-full">
-                        <div class="w-full flex items-center justify-center" >
+                    <article class="bg-white p-5 rounded-md shadow-md h-fit w-full duration-300 hover:shadow-lg">
+                        <div class="w-full flex items-center justify-center mb-2" >
                             <img src="{{$product->product_image_url}}" alt="" class="max-w-full max-h-[230px]">
                         </div>
                         <div class="flex flex-col gap-2">
@@ -38,7 +38,7 @@
                                 </select>
                                 <p id="price{{$product->product_id}}" class="font-semibold" >{{number_format($product->sizes->first()->pivot->product_size_price ?? 0)}} COP</p>
                             </div>
-                            <button><i class="fa-solid fa-cart-shopping"></i></button>
+                            <button class="bg-amber-500 w-fit px-5 py-1 mx-auto text-white rounded-lg duration-300 hover:bg-amber-600"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
                     </article>
                 @endforeach

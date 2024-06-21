@@ -14,7 +14,7 @@
             <div class="grid grid-cols-[repeat(auto-fill,_minmax(230px,_1fr))] gap-10">
                 @foreach ( $schools as $school )
 
-                    <article class="w-full min-[200px] max-w-[250px] border border-zinc-300 bg-white rounded-xl mx-auto">
+                    <article class="w-full min-[200px] max-w-[250px] border border-zinc-300 bg-white rounded-xl mx-auto shadow-md duration-300 hover:scale-[1.03] hover:shadow-lg">
                         <a href="/colegios/{{$school -> school_id}}" class="flex justify-center items-center p-2">
                             <img src="{{$school -> school_image_url}}" alt="logo-agm" class=" max-h-[190px]">
                         </a>
@@ -25,6 +25,11 @@
                     </article>
 
                 @endforeach
+                
+            </div>
+
+            <div class="flex justify-between items-center p-3 bg-white rounded-lg shadow-lg mt-3">
+                {{ $schools -> links() }}
             </div>
         </div>
     </section>

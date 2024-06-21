@@ -14,7 +14,7 @@ class SchoolController extends Controller
     }
 
     public function schools() {
-        $schools = School::all();
+        $schools = School::paginate(8);
 
         return view('schools', compact('schools'));
     }

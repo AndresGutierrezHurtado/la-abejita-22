@@ -10,8 +10,12 @@ Route::get('/colegios', [SchoolController::class, 'schools'])->name('colegios');
 
 Route::get('/colegios/{id}', [SchoolController::class, 'school']);
 
+Route::get('/tallas', function () {
+    return view('sizes');
+});
+
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile');
+    Route::get('/profile/{user_id?}', [ProfileController::class, 'show'])->name('profile');
 });
 
 require __DIR__.'/auth.php';

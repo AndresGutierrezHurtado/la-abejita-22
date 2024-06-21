@@ -8,14 +8,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
+use Carbon\Carbon;
 
 class ProfileController extends Controller
 {
-    public function edit(Request $request): View
-    {
-        return view('profile', [
-            'user' => $request->user(),
-        ]);
+    public function show($user_id = null): View {
+        $user = (!$user_id) ? Auth::user() : $user_id = User::find($user_id);
+        
+        return view('profile', compact('user'));
     }
 
     public function update(ProfileUpdateRequest $request): RedirectResponse

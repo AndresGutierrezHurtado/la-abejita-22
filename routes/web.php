@@ -15,7 +15,10 @@ Route::get('/tallas', function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile/{user_id?}', [ProfileController::class, 'show'])->name('profile');
+    Route::get('/profile/user/{user_id?}', [ProfileController::class, 'show'])->name('profile');
+    Route::put('/profile/user/{user_id}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile/user/updateImage/{user_id}', [ProfileController::class, 'update_img']);
+    Route::put('/profile/user/deleteImage/{user_id}', [ProfileController::class, 'delete_img']);
 });
 
 require __DIR__.'/auth.php';

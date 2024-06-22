@@ -23,7 +23,7 @@
                         <h1 class="text-2xl font-bold mb-2">¡Bienvenido, {{ Auth::user() -> user_first_name }}!</h1>
                         <p>Nos alegra que seas un <a class="font-semibold text-amber-100">{{ Auth::user() -> role -> role_name }}</a> de esta gran comunidad.</p>
                         <div></div>
-                        <a href="{{ url('/profile') }}" type="button"
+                        <a href="{{ url('/profile/user') }}" type="button"
                             class="rounded-md px-3 py-1 border-2 border-white font-semibold">
                             <i class="fa-solid fa-user mr-2"></i>
                             Mi Cuenta

@@ -29,7 +29,7 @@
                             Mi Cuenta
                         </a>
                         @if (Auth::user() -> role -> role_name == 'administrador')
-                            <a href="" type="button"
+                            <a href="{{ url('/dashboard/users') }}" type="button"
                             class="rounded-md px-3 py-1 border-2 border-white font-semibold">
                                 <i class="fa-solid fa-gear mr-2"></i>
                                 Administrador

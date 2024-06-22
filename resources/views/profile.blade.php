@@ -3,21 +3,28 @@
 @section('title', 'Perfil')
 
 @section('content')
-<main class="flex flex-col gap-10 py-10 min-h-[90vh]">
+<main class="flex flex-col gap-10 py-10 min-h-[90vh] bg-center bg-no-repeat bg-cover bg-[url(/public/images/banner.jpg)] relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-black to-black opacity-[20%]"></div>
     <section class="w-full flex justify-center">
         <div class="flex flex-col md:flex-row gap-10 w-full max-w-[1200px] z-10">
-            <div class="bg-white rounded-md p-5 shadow-lg w-full md:w-1/3 flex flex-col gap-4">
-                <h2 class="text-xl font-bold mb-4">Foto de perfil de {{ $user->user_username }}:</h2>
+            <div class="bg-white rounded-md p-5 shadow-lg w-full md:w-[600px] flex flex-col gap-4">
+                <h2 class="text-xl font-bold mb-4">Foto de perfil de {{ $user -> user_username }}:</h2>
                 <form method="POST" action="{{ url('/profile/user/updateImage/' . $user -> user_id ) }}" enctype="multipart/form-data" class="flex flex-col items-center justify-center gap-4">
                     @csrf
                     @method('PUT')
 
-                    <x-auth-session-status class="mb-4" :status="session('status')" />
+                    <x-auth-session-status class="mb-4" :status="session('status_image')" />
 
-                    <div class="size-36 rounded-md overflow-hidden flex justify-center items-center">
-                        <img src="{{ $user->user_image_url }}" alt="foto {{ $user->user_username }}">
+                    <div class="size-36 rounded-md overflow-hidden shadow-md">
+                        <img src="{{ $user->user_image_url }}" alt="foto {{ $user->user_username }}" class="h-full w-full object-cover">
                     </div>
-                    <input type="file" name="user_image_url" id="user_image">
+                    <input type="file" name="user_image_url" id="user_image"
+                    class="block w-full border border-gray-300 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 bg-gray-200 cursor-pointer
+                    disabled:opacity-50 disabled:pointer-events-none
+                    file:bg-gray-50 file:border-0
+                    file:mr-4
+                    file:py-2 file:px-4
+                    file:cursor-pointer">
                     <button id="upload-button" class="px-5 py-1 text-white font-semibold bg-amber-500 rounded-lg w-fit hidden"><i class="fa-solid fa-upload mr-2"></i>Cambiar foto</button>
                 </form>
                 <form method="POST" action="{{ url('/profile/user/deleteImage/' . $user -> user_id ) }}" enctype="multipart/form-data" class="flex flex-col items-center justify-center gap-4">
@@ -28,29 +35,34 @@
             </div>
             <div class="bg-white flex flex-col justify-between rounded-md p-5 shadow-lg w-full md:w-[1fr]">
                 <div>
-                    <h2 class="text-xl font-bold mb-4">Información de {{ $user->user_username }}:</h2>
-                    <p><strong>Nombre:</strong> {{ $user->user_first_name . ' ' . $user->user_last_name }}</p>
-                    <p><strong>Dirección:</strong> {{ $user->user_address ?? 'No especificada' }}</p>
-                    <p><strong>Teléfono:</strong> {{ $user->user_phone_number ?? 'No especificado' }}</p>
+                    <h2 class="text-xl font-bold mb-4">Información:</h2>
+                    <p class="text-xl font-semibold text-gray-900 tracking-tight mb-2">{{ $user->user_first_name . ' ' . $user->user_last_name }}</p>
+                    <p><i class="fa-solid fa-user mr-2"></i> {{ $user -> user_username }}</p>
+                    <p><i class="fa-regular fa-envelope mr-2"></i> {{ $user -> user_email }}</p>
+                    <p><i class="fa-solid fa-location-dot mr-2"></i> {{ $user->user_address ?? 'No especificada' }}</p>
+                    <p><i class="fa-solid fa-phone mr-2"></i> {{ $user->user_phone_number ?? 'No especificado' }}</p>
                 </div>
                 <div class="w-full flex gap-2 justify-between items-end">
-                    <p class="text-gray-800 font-semibold text-sm">*Cuenta creada {{ \Carbon\Carbon::parse($user->created_at)->diffForHumans() }}*</p>
+                    <div class="tex-center text-gray-800 font-semibold text-sm flex flex-col items-center">
+                        <p class="capitalize">{{ $user -> role -> role_name }}</p>
+                        <p>*Cuenta creada {{ \Carbon\Carbon::parse($user->created_at)->diffForHumans() }}*</p>
+                    </div>
                     <button class="px-5 py-1 text-white font-semibold bg-red-600 rounded-lg"> <i class="fa-regular fa-trash-can mr-2"></i> Borrar cuenta </button>
                 </div>
             </div>
         </div>
     </section>
     <section class="w-full flex justify-center">
-        <form method="POST" action="{{url('/profile/user/' . $user -> user_id)}}" class="flex flex-col gap-10 w-full max-w-[1200px] z-10 bg-white rounded-md p-7 shadow-lg">
+        <form method="POST" action="{{url('/profile/user/' . $user -> user_id)}}" class="flex flex-col gap-5 w-full max-w-[1200px] z-10 bg-white rounded-md p-7 shadow-lg">
             @csrf
             @method('PUT')
             
             <h2 class="text-xl font-bold tracking-tight">Información del Usuario:</h2>    
             
-            <x-auth-session-status class="mb-4" :status="session('status')" />
+            <x-auth-session-status class="mb-4" :status="session('status_profile')" />
 
             <!-- Campos del formulario -->
-            <div class="grid grid-cols-2 gap-5">
+            <div class="grid grid-cols-2 gap-2 gap-x-5">
 
                 <!-- Nombres -->
                 <div>

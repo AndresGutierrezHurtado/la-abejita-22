@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SchoolController::class, 'index'])->name('index');
@@ -19,6 +20,12 @@ Route::middleware('auth')->group(function () {
     Route::put('/profile/user/{user_id}', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('/profile/user/updateImage/{user_id}', [ProfileController::class, 'update_img']);
     Route::put('/profile/user/deleteImage/{user_id}', [ProfileController::class, 'delete_img']);
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/dashboard/users', [AdminController::class, 'users'])->name('dashboard.users');
+    Route::get('/dashboard/products', [AdminController::class, 'products'])->name('dashboard.products');
+    Route::get('/dashboard/schools', [AdminController::class, 'schools'])->name('dashboard.schools');
 });
 
 require __DIR__.'/auth.php';

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 
 class ProfileController extends Controller
 {
@@ -33,7 +34,8 @@ class ProfileController extends Controller
 
             $user->save();
 
-            return redirect()->back()->with('status', 'Perfil actualizado correctamente.');
+            Session::flash('status_profile', 'Perfil actualizado correctamente.');
+            return redirect()->back();
 
         } catch (\Exception $e) {
             return Redirect::back()->withErrors(['error' => 'Ha ocurrido un error al actualizar el perfil.'])->withInput()->with('status', 'error');
@@ -53,8 +55,9 @@ class ProfileController extends Controller
             $user -> user_image_url = $image_path;
 
             $user -> save();
-    
-            return redirect()->back()->with('status', 'Foto de perfil actualizada correctamente.');
+
+            Session::flash('status_image', 'Foto de perfil actualizada correctamente.');
+            return redirect()->back();
 
         } catch (\Exception $e) {
             return Redirect::back()->withErrors(['error' => 'Ha ocurrido un error al actualizar el perfil.'])->withInput()->with('status', 'error');
@@ -72,7 +75,8 @@ class ProfileController extends Controller
 
             $user -> save();
             
-            return redirect()->back()->with('status', 'Foto de perfil actualizada correctamente.');
+            Session::flash('status_image', 'Foto de perfil actualizada correctamente.');
+            return redirect()->back();
             
         } catch (\Exception $e) {
             return Redirect::back()->withErrors(['error' => 'Ha ocurrido un error al actualizar el perfil.'])->withInput()->with('status', 'error');

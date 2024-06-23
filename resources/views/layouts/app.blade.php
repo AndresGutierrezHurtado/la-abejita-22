@@ -13,7 +13,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
-<body class="bg-slate-50 font-[system-ui]">
+<body class="bg-slate-50 font-[system-ui] min-h-screen">
 
     <!-- Header -->
     @include('layouts.navigation')

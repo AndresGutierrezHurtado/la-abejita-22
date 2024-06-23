@@ -6,8 +6,8 @@
 <main>
     <section class="w-full flex justify-center bg-slate-800 py-16">
         <div class="w-full max-w-[1200px] flex flex-col items-center justify-center gap-4">
-            <div class="size-[200px] rounded-full overflow-hidden flex items-center justify-center">
-                <img src="{{$school -> school_image_url}}" alt="max-w-full max-h-full">
+            <div class="size-[200px] rounded-full overflow-hidden">
+                <img src="{{$school -> school_image_url}}" class="object-cover w-full h-full">
             </div>
             <h1 class="text-center text-5xl font-bold text-slate-50 tracking-tight">{{$school -> school_name}}</h1>
             <p class="text-lg font-semibold text-slate-100/75">{{$school -> school_address}}</p>
@@ -16,9 +16,11 @@
     <section class="w-full flex justify-center">
         <div class="w-full max-w-[1200px] flex flex-col gap-5 py-10">
             <span class="w-full flex justify-center">
-                <button class="py-2 px-7 mb-5 shadow-lg font-semibold text-xl rounded-md bg-slate-700 hover:bg-slate-600 text-zinc-50">
-                    Guía de uso
-                </button>
+                <a href="{{ url( $school -> school_use_guide_url ) }}" target="_blank">
+                    <button class="py-2 px-7 mb-5 shadow-lg font-semibold text-xl rounded-md bg-slate-700 hover:bg-slate-600 text-zinc-50">
+                        Guía de uso
+                    </button>
+                </a>
             </span>
             <div class="grid grid-cols-[repeat(auto-fill,_minmax(230px,_1fr))] gap-10">
 

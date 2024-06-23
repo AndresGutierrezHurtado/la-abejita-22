@@ -28,9 +28,9 @@ CREATE TABLE `users` (
   `user_id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `user_first_name` VARCHAR(50) NOT NULL,
   `user_last_name` VARCHAR(50) NOT NULL,
-  `user_email` VARCHAR(70) NOT NULL, 
-  `user_username` VARCHAR(20) NOT NULL, 
-  `user_password` VARCHAR(70) NOT NULL, 
+  `user_email` VARCHAR(70) NOT NULL UNIQUE, 
+  `user_username` VARCHAR(20) NOT NULL UNIQUE, 
+  `user_password` TEXT NOT NULL, 
   `user_address` VARCHAR(30) DEFAULT NULL, 
   `user_phone_number` DECIMAL(10,0) DEFAULT NULL, 
   `user_image_url` VARCHAR(100) DEFAULT '/images/users/nf.jpg',
@@ -40,9 +40,9 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Inserting data into the Users table
-INSERT INTO `users` (`user_id`, `user_first_name`, `user_last_name`, `user_email`, `user_username`, `user_password`, `user_address`, `user_phone_number`, `user_image_url`, `role_id`) VALUES
-(1 ,'Andrés', 'Gutiérrez Hurtado', 'andres52885241@gmail.com', 'Andres_Gutierrez', '1234', 'Dg 86D Sur 70C-31', 3209202177, '/images/users/nf.jpg', 2),
-(2 ,'Wendy Alejandra', 'Navarro Arias', 'nwendy798@gmail.com', 'Wendy_Navarro', '1234', 'Kalamary V, El ensueño', 3044462452, '/images/users/nf.jpg', 1);
+INSERT INTO `users` (`user_id`, `user_first_name`, `user_last_name`, `user_email`, `user_username`, `user_password`, `user_address`, `user_phone_number`, `user_image_url`, `created_at`, `updated_at`, `role_id`) VALUES
+(1, 'Andrés', 'Gutiérrez Hurtado', 'andres52885241@gmail.com', 'Andres_Gutierrez', '$2y$12$WeRROaP2Nbj/86uv7CEFFeSJlQoj02W5kzdv0pts4Nxz/.MttOrvS', 'Dg. 68D Sur 70C-31', 3209202177, '/images/users/1.jpg', '2024-06-21 19:46:14', '2024-06-22 21:24:56', 2),
+(2, 'Wendy Alejandra', 'Navarro Arias', 'nwendy798@gmail.com', 'Wendy_Navarro', '$2y$12$FlutKN6QO79GoAH3p0iPx.HXoN9P2kGKwY7fdywbymql9ycTWxM86', 'Kalamary V', 3044462452, '/images/users/nf.jpg', '2024-06-22 23:39:02', '2024-06-22 23:35:34', 1);
 
 -- Creation of the Roles table
 CREATE TABLE `roles` (
@@ -146,10 +146,11 @@ INSERT INTO `products_sizes` (`product_id`, `product_size_stock`, `product_size_
 
 -- Creation of the Schools table
 CREATE TABLE `schools` (
-  `school_id` INT PRIMARY KEY NOT NULL,
+  `school_id` INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `school_name` VARCHAR(100) NOT NULL,
   `school_address` VARCHAR(200) NOT NULL,
-  `school_image_url` VARCHAR(100) NOT NULL
+  `school_image_url` VARCHAR(100) NOT NULL DEFAULT '/images/schools/nf.jpg',
+  `school_use_guide_url` VARCHAR(100) NOT NULL DEFAULT '/pdf/ejemplo.pdf'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Inserting data into the Schools table

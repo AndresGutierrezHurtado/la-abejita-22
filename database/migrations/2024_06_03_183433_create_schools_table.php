@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('school_name', 100);
             $table->string('school_address', 200);
             $table->string('school_image_url', 100);
+            $table->string('school_use_guide_url', 100);
         });
     }
 

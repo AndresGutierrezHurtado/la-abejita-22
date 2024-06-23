@@ -27,10 +27,15 @@
                     file:cursor-pointer">
                     <button id="upload-button" class="px-5 py-1 text-white font-semibold bg-amber-500 rounded-lg w-fit hidden"><i class="fa-solid fa-upload mr-2"></i>Cambiar foto</button>
                 </form>
-                <form method="POST" action="{{ url('/profile/user/deleteImage/' . $user -> user_id ) }}" enctype="multipart/form-data" class="flex flex-col items-center justify-center gap-4">
+                <form method="POST" action="{{ url('/profile/user/deleteImage/' . $user -> user_id ) }}" enctype="multipart/form-data" 
+                onsubmit="return confirm('¿Estás seguro que quieres eliminar esta foto?, esta acción es irrevesible.');"
+                class="flex flex-col items-center justify-center gap-4">
                     @csrf
                     @method('PUT')
-                    <button class="px-5 py-1 text-white font-semibold bg-red-600 rounded-lg w-fit {{ $user -> user_image_url == '/images/users/nf.jpg' ? 'hidden' : '' }}"> <i class="fa-regular fa-trash-can mr-2"></i> Borrar foto </button>
+                    <button class="px-5 py-1 text-white font-semibold bg-red-600 rounded-lg w-fit {{ $user -> user_image_url == '/images/users/nf.jpg' ? 'hidden' : '' }}"> 
+                        <i class="fa-regular fa-trash-can mr-2"></i> 
+                        Borrar foto 
+                    </button>
                 </form>
             </div>
             <div class="bg-white flex flex-col justify-between rounded-md p-5 shadow-lg w-full md:w-[1fr]">
@@ -47,7 +52,15 @@
                         <p class="capitalize">{{ $user -> role -> role_name }}</p>
                         <p>*Cuenta creada {{ \Carbon\Carbon::parse($user->created_at)->diffForHumans() }}*</p>
                     </div>
-                    <button class="px-5 py-1 text-white font-semibold bg-red-600 rounded-lg"> <i class="fa-regular fa-trash-can mr-2"></i> Borrar cuenta </button>
+                    <form action="{{ url('/profile/user/destroy/' . $user -> user_id) }}" method="post" 
+                    onsubmit="return confirm('¿Estás seguro que quieres eliminar a este usuario?, se perderá toda la información.');">
+                        @csrf
+                        @method('DELETE')
+                        <button  class="bg-red-600 border-2 border-red-600 px-5 py-1 rounded-md font-semibold text-white"> 
+                            <i class="fa-solid fa-trash-can mr-2"></i> 
+                            Borrar cuenta
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

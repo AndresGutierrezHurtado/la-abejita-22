@@ -9,20 +9,59 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function users()    {
-        return view('admin.dashboard.users', ['users' => User::paginate(10)]);
-    }
-
-    public function products()
-    {
-        $products = Product::with('schools')->paginate(5);
+    public function users(Request $request)    {
         
-        return view('admin.dashboard.products', ['products' => $products,  ]);
+        $query = User::query();
+
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $query->where(function ($query) use ($searchTerm) {
+                $query->where('user_first_name', 'like', '%' . $searchTerm . '%')
+                      ->orWhere('user_last_name', 'like', '%' . $searchTerm . '%')
+                      ->orWhere('user_username', 'like', '%' . $searchTerm . '%')
+                      ->orWhere('user_id', 'like', '%' . $searchTerm . '%')
+                      ->orWhere('user_email', 'like', '%' . $searchTerm . '%');
+            });
+        }
+
+        $query->orderBy(($request->input('order') ?? 'user_id'), 'asc');
+
+        $users = $query->paginate(10);
+
+        return view('admin.dashboard.users', ['users' => $users]);
     }
 
-    public function schools()
+    public function products(Request $request)
     {
-        return view('admin.dashboard.schools', ['schools' => School::paginate(10)]);
+
+        $query = Product::query();
+
+        if ($request->has('search')) {
+            $query->where('product_name', 'like', '%' . $request->input('search') . '%');
+        }
+
+        $query->orderBy(($request->input('order') ?? 'product_id'), 'asc');
+        
+
+        $products = $query->with('schools')->paginate(5);
+        
+        return view('admin.dashboard.products', ['products' => $products]);
+    }
+
+    public function schools(Request $request)
+    {
+        $query = School::query();
+
+        if ($request->has('search')) {
+            $query->where('school_name', 'like', '%' . $request->input('search') . '%');
+        }
+
+        $query->orderBy(($request->input('order') ?? 'school_id'), 'asc');
+        
+
+        $schools = $query->paginate(10);
+
+        return view('admin.dashboard.schools', ['schools' => $schools]);
     }
 }
 

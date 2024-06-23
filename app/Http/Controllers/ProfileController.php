@@ -14,9 +14,16 @@ use Illuminate\Support\Facades\Session;
 
 class ProfileController extends Controller
 {
-    public function show($user_id = null): View {
+    public function show($user_id = null) {
+        
         $user = (!$user_id) ? Auth::user() : User::find($user_id);
-        return view('profile', compact('user'));
+
+        if ( Auth::user()->role_id == 2 || Auth::user()->user_id == $user -> user_id) {
+            return view('profile', compact('user'));
+        } else {
+            return redirect('/');
+        }
+
     }
 
     public function update(ProfileUpdateRequest $request, $user_id): RedirectResponse {
@@ -82,4 +89,31 @@ class ProfileController extends Controller
             return Redirect::back()->withErrors(['error' => 'Ha ocurrido un error al actualizar el perfil.'])->withInput()->with('status', 'error');
         }
     }
+    
+    public function destroy(Request $request, $user_id = null): RedirectResponse
+    {
+        // Si el usuario autenticado es el mismo que el usuario a eliminar
+        $user = User::findOrFail($user_id);
+
+        if ($request->user()->user_id == $user_id) {
+            // Eliminar el usuario
+            $user->delete();
+
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return Redirect::to('/');
+
+        } else if ($request->user()->role_id == 2) {
+            // Eliminar el usuario
+            $user->delete();
+
+            return Redirect::back()->with('status', 'User deleted successfully.');
+        }
+        // Si el usuario no es administrador y no es el mismo, redirigir con un error (caso de seguridad)
+        return Redirect::back()->withErrors(['error' => 'Unauthorized action.']);
+    }
+
+
 }

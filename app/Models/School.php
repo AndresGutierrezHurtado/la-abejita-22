@@ -9,6 +9,7 @@ class School extends Model
 {
     use HasFactory;
     protected $primaryKey = 'school_id';
+    public $timestamps = false;
 
     public function products()
     {

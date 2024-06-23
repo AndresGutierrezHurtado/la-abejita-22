@@ -14,25 +14,36 @@
     <section class="w-full flex justify-center items-center">
         <div class="flex flex-col w-full max-w-[1200px] z-10">
             <div class="bg-white rounded-md p-5 shadow-lg w-full flex flex-col gap-5">
+
+                <!-- Seleccionar el dashboard -->
                 <select onchange="window.location = this.value"
                 class="bg-gray-100 rounded-md border border-gray-300 ">
                     <option value="/dashboard/users">Usuarios</option>
                     <option value="/dashboard/schools">Colegios</option>
                     <option value="/dashboard/products" selected>Productos</option>
                 </select>
+
+                <!-- Título dashboard y búsqueda -->
                 <span class="flex justify-between items-center">
-                <h1 class="text-2xl font-bold tracking-tight">Tabla de productos</h1>
-                <form action="{{ url('/dashboard/products/') }}" method="get" class="flex gap-0">          
-                        <input type="text" name="search" placeholder="Buscar..." class="rounded-l-md py-1 px-2 border-gray-300 w-[300px]">
-                        <button class="bg-gray-600 rounded-r-md font-semibold text-white py-1 px-2">Buscar</button>
+
+                    <h1 class="text-2xl font-bold tracking-tight">Tabla de productos</h1>
+
+                    <form action="{{ url('/dashboard/products/') }}" method="get" class="flex gap-0">
+                        <input type="text" name="search" value="{{ request()->get('search') }}" placeholder="Buscar..." class="rounded-l-md py-1 px-2 border-gray-300 w-[300px]">
+                        <button type="submit" class="bg-gray-600 rounded-r-md font-semibold text-white py-1 px-2">Buscar</button>
+                        @if(request()->has('search') || request()->has('order'))
+                            <a href="{{ url('/dashboard/products/') }}" class="bg-gray-300 rounded-md font-semibold text-black py-1 px-2 ml-2">Limpiar</a>
+                        @endif
                     </form>
                 </span>
+
+                <!-- tabla con la información del dashboard -->
                 <div class="w-full">
                     <table class="w-full text-center border border-gray-300 divide-y divide-gray-300">
                         <thead class="bg-gray-200 uppercase font-bold">
                             <tr>
-                                <th>ID</th>
-                                <th>Nombre</th>
+                                <th><a href="{{ url('/dashboard/products') . '?' . http_build_query(array_merge(request()->except('order'), ['order' => 'product_id'])) }}">ID</a></th>
+                                <th><a href="{{ url('/dashboard/products') . '?' . http_build_query(array_merge(request()->except('order'), ['order' => 'product_name'])) }}">Nombre</a></th>
                                 <th>Colegios</th>
                                 <th>Acciones</th>
                             </tr>
@@ -58,6 +69,8 @@
                         </tbody>
                     </table>
                 </div>
+
+                <!-- Paginación de la tabla -->
                 <div class="flex justify-between items-center">
                     {{ $products -> links() }}
                 </div>

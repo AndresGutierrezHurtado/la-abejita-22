@@ -9,6 +9,7 @@ class Product extends Model
 {
     use HasFactory;
     protected $primaryKey = 'product_id';
+    public $timestamps = false;
 
     
     // Relación con las escuelas que tienen este producto
@@ -20,6 +21,11 @@ class Product extends Model
     public function sizes()
     {
         return $this->belongsToMany(Size::class, 'products_sizes', 'product_id', 'size_id')
-                    ->withPivot('product_size_price');
+                    ->withPivot('product_size_price', 'product_size_stock');
+    }
+    
+    public function media()
+    {
+        return $this->hasMany(ProductMedia::class, 'product_id');
     }
 }

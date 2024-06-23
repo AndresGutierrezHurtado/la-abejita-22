@@ -61,7 +61,7 @@
             const productId = this.dataset.product;
             const selectedSize = this.value;
             const selectedPrice = this.options[this.selectedIndex].dataset.price;
-            document.querySelector(`#price${productId}`).textContent = ` ${number_format(selectedPrice)} COP`;
+            document.querySelector(`#price${productId}`).textContent = ` ${parseInt(selectedPrice).toLocaleString("en-US")} COP`;
         });
     });
 </script>

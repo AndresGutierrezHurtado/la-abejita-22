@@ -6,7 +6,9 @@
 <main class="flex flex-col gap-10 py-10 min-h-[90vh] bg-center bg-no-repeat bg-cover bg-[url(/public/images/banner.jpg)] relative">
     <div class="absolute inset-0 bg-gradient-to-b from-black to-black opacity-[20%]"></div>
     <section class="w-full flex justify-center">
-        <div class="flex flex-col md:flex-row gap-10 w-full max-w-[1200px] z-10">
+        <div class="flex flex-col md:flex-row gap-10 w-full max-w-[1200px] z-10"> 
+
+            <!-- Información -->
             <div class="bg-white rounded-md p-7 shadow-lg w-full max-w-[400px] flex flex-col justify-center items-center gap-4 h-fit">
                 <h1 class="text-2xl font-bold tracking-tight">Información del colegio:</h1>
                 <div class="size-44 border-2 border-black rounded-full overflow-hidden shadow-md">
@@ -18,9 +20,11 @@
                 </div>
                 <button id="edit-button" class="border border-gray-300 rounded-md w-full py-1.5 bg-gray-50 duration-300 hover:bg-gray-200">Editar</button>
             </div>
+            
+            <!-- Edición -->
             <div class="bg-white rounded-md p-7 shadow-lg w-full flex flex-col gap-4">
                 <h1 class="text-2xl font-bold tracking-tight">Editar colegio:</h1>
-                <form action="{{ url('/profile/school/' . $school -> school_id) }}" method="post" 
+                <form action="{{ url('/profile/school/' . $school -> school_id) }}" method="post" enctype="multipart/form-data"
                 class="flex flex-col gap-4">
                     @csrf
                     @method('PUT')

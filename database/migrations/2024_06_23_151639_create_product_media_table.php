@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
-            $table->integer('product_id', true);
-            $table->string('product_name', 100);
-            $table->string('product_description', 100);
-            $table->string('product_image_url', 100)->nullable()->default('/images/products/nf.jpg');
+        Schema::create('product_media', function (Blueprint $table) {
+            $table->integer('media_id', true);
+            $table->integer('product_id')->index('fk_product_media_product_id');
+            $table->string('media_url');
+            $table->enum('media_type', ['image', 'video']);
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('product_media');
     }
 };

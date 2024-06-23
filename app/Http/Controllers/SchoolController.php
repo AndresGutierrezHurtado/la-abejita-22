@@ -41,7 +41,7 @@ class SchoolController extends Controller
         // Manejar la subida de la imagen del logo del colegio si se proporciona
         if ($request->hasFile('school_image_url')) {
             $image = $request->file('school_image_url');
-            $imageName = $school->id . '.jpg';
+            $imageName = $school->school_id . '.jpg';
             $image->move(public_path('images/schools'), $imageName);
             $school->school_image_url = '/images/schools/' . $imageName;
             $school->save();
@@ -80,7 +80,7 @@ class SchoolController extends Controller
             // Manejar la subida de la imagen del logo del colegio si se proporciona
             if ($request->hasFile('school_image_url')) {
                 $image = $request->file('school_image_url');
-                $imageName = $school->id . '.jpg';
+                $imageName = $school->school_id . '.jpg';
                 $image->move(public_path('images/schools'), $imageName);
                 $school->school_image_url = '/images/schools/' . $imageName;
                 $school->save();

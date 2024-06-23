@@ -40,6 +40,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/profile/product/{product_id}', [ProductController::class, 'profile']); // Read
     Route::put('/profile/product/{product_id}', [ProductController::class, 'update']); // Update 
     Route::delete('/product/destroy/{product_id}', [ProductController::class, 'destroy']); // Delete
+    Route::delete('/product/media/destroy/{media_id}', [ProductController::class, 'media_destroy']); // Delete
     Route::post('/product/store', [ProductController::class, 'store']); // Create
 });
 

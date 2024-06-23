@@ -44,6 +44,7 @@
                             <tr>
                                 <th><a href="{{ url('/dashboard/products') . '?' . http_build_query(array_merge(request()->except('order'), ['order' => 'product_id'])) }}">ID</a></th>
                                 <th><a href="{{ url('/dashboard/products') . '?' . http_build_query(array_merge(request()->except('order'), ['order' => 'product_name'])) }}">Nombre</a></th>
+                                <th><a href="{{ url('/dashboard/products') . '?' . http_build_query(array_merge(request()->except('order'), ['order' => 'product_description'])) }}">Descripción</a></th>
                                 <th>Colegios</th>
                                 <th>Acciones</th>
                             </tr>
@@ -53,6 +54,7 @@
                                 <tr class="even:bg-white odd:bg-gray-50">
                                     <td>{{ $product -> product_id }}</td>
                                     <td>{{ $product -> product_name }}</td>
+                                    <td>{{ $product -> product_description }}</td>
                                     <td>
                                         <ul>
                                             @foreach($product -> schools as $school)
@@ -60,9 +62,16 @@
                                             @endforeach
                                         </ul>
                                     </td>
-                                    <td class="space-x-2">
-                                        <button class="bg-amber-500 border-2 border-amber-500 px-2 py-0.5 rounded-md font-semibold text-white"> <i class="fa-solid fa-pen mr-2"></i> Editar</button>
-                                        <button class="bg-red-500 border-2 border-red-500 px-2 py-0.5 rounded-md font-semibold text-white"> <i class="fa-solid fa-trash-can mr-2"></i> Eliminar</button>
+                                    <td class="space-x-2 flex justify-center">
+                                        <a href="{{ url('/profile/product/' . $product -> product_id) }}" class="bg-amber-500 border-2 border-amber-500 px-2 py-0.5 rounded-md font-semibold text-white"> <i class="fa-solid fa-pen mr-2"></i> Editar</a>
+                                        <form action="{{ url('/product/destroy/' . $school -> school_id) }}" method="post"  onsubmit="return confirm('¿Estás seguro que quieres eliminar este producto?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="bg-red-500 border-2 border-red-500 px-2 py-0.5 rounded-md font-semibold text-white"> 
+                                                <i class="fa-solid fa-trash-can mr-2"></i> 
+                                                Eliminar
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

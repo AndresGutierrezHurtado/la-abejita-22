@@ -60,7 +60,18 @@ CREATE TABLE `products` (
   `product_id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
   `product_name` VARCHAR(100) NOT NULL, 
   `product_description` VARCHAR(100) NOT NULL,
-  `product_image_url` VARCHAR(100) DEFAULT '/images/products/nf.jpg'
+  `product_materials` TEXT NOT NULL,
+  `product_image_url` VARCHAR(100) DEFAULT '/images/products/nf.jpg',
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Creation of the Product Media table
+CREATE TABLE `product_media` (
+  `media_id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `product_id` INT NOT NULL,
+  `media_url` VARCHAR(255) NOT NULL,
+  `media_type` ENUM('image', 'video') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Inserting data into the Products table
@@ -261,6 +272,13 @@ REFERENCES `sizes`(`size_id`)
 ON UPDATE CASCADE
 ON DELETE CASCADE;
 
+ALTER TABLE `product_media` 
+ADD CONSTRAINT `fk_product_media_product_id`
+FOREIGN KEY (`product_id`) 
+REFERENCES `products`(`product_id`) 
+ON UPDATE CASCADE
+ON DELETE CASCADE;
+
 ALTER TABLE `orders` 
 ADD CONSTRAINT `fk_order_user_id`
 FOREIGN KEY (`user_id`)
@@ -298,3 +316,22 @@ FOREIGN KEY (`school_id`)
 REFERENCES `schools`(`school_id`)
 ON UPDATE CASCADE
 ON DELETE CASCADE;
+
+
+-- ------------------------------- TRIGGER -------------------------------
+
+
+DELIMITER //
+
+CREATE TRIGGER check_multimedia_limit
+BEFORE INSERT ON `product_media`
+FOR EACH ROW
+BEGIN
+  DECLARE multimedia_count INT;
+  SET multimedia_count = (SELECT COUNT(*) FROM `product_media` WHERE `product_id` = NEW.`product_id`);
+  IF multimedia_count >= 4 THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Maximum of 4 multimedia files per product is allowed';
+  END IF;
+END //
+
+DELIMITER ;

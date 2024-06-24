@@ -10,9 +10,13 @@
         <div class="flex flex-col md:flex-row gap-10 w-full max-w-[1200px] z-10">
             <div class="flex flex-col gap-10 w-full max-w-[400px]">
                 <div class="bg-white rounded-md p-7 shadow-lg w-full flex flex-col justify-center items-center gap-4 h-fit">
-                    <h1 class="text-2xl font-bold tracking-tight">Información del colegio:</h1>
+                    <span class="w-full flex justify-between items-center gap-5">
+                        <h1 class="text-2xl font-bold tracking-tight">Información:</h1>
+                        <a class="font-bold text-lg border-2 border-black rounded-full size-7 flex items-center justify-center hover:bg-gray-200 duration-300" 
+                        href="{{ url('/dashboard/products') }}"><</a>
+                    </span>
                     <div class="size-44 border-2 border-black rounded-md overflow-hidden shadow-lg flex justify-center items-center">
-                        <img src="{{ $product -> product_image_url }}" alt="Foto de {{ $product -> product_name }}" class="object-cover h-[90%] w-[90%]">
+                        <img src="{{ $product -> product_image_url }}" alt="Foto de {{ $product -> product_name }}" class="max-h-full max-w-full w-auto h-auto">
                     </div>
                     <div class="text-center">
                         <h2 class="text-xl font-bold tracking-tight text-gray-800">{{ $product -> product_name }}</h2>
@@ -22,6 +26,9 @@
                 </div>
                 <div class="bg-white rounded-md p-7 shadow-lg w-full flex flex-col gap-4 h-fit">
                     <h1 class="text-2xl font-bold tracking-tight">Archivos multimedia:</h1>
+                    @if (count($product -> media) < 1 )
+                        <h1 class="text-lg font-semibold tracking-tigh text-center mt-2">No hay archivos adjuntados a este producto aún.</h1>
+                    @endif
                     @foreach ( $product -> media as $media )
 
                         @if (pathinfo($media -> media_url, PATHINFO_EXTENSION) == 'mp4')
@@ -41,7 +48,6 @@
                                 Eliminar
                             </button>
                         </form>
-
 
                     @endforeach
                 </div>
@@ -132,7 +138,7 @@
 
                     <div id="sizes-section" class="flex-col gap-2 hidden">
                         <x-input-label for="sizes" value="Tallas Disponibles"/>
-                        <div id="sizes" class="border-gray-300 rounded-md shadow-sm disabled:bg-gray-50 disabled:cursor-not-allowed p-2">
+                        <div id="sizes" class="p-2">
                             <table class="w-full text-center">
                                 <thead>
                                     <tr>

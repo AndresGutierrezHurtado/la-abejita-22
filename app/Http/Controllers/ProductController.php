@@ -22,6 +22,57 @@ class ProductController extends Controller
         return view('admin.profile.product', ['product' => $product, 'schools' => $schools, 'sizes' => $sizes]);
     }
 
+    public function store(Request $request) {
+
+        $request->validate([
+            'product_name' => 'required|string|max:100',
+            'product_description' => 'required|string|max:100',
+            'product_image_url' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'sizes.*' => 'nullable|exists:sizes,size_id',
+            'size_prices' => 'array',
+            'size_prices.*' => 'numeric|min:0',
+            'size_stocks' => 'array',
+            'size_stocks.*' => 'integer|min:0',
+            'schools' => 'array',
+            'schools.*' => 'exists:schools,school_id',
+        ]);
+
+        $product = new Product;
+        $product->product_name = $request->product_name;
+        $product->product_description = $request->product_description;
+
+        $product->save();
+
+        if($request->hasFile('product_image_url')) {
+            $image = $request->file('product_image_url');
+            $imageName = $product->product_id . '.jpg';
+            $image->move(public_path('images/products'), $imageName);
+            $product->product_image_url = '/images/products/' . $imageName;
+            $product->save();
+        }
+        
+        // Sincronizar los colegios
+        $schools = $request->input('schools', []);
+        $product->schools()->sync($schools);
+
+        
+        // Sincronizar las tallas
+        $sizes = $request->input('sizes', []);
+        $sizePrices = $request->input('size_prices', []);
+        $sizeStocks = $request->input('size_stocks', []);
+        $sizeData = [];
+        foreach ($sizes as $size_id) {
+            $sizeData[$size_id] = [
+                'product_size_price' => $sizePrices[$size_id] ?? 0,
+                'product_size_stock' => $sizeStocks[$size_id] ?? 0,
+            ];
+        }
+        $product->sizes()->sync($sizeData);
+
+        return redirect()->back()->with('status_profile', 'Producto creado con éxito');
+
+    }
+
     public function update(Request $request, $product_id) {
         $request->validate([
             'product_name' => 'required|string|max:255',
@@ -131,13 +182,23 @@ class ProductController extends Controller
             DB::commit();
     
             // Redirigir con mensaje de éxito
-            return redirect()->back()->with('status_profile', 'Archivo multimedia eliminado correctamente');
+            return redirect()->back()->with('status', 'Archivo multimedia eliminado correctamente');
         } catch (\Exception $e) {
             // Revertir la transacción en caso de error
             DB::rollback();
     
             return redirect()->back()->withErrors('Error al eliminar el archivo multimedia: ' . $e->getMessage());
         }
+    }
+
+    public function destroy($product_id) {
+        
+        $product = Product::findOrFail($product_id);
+
+        $product ->delete();
+
+        return redirect()->back()->with('status', 'User deleted successfully.');
+
     }
     
 }

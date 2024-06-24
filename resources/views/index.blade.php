@@ -228,36 +228,44 @@
                         <h1 class="text-2xl font-bold tracking-tight">Contáctanos</h1>
                         <p>Especialistas en uniformes escolares en Bogotá, Colombia. Descubre calidad y variedad en nuestras tiendas.</p>
                         <div class="flex flex-col gap-4">
-                            <span class="flex items-center gap-2">
-                                <div class="size-[40px] flex-none flex items-center justify-center rounded-full border border-black">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                </div>
-                                <p><a class="font-semibold">Dirección:</a> Diagonal 60 D Sur 70 c 31</p>
-                            </span>
+                            <a href="https://maps.app.goo.gl/Noy3fBKaPamF9Sw9A" target="_blank">
+                                <span class="flex items-center gap-2">
+                                    <div class="size-[40px] flex-none flex items-center justify-center rounded-full border border-black">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                    </div>
+                                    <p> <strong class="font-semibold">Dirección:</strong> Tv. 69c #68b Sur, Bogotá </p>
+                                </span>
+                            </a>
                             <span class="flex items-center gap-2">
                                 <div class="size-[40px] flex-none flex items-center justify-center rounded-full border border-black">
                                     <i class="fa-solid fa-phone"></i>
                                 </div>
-                                <p><a class="font-semibold">Teléfono:</a> 312 4852078</p>
+                                <p><strong class="font-semibold">Teléfono:</strong> 312 4852078</p>
                             </span>
                             <span class="flex items-center gap-2">
                                 <div class="size-[40px] flex-none flex items-center justify-center rounded-full border border-black">
                                     <i class="fa-regular fa-envelope"></i>
                                 </div>
-                                <p><a class="font-semibold">Correo:</a> Laabejita.uni@gmail.com</p>
+                                <p><strong class="font-semibold">Correo:</strong> Laabejita.uni@gmail.com </p>
                             </span>
                         </div>
 
                         <div class="w-full flex justify-center items-center gap-5 mt-2 text-2xl">
-                            <div class="size-[50px] flex-none flex items-center justify-center rounded-full border border-black duration-300 hover:scale-105 hover:shadow-lg cursor-pointer">
-                                <i class="fab fa-whatsapp"></i>
-                            </div>
-                            <div class="size-[50px] flex-none flex items-center justify-center rounded-full border border-black duration-300 hover:scale-105 hover:shadow-lg cursor-pointer">
-                                <i class="fab fa-facebook"></i>
-                            </div>
-                            <div class="size-[50px] flex-none flex items-center justify-center rounded-full border border-black duration-300 hover:scale-105 hover:shadow-lg cursor-pointer">
-                                <i class="fab fa-instagram"></i>
-                            </div>
+                            <a href="https://wa.me/+573124852078" target="_blank">
+                                <div class="size-[50px] flex-none flex items-center justify-center rounded-full border border-black duration-300 hover:scale-105 hover:shadow-lg cursor-pointer">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                            </a>
+                            <a href="https://www.facebook.com/profile.php?id=100092421275450">
+                                <div class="size-[50px] flex-none flex items-center justify-center rounded-full border border-black duration-300 hover:scale-105 hover:shadow-lg cursor-pointer">
+                                    <i class="fab fa-facebook"></i>
+                                </div>
+                            </a>
+                            <a href="https://www.instagram.com/laabejita22">
+                                <div class="size-[50px] flex-none flex items-center justify-center rounded-full border border-black duration-300 hover:scale-105 hover:shadow-lg cursor-pointer">
+                                    <i class="fab fa-instagram"></i>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>

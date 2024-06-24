@@ -123,6 +123,7 @@
                     <i class="fa-solid fa-plus mr-2"></i>
                     Crear nuevo colegio
                 </button>
+                
                 <div class="flex justify-between items-center">
                     {{ $schools -> links() }}
                 </div>

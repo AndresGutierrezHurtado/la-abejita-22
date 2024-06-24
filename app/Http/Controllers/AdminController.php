@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\School;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Size;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -44,8 +45,10 @@ class AdminController extends Controller
         
 
         $products = $query->with('schools')->paginate(5);
+        $schools = School::all();
+        $sizes = Size::all();
         
-        return view('admin.dashboard.products', ['products' => $products]);
+        return view('admin.dashboard.products', ['products' => $products, 'schools' => $schools, 'sizes' => $sizes]);
     }
 
     public function schools(Request $request)

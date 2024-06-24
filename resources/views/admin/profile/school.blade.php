@@ -10,7 +10,10 @@
 
             <!-- Información -->
             <div class="bg-white rounded-md p-7 shadow-lg w-full max-w-[400px] flex flex-col justify-center items-center gap-4 h-fit">
-                <h1 class="text-2xl font-bold tracking-tight">Información del colegio:</h1>
+                <span class="w-full flex justify-between items-center gap-5">
+                    <h1 class="text-2xl font-bold tracking-tight">Información:</h1>
+                    <a class="font-bold text-lg border-2 border-black rounded-full size-7 flex items-center justify-center hover:bg-gray-200 duration-300" href="{{ url('/dashboard/schools') }}"><</a>
+                </span>
                 <div class="size-44 border-2 border-black rounded-full overflow-hidden shadow-md">
                     <img src="{{ $school -> school_image_url }}" alt="Foto de {{ $school -> school_name }}" class="object-cover h-full w-full">
                 </div>

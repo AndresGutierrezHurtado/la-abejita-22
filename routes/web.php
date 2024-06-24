@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -24,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/profile/user/updateImage/{user_id}', [ProfileController::class, 'update_img']); // Update image
     Route::put('/profile/user/deleteImage/{user_id}', [ProfileController::class, 'delete_img']); // Update image
     Route::delete('/profile/user/destroy/{user_id}', [ProfileController::class, 'destroy']); // delete
+    Route::post('/send-email', [MailController::class, 'sendMail']);
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {

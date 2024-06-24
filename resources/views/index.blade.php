@@ -199,21 +199,33 @@
                     <div class="p-5 flex flex-col gap-3 md:px-8">
                         <h1 class="text-2xl font-bold tracking-tight">¡Queremos escucharte!</h1>
                         <p>Te invitamos a compartir todas sus preguntas, quejas y reclamos para que juntos podamos mejorar y brindarles una experiencia excepcional.</p>
-                        <form action="POST" class="w-full flex flex-col gap-4">
+                        <form method="POST" action="{{ url('/send-email') }}" class="w-full flex flex-col gap-4">
                             @csrf
+
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            <x-auth-session-status class="mb-4" :status="session('status_image')" />
+
                             <div class="flex w-full gap-4">
                                 <div class="flex flex-col gap-2 w-full md:w-1/2">
                                     <x-input-label for="user_full_name" value="Nombre" />
-                                    <x-text-input type="email" id="user_full_name" class="" name="user_full_name" required />
+                                    <x-text-input type="text" id="user_full_name" name="user_full_name" required />
                                 </div>
                                 <div class="flex flex-col gap-2 w-full md:w-1/2">
                                     <x-input-label for="user_email" value="Correo Electrónico" />
-                                    <x-text-input type="email" id="user_email" class="" name="user_email" required />
+                                    <x-text-input type="email" id="user_email" name="user_email" required />
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 w-full">
                                 <x-input-label for="email_subject" value="Asunto" />
-                                <x-text-input type="text" id="email_subject" class="" name="email_subject" required />
+                                <x-text-input type="text" id="email_subject" name="email_subject" required />
                             </div>
                             <div class="flex flex-col gap-2 w-full">
                                 <x-input-label for="email_message" value="Mensaje" />

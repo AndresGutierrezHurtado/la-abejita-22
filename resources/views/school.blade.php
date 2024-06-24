@@ -22,8 +22,10 @@
                     </button>
                 </a>
             </span>
-            <div class="grid grid-cols-[repeat(auto-fill,_minmax(230px,_1fr))] gap-10">
 
+            <x-auth-session-status class="mb-4" :status="session('status')" />
+            
+            <div class="grid grid-cols-[repeat(auto-fill,_minmax(230px,_1fr))] gap-10">
                 @foreach ($products as $product)
                     <article class="bg-white p-5 rounded-md shadow-md h-fit w-full duration-300 hover:shadow-lg">
                         <a href="{{ url('/producto/'. $product -> product_id) }}">
@@ -31,18 +33,27 @@
                                 <img src="{{$product->product_image_url}}" alt="" class="max-w-full max-h-[230px]">
                             </div>
                         </a>
-                        <div class="flex flex-col gap-2">
+                        <div class="space-y-2">
                             <h3 class="text-xl font-bold tracking-tight capitalize">{{$product->product_name}}</h3>
                             <p class="text-black/75 mb-2 h-[50px] line-clamp-3">{{$product->product_description}}</p>
-                            <div class="flex justify-between items-center">
-                                <select class="size-select rounded-md h-fit" data-product="{{$product->product_id}}">
-                                    @foreach ($product->sizes as $size)
-                                        <option value="{{$size->size_id}}" data-price="{{$size->pivot->product_size_price}}">{{$size->size_name}}</option>
-                                    @endforeach
-                                </select>
-                                <p id="price{{$product->product_id}}" class="font-semibold" >{{number_format($product->sizes->first()->pivot->product_size_price ?? 0)}} COP</p>
-                            </div>
-                            <button class="bg-amber-500 w-fit px-5 py-1 mx-auto text-white rounded-lg duration-300 hover:bg-amber-600"><i class="fa-solid fa-cart-shopping"></i></button>
+                            <form method="post" action="{{ url('/cart/add/') }}" class="flex flex-col justify-center space-y-2">
+                                @csrf
+                                
+                                <input type="hidden" name="product_id" value="{{ $product->product_id }}">
+
+                                <div class="flex justify-between items-center">
+                                    <select name="size_id" class="size-select rounded-md h-fit" data-product="{{$product->product_id}}">
+                                        @foreach ($product->sizes as $size)
+                                            <option value="{{$size->size_id}}" data-price="{{$size->pivot->product_size_price}}">{{$size->size_name}}</option>
+                                        @endforeach
+                                    </select>
+                                    <p id="price{{$product->product_id}}" class="font-semibold" >{{number_format($product->sizes->first()->pivot->product_size_price ?? 0)}} COP</p>
+                                </div>
+
+                                <button type="submit" class="bg-amber-500 w-fit px-5 py-1 mx-auto text-white rounded-lg duration-300 hover:bg-amber-600">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </button>
+                            </form>
                         </div>
                     </article>
                 @endforeach
@@ -63,6 +74,8 @@
             const productId = this.dataset.product;
             const selectedSize = this.value;
             const selectedPrice = this.options[this.selectedIndex].dataset.price;
+            
+            // Actualizar el precio mostrado
             document.querySelector(`#price${productId}`).textContent = ` ${parseInt(selectedPrice).toLocaleString("en-US")} COP`;
         });
     });

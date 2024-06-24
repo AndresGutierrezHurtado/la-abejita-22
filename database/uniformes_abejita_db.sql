@@ -64,14 +64,6 @@ CREATE TABLE `products` (
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Creation of the Product Media table
-CREATE TABLE `product_media` (
-  `media_id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `product_id` INT NOT NULL,
-  `media_url` VARCHAR(255) NOT NULL,
-  `media_type` ENUM('image', 'video') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 -- Inserting data into the Products table
 INSERT INTO `products` (`product_id`, `product_name`, `product_description`, `product_image_url`) VALUES
 (1, 'Blazer escolar', 'Blazer para uniforme escolar.', '/images/products/1.jpg'),
@@ -84,6 +76,19 @@ INSERT INTO `products` (`product_id`, `product_name`, `product_description`, `pr
 (8, 'Pantalón sudadera', 'Pantalón estilo sudadera para uniforme escolar.', '/images/products/8.jpg'),
 (9, 'Camiseta polo', 'Camiseta tipo polo para uniforme escolar.', '/images/products/9.jpg'),
 (10, 'Pantaloneta', 'Pantaloneta para actividades deportivas escolares.', '/images/products/10.jpg');
+
+-- Creation of the Product Media table
+CREATE TABLE `product_media` (
+  `media_id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `product_id` INT NOT NULL,
+  `media_url` VARCHAR(255) NOT NULL,
+  `media_type` ENUM('image', 'video') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Inserting data into the Product media table
+INSERT INTO `product_media` (`product_id`, `media_url`, `media_type`) VALUES
+(6, '/images/products/extra/6_0.20240624153959.mp4', 'video'),
+(6, '/images/products/extra/6_1.20240624154000.jpg', 'image');
 
 -- Creation of the Sizes table
 CREATE TABLE `sizes` (
@@ -321,8 +326,9 @@ CREATE TABLE `payments_details` (
 CREATE TABLE `sold_products`(
 	`order_id` INT NOT NULL,
   `product_id` INT NOT NULL,
-  `sold_product_quantity` INT NOT NULL,
-  `sold_product_price` DECIMAL(10, 2)
+  `size_id` INT NOT NULL,
+  `product_quantity` INT NOT NULL,
+  `product_price` DECIMAL(10, 2)
 );
 
 -- ------------------------------- RELATIONSHIPS -------------------------------
@@ -376,6 +382,11 @@ ON DELETE CASCADE,
 ADD CONSTRAINT `fk_sold_product_order_id`
 FOREIGN KEY (`order_id`)
 REFERENCES `orders`(`order_id`)
+ON UPDATE CASCADE
+ON DELETE CASCADE,
+ADD CONSTRAINT 'fk_sold_product_size_id'
+FOREIGN KEY (`size_id`)
+REFERENCES `sizes`(`size_id`)
 ON UPDATE CASCADE
 ON DELETE CASCADE;
 

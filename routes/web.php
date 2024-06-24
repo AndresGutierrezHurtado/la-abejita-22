@@ -5,6 +5,7 @@ use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SchoolController::class, 'index'])->name('index'); // Read
@@ -20,12 +21,22 @@ Route::get('/tallas', function () {
 });
 
 Route::middleware('auth')->group(function () {
+    // user profile
     Route::get('/profile/user/{user_id?}', [ProfileController::class, 'show'])->name('profile'); // Read
     Route::put('/profile/user/{user_id}', [ProfileController::class, 'update'])->name('profile.update'); // Update
     Route::put('/profile/user/updateImage/{user_id}', [ProfileController::class, 'update_img']); // Update image
     Route::put('/profile/user/deleteImage/{user_id}', [ProfileController::class, 'delete_img']); // Update image
     Route::delete('/profile/user/destroy/{user_id}', [ProfileController::class, 'destroy']); // delete
+
+    // email
     Route::post('/send-email', [MailController::class, 'sendMail']);
+
+    // cart
+    Route::get('/carrito', [CartController::class, 'index']);
+    Route::post('/cart/add', [CartController::class, 'add']);
+    Route::put('/cart/update', [CartController::class, 'update']);
+    Route::delete('/cart/delete/{product_id}', [CartController::class, 'delete']);
+    Route::get('/cart/clear', [CartController::class, 'clear']);
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {

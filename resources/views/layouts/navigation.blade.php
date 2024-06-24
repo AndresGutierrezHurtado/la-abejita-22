@@ -19,6 +19,14 @@
             <li class="hover:scale-105 hover:text-amber-500 duration-300">
                 <a href="{{ url('/#contact') }}">Contáctanos</a>
             </li>
+            @if (Route::has('login'))
+                <a class="hidden md:block">|</a>
+                <a href="{{ url('/carrito')}}">
+                    <button class="text-[16px]">
+                        <i class="fa-solid fa-shopping-cart"></i>
+                    </button>
+                </a>
+            @endif
         </ul>
     </nav>
 </header>

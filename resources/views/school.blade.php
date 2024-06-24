@@ -26,9 +26,11 @@
 
                 @foreach ($products as $product)
                     <article class="bg-white p-5 rounded-md shadow-md h-fit w-full duration-300 hover:shadow-lg">
-                        <div class="w-full flex items-center justify-center mb-2" >
-                            <img src="{{$product->product_image_url}}" alt="" class="max-w-full max-h-[230px]">
-                        </div>
+                        <a href="{{ url('/producto/'. $product -> product_id) }}">
+                            <div class="w-full flex items-center justify-center mb-2" >
+                                <img src="{{$product->product_image_url}}" alt="" class="max-w-full max-h-[230px]">
+                            </div>
+                        </a>
                         <div class="flex flex-col gap-2">
                             <h3 class="text-xl font-bold tracking-tight capitalize">{{$product->product_name}}</h3>
                             <p class="text-black/75 mb-2 h-[50px] line-clamp-3">{{$product->product_description}}</p>

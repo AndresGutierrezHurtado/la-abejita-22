@@ -12,6 +12,8 @@ Route::get('/colegios', [SchoolController::class, 'schools'])->name('colegios');
 
 Route::get('/colegios/{id}', [SchoolController::class, 'school']); // Read
 
+Route::get('/producto/{id}', [ProductController::class, 'public']); // Read
+
 Route::get('/tallas', function () {
     return view('sizes'); // Read
 });

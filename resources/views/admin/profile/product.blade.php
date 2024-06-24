@@ -40,6 +40,7 @@
                         @else
                             <img src="{{ $media -> media_url }}" alt="Imagen" class="w-fit mx-auto max-h-[300px] border border-gray-300 bg-slate-900">
                         @endif
+                    
                         <form action="{{ url('/product/media/destroy/' . $media -> media_id) }}" method="post"  onsubmit="return confirm('¿Estás seguro que quieres eliminar este archivo?');">
                             @csrf
                             @method('DELETE')

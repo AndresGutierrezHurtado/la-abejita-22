@@ -13,6 +13,11 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
+    public function public($product_id) {
+        $product = Product::with('sizes', 'media')->findOrFail($product_id);
+        
+        return view('product', ['product' => $product]);
+    }
     public function profile($product_id) {
 
         $product = Product::with('sizes', 'media')->find($product_id);

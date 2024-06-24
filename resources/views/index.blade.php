@@ -256,12 +256,12 @@
                                     <i class="fab fa-whatsapp"></i>
                                 </div>
                             </a>
-                            <a href="https://www.facebook.com/profile.php?id=100092421275450">
+                            <a href="https://www.facebook.com/profile.php?id=100092421275450" target="_blank">
                                 <div class="size-[50px] flex-none flex items-center justify-center rounded-full border border-black duration-300 hover:scale-105 hover:shadow-lg cursor-pointer">
                                     <i class="fab fa-facebook"></i>
                                 </div>
                             </a>
-                            <a href="https://www.instagram.com/laabejita22">
+                            <a href="https://www.instagram.com/laabejita22" target="_blank">
                                 <div class="size-[50px] flex-none flex items-center justify-center rounded-full border border-black duration-300 hover:scale-105 hover:shadow-lg cursor-pointer">
                                     <i class="fab fa-instagram"></i>
                                 </div>

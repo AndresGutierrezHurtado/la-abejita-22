@@ -246,7 +246,7 @@
                                 <div class="size-[40px] flex-none flex items-center justify-center rounded-full border border-black">
                                     <i class="fa-regular fa-envelope"></i>
                                 </div>
-                                <p><strong class="font-semibold">Correo:</strong> Laabejita.uni@gmail.com </p>
+                                <p><strong class="font-semibold">Correo:</strong> laabejita22.uni@gmail.com </p>
                             </span>
                         </div>
 

@@ -3,9 +3,6 @@
 @section('title', 'Inicio de sesión')
 
 @section('content')
-
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
     
     <main class="w-full min-h-screen flex items-center justify-center bg-center bg-no-repeat bg-cover bg-[url(/public/images/banner.jpg)] relative">
         <div class="absolute inset-0 bg-gradient-to-b from-black to-black opacity-[20%]"></div>
@@ -22,6 +19,8 @@
             <form method="POST" action="{{ route('login') }}" class="">
                 @csrf
 
+                <!-- Session Status -->
+                <x-auth-session-status class="mb-4" :status="session('status')" />
                 <!-- Email Address -->
                 <div>
                     <x-input-label for="user_email" value="Correo" />

@@ -4,8 +4,6 @@
 
 @section('content')
 
-    <!-- Session Status -->
-    <x-auth-session-status :status="session('status')" />
 
     <main class="w-full min-h-screen flex flex-col items-center justify-center bg-center bg-no-repeat bg-cover bg-[url(/public/images/banner.jpg)] relative">
         <div class="p-5 bg-white rounded-lg shadow-lg flex flex-col gap-5 max-w-[800px]">  
@@ -18,7 +16,10 @@
                 
             <form method="POST" action="{{ route('password.email') }}" class="flex flex-col gap-4">
                 @csrf
-        
+                    
+                <!-- Session Status -->
+                <x-auth-session-status :status="session('status')" />
+
                 <!-- Email Address -->
                 <div>
                     <x-input-label for="email" :value="__('Correo electrónico')" />

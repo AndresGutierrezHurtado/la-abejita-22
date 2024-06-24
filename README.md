@@ -1,3 +1,8 @@
-autenticación (recuperar contraseña y el inicio con facebook y google)
+agregar carrito, 
+sección de compra, 
+sección de compras hechas (factura).
 
-agregar carrito, sección de compra, sección de compras hechsas y demás ...
+agregar sección de tallas.
+
+agregar inicio con facebook.
+agregar guias de uso.

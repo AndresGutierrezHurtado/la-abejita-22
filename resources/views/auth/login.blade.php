@@ -77,14 +77,14 @@
                 <a href="{{ url('/login/facebook/redirect') }}" class="block w-full">
                     <button class="flex gap-3 items-center justify-center font-semibold text-sky-600 bg-zinc-100 rounded-lg py-1 px-5 border w-full">
                         <i class="fa-brands fa-facebook text-xl"></i>
-                        Regístrate con facebook
+                        Ingresa con facebook
                     </button>
                 </a>
 
                 <a href="{{ url('/login/google/redirect') }}" class="block w-full">
                     <button class="flex gap-3 items-center justify-center font-semibold text-slate-600 bg-zinc-100 rounded-lg py-1 px-5 border w-full">
                         <i class="fa-brands fa-google text-xl"></i>
-                        Regístrate con google
+                        Ingresa con google
                     </button>
                 </a>
 

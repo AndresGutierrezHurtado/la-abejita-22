@@ -74,16 +74,21 @@
                 <div class="flex-grow border-t border-gray-400"></div>
             </div>
 
-            <div class="flex flex-col gap-4 mb-5">
-                <button class="flex gap-3 items-center justify-center font-semibold text-sky-600 bg-zinc-100 rounded-lg py-1 px-5 border">
-                    <i class="fa-brands fa-facebook text-xl"></i>
-                    Regístrate con facebook
-                </button>
+            <div class="flex flex-col items-center justify-center gap-4 mb-5">
+                
+                <a href="{{ url('/login/facebook/redirect') }}" class="block w-full">
+                    <button class="flex gap-3 items-center justify-center font-semibold text-sky-600 bg-zinc-100 rounded-lg py-1 px-5 border w-full">
+                        <i class="fa-brands fa-facebook text-xl"></i>
+                        Regístrate con facebook
+                    </button>
+                </a>
 
-                <button class="flex gap-3 items-center justify-center font-semibold text-slate-600 bg-zinc-100 rounded-lg py-1 px-5 border">
-                    <i class="fa-brands fa-google text-xl"></i>
-                    Regístrate con google
-                </button>
+                <a href="{{ url('/login/google/redirect') }}" class="block w-full">
+                    <button class="flex gap-3 items-center justify-center font-semibold text-slate-600 bg-zinc-100 rounded-lg py-1 px-5 border w-full">
+                        <i class="fa-brands fa-google text-xl"></i>
+                        Regístrate con google
+                    </button>
+                </a>
 
             </div>
             

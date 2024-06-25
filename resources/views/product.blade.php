@@ -42,15 +42,21 @@
                         <p class="w-full border border-gray-200 p-3 bg-gray-50"> <strong>Material:</strong> {{ $product -> product_materials }}</p>
                         <p><strong> Dirección: </strong> Tv. 69c #68b Sur, Bogotá </p>
                     </div>
-                    <form action="" class="space-y-4">                        
-                        <span class="flex justify-between items-center ">
-                            <select class="size-select rounded-md h-fit" data-product="{{$product->product_id}}">
+                    <x-auth-session-status class="mb-4" :status="session('status')" />  
+                    <form method="post" action="{{ url('/cart/add/') }}" class="flex flex-col justify-center space-y-4">    
+                        @csrf
+                        
+                        <input type="hidden" name="product_id" value="{{ $product->product_id }}">
+                        
+                        <div class="flex justify-between items-center">
+                            <select name="size_id" class="size-select rounded-md h-fit" data-product="{{$product->product_id}}">
                                 @foreach ($product->sizes as $size)
                                     <option value="{{$size->size_id}}" data-price="{{$size->pivot->product_size_price}}">{{$size->size_name}}</option>
                                 @endforeach
                             </select>
-                            <p id="price{{$product->product_id}}" class="font-semibold text-xl" >{{number_format($product->sizes->first()->pivot->product_size_price ?? 0)}} COP</p>
-                        </span>
+                            <p id="price{{$product->product_id}}" class="font-semibold" >{{number_format($product->sizes->first()->pivot->product_size_price ?? 0)}} COP</p>
+                        </div>
+
                         <button class="w-full py-2 px-5 rounded-md shadow-lg bg-amber-500 text-lg font-semibold text-white">
                             <i class="fa-solid fa-cart-plus mr-2"></i>
                             Añadir al carrito

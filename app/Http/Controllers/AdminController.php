@@ -44,7 +44,7 @@ class AdminController extends Controller
         $query->orderBy(($request->input('order') ?? 'product_id'), 'asc');
         
 
-        $products = $query->with('schools')->paginate(5);
+        $products = $query->with('schools')->paginate(10);
         $schools = School::all();
         $sizes = Size::all();
         

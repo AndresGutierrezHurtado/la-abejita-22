@@ -39,8 +39,11 @@ CREATE TABLE `users` (
 
 -- Inserting data into the Users table
 INSERT INTO `users` (`user_id`, `user_first_name`, `user_last_name`, `user_email`, `user_username`, `user_password`, `user_address`, `user_phone_number`, `user_image_url`, `created_at`, `updated_at`, `role_id`) VALUES
-(1, 'Andrés', 'Gutiérrez Hurtado', 'andres52885241@gmail.com', 'Andres_Gutierrez', '$2y$12$WeRROaP2Nbj/86uv7CEFFeSJlQoj02W5kzdv0pts4Nxz/.MttOrvS', 'Dg. 68D Sur 70C-31', 3209202177, '/images/users/1.jpg', '2024-06-21 19:46:14', '2024-06-22 21:24:56', 2),
-(2, 'Wendy Alejandra', 'Navarro Arias', 'nwendy798@gmail.com', 'Wendy_Navarro', '$2y$12$FlutKN6QO79GoAH3p0iPx.HXoN9P2kGKwY7fdywbymql9ycTWxM86', 'Kalamary V', 3044462452, '/images/users/nf.jpg', '2024-06-22 23:39:02', '2024-06-22 23:35:34', 1);
+(1, 'Andrés', 'Gutiérrez Hurtado', 'andres52885241@gmail.com', 'Andres_Gutierrez', '$2y$12$WeRROaP2Nbj/86uv7CEFFeSJlQoj02W5kzdv0pts4Nxz/.MttOrvS', 'Dg. 68D Sur #70c-31', 3209202177, '/images/users/1.jpg', '2024-06-21 19:46:14', '2024-06-22 21:24:56', 2),
+(2, 'Alexandra', 'Hurtado Medina', 'alexandrahurtadomedina@hotmail.com', 'Alexandra_Hurtado', '$2y$12$.RLrg9MG6k4S0hjgY0lReu.CnE8uCiGOSArb3dOJFkwrvrYKo23zG', 'Dg. 68D Sur #70c-31', 3124852078, '/images/users/nf.jpg', '2024-06-25 13:44:19', '2024-06-25 13:44:19', 2),
+(3, 'Saydy', 'Hurtado Medina', 'saydyhurtado@gmail.com', 'Saydy_Hurtado', '$2y$12$egkT9USUOJpvXjeXXFBqNOYFPnTxB3eO4AAs2MMsQZa1lyY5BB0Ze', 'Cl. 57 Sur #2-2, Bogotá', 3174823449, '/images/users/nf.jpg', '2024-06-25 13:45:57', '2024-06-25 13:45:57', 2),
+(4, 'Rosmari', 'Hurtado Medina', 'rhurtado@gmail.com', 'Rosmari_Hurtado', '$2y$12$Eif6sN9K1qN/az0le5Bp9uTh7wFe1u1HLIxl5J0w7NN4wjdcCoCvW', 'Dg. 68D Sur #70c-31', 3223888716, '/images/users/nf.jpg', '2024-06-25 13:46:51', '2024-06-25 13:46:51', 2),
+(5, 'Wendy Alejandra', 'Navarro Arias', 'nwendy798@gmail.com', 'Wendy_Navarro', '$2y$12$FlutKN6QO79GoAH3p0iPx.HXoN9P2kGKwY7fdywbymql9ycTWxM86', '51-77 a, Cl. 68 Sur #51-99, Bogotá', 3044462452, '/images/users/nf.jpg', '2024-06-22 23:39:02', '2024-06-22 23:35:34', 1);
 
 -- Creation of the Roles table
 CREATE TABLE `roles` (
@@ -65,17 +68,23 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Inserting data into the Products table
-INSERT INTO `products` (`product_id`, `product_name`, `product_description`, `product_image_url`) VALUES
-(1, 'Blazer escolar', 'Blazer para uniforme escolar.', '/images/products/1.jpg'),
-(2, 'Chaleco negro', 'Chaleco formal para uniforme escolar.', '/images/products/2.jpg'),
-(3, 'Camisa blanca', 'Camisa blanca para uniforme escolar.', '/images/products/3.jpg'),
-(4, 'Pantalón gris', 'Pantalón de vestir gris para uniforme escolar.', '/images/products/4.jpg'),
-(5, 'Corbata', 'Corbata azul obscura para uniforme escolar.', '/images/products/5.jpg'),
-(6, 'Jardinera', 'Jardinera de mezclilla para uniforme escolar.', '/images/products/6.jpg'),
-(7, 'Chaqueta sudadera', 'Chaqueta estilo sudadera para uniforme escolar.', '/images/products/7.jpg'),
-(8, 'Pantalón sudadera', 'Pantalón estilo sudadera para uniforme escolar.', '/images/products/8.jpg'),
-(9, 'Camiseta polo', 'Camiseta tipo polo para uniforme escolar.', '/images/products/9.jpg'),
-(10, 'Pantaloneta', 'Pantaloneta para actividades deportivas escolares.', '/images/products/10.jpg');
+INSERT INTO `products` (`product_id`, `product_name`, `product_description`, `product_materials`, `product_image_url`, `created_at`, `updated_at`) VALUES
+(1, 'Blazer escolar', 'Blazer para uniforme escolar.', 'buena tela.', '/images/products/1.jpg', '2024-06-25 13:58:58', '2024-06-25 13:58:58'),
+(2, 'Chaleco negro', 'Chaleco formal para uniforme escolar.', 'buena tela.', '/images/products/2.jpg', '2024-06-25 13:58:58', '2024-06-25 13:58:58'),
+(3, 'Camisa blanca', 'Camisa blanca para uniforme escolar.', 'buena tela.', '/images/products/3.jpg', '2024-06-25 13:58:58', '2024-06-25 13:58:58'),
+(4, 'Pantalón gris', 'Pantalón de vestir gris para uniforme escolar.', 'buena tela.', '/images/products/4.jpg', '2024-06-25 13:58:58', '2024-06-25 13:58:58'),
+(5, 'Corbata', 'Corbata azul obscura para uniforme escolar.', 'buena tela.', '/images/products/5.jpg', '2024-06-25 13:58:58', '2024-06-25 13:58:58'),
+(6, 'Jardinera', 'Jardinera de mezclilla para uniforme escolar.', 'buena tela.', '/images/products/6.jpg', '2024-06-25 13:58:58', '2024-06-25 13:58:58'),
+(7, 'Chaqueta sudadera', 'Chaqueta estilo sudadera para uniforme escolar.', 'buena tela.', '/images/products/7.jpg', '2024-06-25 13:58:58', '2024-06-25 13:58:58'),
+(8, 'Pantalón sudadera', 'Pantalón estilo sudadera para uniforme escolar.', 'buena tela.', '/images/products/8.jpg', '2024-06-25 13:58:58', '2024-06-25 13:58:58'),
+(9, 'Camiseta polo', 'Camiseta tipo polo para uniforme escolar.', 'buena tela.', '/images/products/9.jpg', '2024-06-25 13:58:58', '2024-06-25 13:58:58'),
+(10, 'Pantaloneta', 'Pantaloneta para actividades deportivas escolares.', 'buena tela.', '/images/products/10.jpg', '2024-06-25 13:58:58', '2024-06-25 13:58:58'),
+(11, 'Chaleco Maria Mercedes Carranza', 'Chaleco escolar color azul.', 'buena tela.', '/images/products/11.jpg', '2024-06-25 14:03:54', '2024-06-25 14:03:54'),
+(12, 'Sudadera Maria Mercedes Carranza', 'Sudadera verde deportiva.', 'buena tela.', '/images/products/12.jpg', '2024-06-25 14:05:57', '2024-06-25 14:05:57'),
+(13, 'Jardinera Maria Mercedes Carranza', 'Jardinera azul estilo princesa.', 'buena tela.', '/images/products/13.jpg', '2024-06-25 14:07:32', '2024-06-25 14:07:32'),
+(14, 'Chaqueta Maria Mercedes Carranza', 'Chaqueta uniforme diario', 'buena tela.', '/images/products/14.jpg', '2024-06-25 14:08:42', '2024-06-25 14:08:42'),
+(15, 'Chaqueta CARIED', 'chaqueta roja deportiva.', 'buena tela.', '/images/products/15.jpg', '2024-06-25 14:21:43', '2024-06-25 14:21:44'),
+(16, 'Pantalón CARIED', 'Pantalón negro con rojo deportivo.', 'buena tela.', '/images/products/16.jpg', '2024-06-25 14:23:34', '2024-06-25 14:23:34');
 
 -- Creation of the Product Media table
 CREATE TABLE `product_media` (
@@ -87,8 +96,14 @@ CREATE TABLE `product_media` (
 
 -- Inserting data into the Product media table
 INSERT INTO `product_media` (`product_id`, `media_url`, `media_type`) VALUES
+-- jardinera
 (6, '/images/products/extra/6_0.20240624153959.mp4', 'video'),
-(6, '/images/products/extra/6_1.20240624154000.jpg', 'image');
+(6, '/images/products/extra/6_1.20240624154000.jpg', 'image'),
+-- Caried
+(15, '/images/products/extra/15_3.20240625092530.jpg', 'image'),
+(15, '/images/products/extra/15_1.20240625092530.jpg', 'image'),
+(15, '/images/products/extra/15_2.20240625092530.jpg', 'image'),
+(15, '/images/products/extra/15_0.20240625092530.jpg', 'image');
 
 -- Creation of the Sizes table
 CREATE TABLE `sizes` (
@@ -148,6 +163,7 @@ INSERT INTO `products_sizes` (`product_id`, `product_size_stock`, `product_size_
 (2, 5, 60000.00, 10),
 (2, 5, 62000.00, 11),
 
+-- Camisa blanca
 (3, 5, 30000.00, 1),
 (3, 5, 30000.00, 2),
 (3, 5, 30000.00, 3),
@@ -160,6 +176,7 @@ INSERT INTO `products_sizes` (`product_id`, `product_size_stock`, `product_size_
 (3, 5, 35000.00, 10),
 (3, 5, 40000.00, 11),
 
+-- Pantalón gris
 (4, 5, 35000.00, 1),
 (4, 5, 35000.00, 2),
 (4, 5, 35000.00, 3),
@@ -172,8 +189,10 @@ INSERT INTO `products_sizes` (`product_id`, `product_size_stock`, `product_size_
 (4, 5, 40000.00, 10),
 (4, 5, 45000.00, 11),
 
+-- Corbata
 (5, 5, 10000.00, 12),
 
+-- Jardinera
 (6, 5, 54000.00, 1),
 (6, 5, 55000.00, 2),
 (6, 5, 56000.00, 3),
@@ -186,6 +205,7 @@ INSERT INTO `products_sizes` (`product_id`, `product_size_stock`, `product_size_
 (6, 5, 80000.00, 10),
 (6, 5, 85000.00, 11),
 
+-- Chaqueta sudadera
 (7, 5, 55000.00, 1),
 (7, 5, 60000.00, 2),
 (7, 5, 62000.00, 3),
@@ -198,6 +218,7 @@ INSERT INTO `products_sizes` (`product_id`, `product_size_stock`, `product_size_
 (7, 5, 76000.00, 10),
 (7, 5, 78000.00, 11),
 
+-- Pantalón sudadera
 (8, 5, 40000.00, 1),
 (8, 5, 42000.00, 2),
 (8, 5, 44000.00, 3),
@@ -210,6 +231,7 @@ INSERT INTO `products_sizes` (`product_id`, `product_size_stock`, `product_size_
 (8, 5, 58000.00, 10),
 (8, 5, 60000.00, 11),
 
+-- Camiseta polo
 (9, 5, 25000.00, 1),
 (9, 5, 25000.00, 2),
 (9, 5, 25000.00, 3),
@@ -222,6 +244,7 @@ INSERT INTO `products_sizes` (`product_id`, `product_size_stock`, `product_size_
 (9, 5, 35000.00, 10),
 (9, 5, 35000.00, 11),
 
+-- Pantaloneta
 (10, 5, 25000.00, 1),
 (10, 5, 25000.00, 2),
 (10, 5, 25000.00, 3),
@@ -232,7 +255,14 @@ INSERT INTO `products_sizes` (`product_id`, `product_size_stock`, `product_size_
 (10, 5, 25000.00, 8),
 (10, 5, 25000.00, 9),
 (10, 5, 25000.00, 10),
-(10, 5, 25000.00, 11);
+(10, 5, 25000.00, 11),
+
+(11, 5, 20000, 1),
+(12, 5, 100000, 1),
+(13, 5, 100000, 1),
+(14, 5, 50000, 1),
+(15, 5, 50000, 1),
+(16, 5, 30000, 1);
 
 -- Creation of the Schools table
 CREATE TABLE `schools` (
@@ -244,12 +274,12 @@ CREATE TABLE `schools` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Inserting data into the Schools table
-INSERT INTO `schools` (`school_id`,`school_name`,`school_address`, `school_image_url`) VALUES
-(1, 'IED El Ensueño', 'Tv. 70c #11 a 67a, Bogotá', '/images/schools/1.jpg'),
-(2, 'Colegio Angela Restrepo Moreno', 'Cl. 69 Sur #71g-12, Bogotá', '/images/schools/2.jpg'),
-(3, 'Colegio Emma Reyes', 'Cra. 80b #6-71, Bogotá', '/images/schools/3.jpg'),
-(4, 'Colegio María Mercedes Carranza', 'El Perdomo, Tv. 70g #65 Sur-2, Bogotá', '/images/schools/4.jpg'),
-(5, 'Colegio Distrital Agudelo Restrepo IED', 'Tv. 70d, Bogotá', '/images/schools/nf.jpg');
+INSERT INTO `schools` (`school_id`, `school_name`, `school_address`, `school_image_url`, `school_use_guide_url`) VALUES
+(1, 'IED El Ensueño', 'Tv. 70c #11 a 67a, Bogotá', '/images/schools/1.jpg', '/pdf/ejemplo.pdf'),
+(2, 'Colegio Angela Restrepo Moreno', 'Cl. 69 Sur #71g-12, Bogotá', '/images/schools/2.jpg', '/pdf/ejemplo.pdf'),
+(3, 'Colegio Emma Reyes', 'Cra. 80b #6-71, Bogotá', '/images/schools/3.jpg', '/pdf/ejemplo.pdf'),
+(4, 'Colegio María Mercedes Carranza', 'El Perdomo, Tv. 70g #65 Sur-2, Bogotá', '/images/schools/4.jpg', '/pdf/ejemplo.pdf'),
+(5, 'Colegio Distrital Agudelo Restrepo IED', 'Tv. 70d, Bogotá', '/images/schools/5.jpg', '/pdf/ejemplo.pdf');
 
 -- Creación de la tabla intermedia product_school
 CREATE TABLE `school_products` (
@@ -260,44 +290,43 @@ CREATE TABLE `school_products` (
 
 -- Insertar datos de ejemplo en la tabla school_products
 INSERT INTO `school_products` (`product_id`, `school_id`) VALUES
--- Colegio El Ensueño
-(1, 1), -- Blazer escolar
-(2, 1), -- Chaleco negro
-(3, 1), -- Camisa blanca
-(4, 1), -- Pantalón gris
-(5, 1), -- Corbata
-(6, 1), -- Jardinera
-(7, 1), -- Chaqueta sudadera
-(8, 1), -- Pantalón sudadera
-(9, 1), -- Camiseta polo
-(10, 1), -- Pantaloneta
--- Colegio Angela Restrepo Moreno
-(1, 2), -- Blazer escolar
-(2, 2), -- Chaleco negro
-(3, 2), -- Camisa blanca
-(4, 2), -- Pantalón gris
-(5, 2), -- Corbata
-(6, 2), -- Jardinera
-(7, 2), -- Chaqueta sudadera
-(8, 2), -- Pantalón sudadera
-(9, 2), -- Camiseta polo
-(10, 2), -- Pantaloneta
--- Colegio Emma Reyes
-(1, 3), -- Blazer escolar
-(2, 3), -- Chaleco negro
-(3, 3), -- Camisa blanca
-(4, 3), -- Pantalón gris
-(5, 3), -- Corbata
-(6, 3), -- Jardinera
-(7, 3), -- Chaqueta sudadera
-(8, 3), -- Pantalón sudadera
-(9, 3), -- Camiseta polo
-(10, 3), -- Pantaloneta
--- Colegio María Mercedes Carranza
-(4, 4), -- Pantalón gris
--- Colegio Distrital Agudelo Restrepo IED
-(3, 5), -- Camisa blanca
-(4, 5); -- Pantalón gris
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(6, 1),
+(7, 1),
+(8, 1),
+(9, 1),
+(10, 1),
+(1, 2),
+(2, 2),
+(3, 2),
+(4, 2),
+(5, 2),
+(6, 2),
+(7, 2),
+(8, 2),
+(9, 2),
+(10, 2),
+(1, 3),
+(2, 3),
+(3, 3),
+(4, 3),
+(5, 3),
+(6, 3),
+(7, 3),
+(8, 3),
+(9, 3),
+(10, 3),
+(4, 4),
+(11, 4),
+(12, 4),
+(13, 4),
+(14, 4),
+(15, 5),
+(16, 5);
 
 -- Creation of the Orders table
 CREATE TABLE `orders` (

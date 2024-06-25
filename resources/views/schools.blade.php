@@ -15,7 +15,7 @@
                 @foreach ( $schools as $school )
 
                     <article class="w-full min-[200px] max-w-[250px] border border-zinc-300 bg-white rounded-xl mx-auto shadow-md duration-300 hover:scale-[1.03] hover:shadow-lg">
-                        <a href="/colegios/{{$school -> school_id}}" class="flex justify-center items-center p-2">
+                        <a href="/colegios/{{$school -> school_id}}" class="w-full flex justify-center items-center p-2 h-[190px]">
                             <img src="{{$school -> school_image_url}}" alt="logo-agm" class=" max-h-[190px]">
                         </a>
                         <hr class="border-zinc-300">

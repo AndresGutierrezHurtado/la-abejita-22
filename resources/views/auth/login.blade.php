@@ -74,7 +74,7 @@
 
             <div class="flex flex-col gap-4 mb-5">
                 
-                <a href="{{ url('/login/facebook/redirect') }}" class="block w-full">
+                <a href="{{ url('/login/facebook/redirect') }}" class="hidden w-full"> <!-- Cambiar de hidden a block cuando esté verificado en fb -->
                     <button class="flex gap-3 items-center justify-center font-semibold text-sky-600 bg-zinc-100 rounded-lg py-1 px-5 border w-full">
                         <i class="fa-brands fa-facebook text-xl"></i>
                         Ingresa con facebook

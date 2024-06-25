@@ -27,10 +27,10 @@
             
             <div class="grid grid-cols-[repeat(auto-fill,_minmax(230px,_1fr))] gap-10">
                 @foreach ($products as $product)
-                    <article class="bg-white p-5 rounded-md shadow-md h-fit w-full duration-300 hover:shadow-lg">
+                    <article class="bg-white p-5 rounded-md shadow-md w-full duration-300 hover:shadow-lg flex flex-col justify-between">
                         <a href="{{ url('/producto/'. $product -> product_id) }}">
-                            <div class="w-full flex items-center justify-center mb-2" >
-                                <img src="{{$product->product_image_url}}" alt="" class="max-w-full max-h-[230px]">
+                            <div class="w-full flex items-center justify-center mb-2 overflow-hidden" >
+                                <img src="{{$product->product_image_url}}" alt="" class="max-h-[230px] object-cover h-[230px]">
                             </div>
                         </a>
                         <div class="space-y-2">

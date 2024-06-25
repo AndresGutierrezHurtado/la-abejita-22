@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table('sold_products', function (Blueprint $table) {
             $table->foreign(['order_id'], 'fk_sold_product_order_id')->references(['order_id'])->on('orders')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign(['product_id'], 'fk_sold_product_product_id')->references(['product_id'])->on('products')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign(['size_id'], 'fk_sold_product_size_id')->references(['size_id'])->on('sizes')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -25,6 +26,7 @@ return new class extends Migration
         Schema::table('sold_products', function (Blueprint $table) {
             $table->dropForeign('fk_sold_product_order_id');
             $table->dropForeign('fk_sold_product_product_id');
+            $table->dropForeign('fk_sold_product_size_id');
         });
     }
 };

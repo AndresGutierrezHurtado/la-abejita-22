@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->integer('order_id', true);
             $table->integer('user_id')->index('fk_order_user_id');
-            $table->date('order_date');
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

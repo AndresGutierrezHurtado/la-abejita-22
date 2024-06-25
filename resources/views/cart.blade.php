@@ -46,7 +46,9 @@
                                         class="w-[80px]"
                                         onchange="this.form.submit()"/>
                                     </div>
-                                    <p class="font-bold text-lg">{{ number_format($item['product']->sizes[$item['size_id']] ->pivot->product_size_price * $item['product_quantity']) }} COP</p>
+                                    <p class="font-bold text-lg">
+                                        {{ number_format($item['product']->sizes->firstWhere('size_id', $item['size_id'])->pivot->product_size_price * $item['product_quantity']) }} COP
+                                    </p>
                                 </form>
                             </div>
 
@@ -78,7 +80,7 @@
             @php
                 $total = 0;
                 foreach ( $cart as $item ) {
-                    $precio_item = $item['product']->sizes[$item['size_id']] ->pivot->product_size_price * $item['product_quantity'];
+                    $precio_item = $item['product']->sizes->firstWhere('size_id', $item['size_id'])->pivot->product_size_price * $item['product_quantity'];
                     $total += $precio_item;
                 }
             @endphp
@@ -86,7 +88,9 @@
                 <strong>Precio total:</strong> <p> {{ number_format($total) }} COP</p>
             </div>
             
-            <button class="w-fit py-1 px-10 bg-amber-500 rounded-md font-semibold text-lg mx-auto shadow-sm duration-300">Continuar</button>
+            <a href="{{ url('/pay') }}" class="mx-auto">
+                <button  class="w-fit py-1 px-10 bg-amber-500 rounded-md font-semibold text-lg mx-auto shadow-sm duration-300">Continuar</button>
+            </a>
         </div>
     </div>
 </main>

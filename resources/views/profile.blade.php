@@ -40,6 +40,7 @@
             </div>
             <div class="bg-white flex flex-col justify-between rounded-md p-5 shadow-lg w-full md:w-[1fr]">
                 <div>
+                    <x-auth-session-status class="mb-4" :status="session('payment_status')" />
                     <h2 class="text-xl font-bold mb-4">Información:</h2>
                     <p class="text-xl font-semibold text-gray-900 tracking-tight mb-2">{{ $user->user_first_name . ' ' . $user->user_last_name }}</p>
                     <p><i class="fa-solid fa-user mr-2"></i> {{ $user -> user_username }}</p>

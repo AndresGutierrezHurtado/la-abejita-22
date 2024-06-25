@@ -15,7 +15,7 @@ return new class extends Migration
             $table->integer('product_size_id', true);
             $table->integer('product_id')->index('fk_product_size_product_id');
             $table->integer('product_size_stock');
-            $table->decimal('product_size_price', 10);
+            $table->decimal('product_size_price', 10, 0);
             $table->integer('size_id')->index('fk_product_size_size_id');
         });
     }

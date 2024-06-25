@@ -15,7 +15,7 @@ return new class extends Migration
             $table->integer('product_id', true);
             $table->string('product_name', 100);
             $table->string('product_description', 100);
-            $table->text('product_materials');
+            $table->text('product_materials')->default('buena tela.');
             $table->string('product_image_url', 100)->nullable()->default('/images/products/nf.jpg');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrentOnUpdate()->useCurrent();

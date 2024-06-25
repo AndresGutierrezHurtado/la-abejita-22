@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SchoolController::class, 'index'])->name('index'); // Read
@@ -37,6 +38,10 @@ Route::middleware('auth')->group(function () {
     Route::put('/cart/update', [CartController::class, 'update']);
     Route::delete('/cart/delete/{product_id}', [CartController::class, 'delete']);
     Route::get('/cart/clear', [CartController::class, 'clear']);
+
+    //payment
+    Route::get('/pay', [PaymentController::class, 'form']);
+    Route::get('/pay/callback', [PaymentController::class, 'callback']);
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {

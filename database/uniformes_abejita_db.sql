@@ -302,24 +302,19 @@ INSERT INTO `school_products` (`product_id`, `school_id`) VALUES
 -- Creation of the Orders table
 CREATE TABLE `orders` (
   `order_id` INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  `user_id` INT NOT NULL,
-  `order_date` DATE NOT NULL
+  `user_id` INT NOT NULL,  
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Creation of the Payment Details table
 CREATE TABLE `payments_details` (
   `payment_id` INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `order_id` INT NOT NULL,
-  `payer_full_name` VARCHAR(70) NOT NULL,
-  `payer_email` VARCHAR(70) NOT NULL,
-  `payer_phone_number` DECIMAL(10, 0) NOT NULL,
-  `payer_document_type` ENUM('CC', 'CE', 'TI') NOT NULL,
-  `payer_document_number` DECIMAL(10, 0) NOT NULL,
-  `payment_method` INT NOT NULL,
-  `payment_status` INT NOT NULL,
-  `payment_date` DATE NOT NULL,
-  `payment_time` TIME NOT NULL,
-	`payment_amount` DECIMAL(10, 2)
+  `payment_state` INT NOT NULL, -- polTransactionState
+  `payment_method` INT NOT NULL, -- polPaymentMethodType
+	`payment_amount` DECIMAL(10, 2) NOT NULL, -- TX_VALUE
+  `payment_buyer_email` VARCHAR(70) NOT NULL, -- buyerEmail
+  `payment_description` VARCHAR(255) NOT NULL -- IapResponseCode
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Creation of the Sold Products table
@@ -327,9 +322,8 @@ CREATE TABLE `sold_products`(
 	`order_id` INT NOT NULL,
   `product_id` INT NOT NULL,
   `size_id` INT NOT NULL,
-  `product_quantity` INT NOT NULL,
-  `product_price` DECIMAL(10, 2)
-);
+  `product_quantity` INT NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ------------------------------- RELATIONSHIPS -------------------------------
 
@@ -384,7 +378,7 @@ FOREIGN KEY (`order_id`)
 REFERENCES `orders`(`order_id`)
 ON UPDATE CASCADE
 ON DELETE CASCADE,
-ADD CONSTRAINT 'fk_sold_product_size_id'
+ADD CONSTRAINT `fk_sold_product_size_id`
 FOREIGN KEY (`size_id`)
 REFERENCES `sizes`(`size_id`)
 ON UPDATE CASCADE
@@ -415,7 +409,7 @@ BEGIN
   DECLARE multimedia_count INT;
   SET multimedia_count = (SELECT COUNT(*) FROM `product_media` WHERE `product_id` = NEW.`product_id`);
   IF multimedia_count >= 4 THEN
-    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Maximum of 4 multimedia files per product is allowed';
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Son máximo 4 archivos por cada producto.';
   END IF;
 END //
 

@@ -23,7 +23,7 @@
 
             <hr>
 
-            <div class="flex items-center gap-10">
+            <div class="flex flex-col md:flex-row items-center gap-10">
                 <div class="w-full md:w-1/2 space-y-4">
                     <h1 class="text-3xl font-bold tracking-tight">Detalles de la compra:</h1>
                     <div>
@@ -70,7 +70,7 @@
 
             <h1 class="text-3xl font-bold tracking-tight">Productos</h1>
             @foreach ( $order -> soldProducts as $product )
-                <article class="flex gap-5 justify-between items-center p-5 w-full border rounded-md mx-auto">
+                <article class="flex flex-col md:flex-row gap-5 justify-between items-center p-5 w-full border rounded-md mx-auto">
                     <div class="size-[160px] flex items-center justify-center flex-none">
                         <img src="{{ $product -> product -> product_image_url }}" alt="" class="max-w-full max-h-full">
                     </div>
@@ -84,7 +84,7 @@
                             <p>cantidad: {{ $product -> product_quantity }} </p>
                         </div>
                     </div>
-                    <div class="h-full min-w-[140px] flex-none flex items-center justify-center">
+                    <div class="h-full min-w-[140px] flex items-center justify-center">
                         <p class="text-lg font-bold"> {{ number_format($product -> size -> pivot -> product_size_price * $product -> product_quantity) }} COP </p>
                     </div>
                 </article>

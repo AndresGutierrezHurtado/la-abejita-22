@@ -4,7 +4,7 @@
 
 @section('content')
 
-<main class="w-full min-h-screen flex items-center justify-center bg-center bg-no-repeat bg-cover bg-[url(/public/images/banner.jpg)] relative">
+<main class="w-full min-h-screen flex items-center justify-center bg-center bg-no-repeat bg-cover bg-[url(/public/images/banner.jpg)] relative px-5">
     <div class="absolute inset-0 bg-gradient-to-b from-black to-black opacity-[20%]"></div>
     <div class=" w-full p-10 bg-white shadow-lg rounded-md max-w-[550px] mx-auto z-50"> 
         <form method="POST" action="{{ route('password.store') }}">

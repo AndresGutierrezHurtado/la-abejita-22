@@ -5,7 +5,7 @@
 @section('content')
 
 
-    <main class="w-full min-h-screen flex flex-col items-center justify-center bg-center bg-no-repeat bg-cover bg-[url(/public/images/banner.jpg)] relative">
+    <main class="w-full min-h-screen flex flex-col items-center justify-center bg-center bg-no-repeat bg-cover bg-[url(/public/images/banner.jpg)] relative px-5">
         <div class="p-5 bg-white rounded-lg shadow-lg flex flex-col gap-5 max-w-[800px]">  
             <div class="flex flex-col gap-2">                
                 <h1 class="text-3xl font-bold tracking-tight text-zinc-800 ">Recupera tu contraseña</h1>

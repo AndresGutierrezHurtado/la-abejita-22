@@ -59,7 +59,7 @@
                 @endforeach
             </div>
             
-            <div class="flex justify-between items-center p-3 bg-white rounded-lg shadow-lg">
+            <div class="flex flex-col md:flex-row gap-4 justify-between items-center p-3 bg-white rounded-lg shadow-lg">
                 {{ $products -> links() }}
             </div>
         </div>

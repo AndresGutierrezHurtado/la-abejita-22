@@ -43,7 +43,7 @@
                     </button>
                 </form>
             </div>
-            <div class="bg-white flex flex-col justify-between rounded-md p-5 shadow-lg w-full md:w-[1fr]">
+            <div class="bg-white flex flex-col justify-between rounded-md p-5 shadow-lg w-full md:w-[1fr] space-y-4">
                 <div>
                     <h2 class="text-xl font-bold mb-4">Información:</h2>
                     <p class="text-xl font-semibold text-gray-900 tracking-tight mb-2">{{ $user->user_first_name . ' ' . $user->user_last_name }}</p>
@@ -52,7 +52,7 @@
                     <p><i class="fa-solid fa-location-dot mr-2"></i> {{ $user->user_address ?? 'No especificada' }}</p>
                     <p><i class="fa-solid fa-phone mr-2"></i> {{ $user->user_phone_number ?? 'No especificado' }}</p>
                 </div>
-                <div class="w-full flex gap-2 justify-between items-end">
+                <div class="w-full flex flex-col md:flex-row gap-2 justify-between items-center md:items-end">
                     <div class="tex-center text-gray-800 font-semibold text-sm flex flex-col items-center">
                         <p class="capitalize">{{ $user -> role -> role_name }}</p>
                         <p>*Cuenta creada {{ \Carbon\Carbon::parse($user->created_at)->diffForHumans() }}*</p>
@@ -80,7 +80,7 @@
             <x-auth-session-status class="mb-4" :status="session('status_profile')" />
 
             <!-- Campos del formulario -->
-            <div class="grid grid-cols-2 gap-2 gap-x-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 gap-x-5">
 
                 <!-- Nombres -->
                 <div>
@@ -171,12 +171,12 @@
 
             <x-auth-session-status class="mb-4" :status="session('payment_status')" />
             
-            <div class="w-full">
+            <div class="text-sm md:text-md w-full">
                 <table class="w-full text-center border border-gray-300 divide-y divide-gray-300">
                     <thead class="bg-gray-200 uppercase font-bold">
                         <tr>
                             <th><a href="{{ url('/profile/user') . '?' . http_build_query(array_merge(request()->except('order'), ['order' => 'created_at'])) }}">Fecha</a></th>
-                            <th>productos</th>
+                            <th class="hidden md:table-cell">productos</th>
                             <th><a href="{{ url('/profile/user') . '?' . http_build_query(array_merge(request()->except('order'), ['order' => 'payment_amount'])) }}">Precio</a></th>
                             <th>estado</th>
                             <th>Ver</th>
@@ -186,7 +186,7 @@
                         @foreach ( $orders as $order )
                             <tr class="even:bg-white odd:bg-gray-50">
                                 <td>{{ $order -> created_at }}</td>
-                                <td>
+                                <td class="hidden md:table-cell">
                                     <ul>
                                         @foreach($order -> soldProducts as $product)
                                             <li>{{ $product -> product_quantity }} - {{ $product -> product -> product_name }} (Talla {{ $product -> size_name }} )</li>
@@ -208,7 +208,7 @@
                 </table>
             </div>
 
-            <div class="flex justify-between items-center p-3">
+            <div class="flex flex-col md:flex-row gap-5 justify-between items-center p-3">
                 {{ $orders -> links() }}
             </div>
 

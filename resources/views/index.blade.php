@@ -35,16 +35,13 @@
                                 Administrador
                             </a>
                         @endif
-                        <form method="POST" action="{{ route('logout') }}">
+                        <form method="POST" action="{{ url('/logout') }}" onsubmit="alert('estás esguro que quieres cerrar sesión?')">
                             @csrf
 
-                            <a href="{{ url('/logout') }}" type="button" 
-                            onclick="event.preventDefault(); 
-                            this.closest('form').submit();"
-                            class="bg-red-600 duration-300 hover:bg-red-700 border-2 border-transparent rounded-md px-3 py-1 font-semibold">
+                            <button class="bg-red-600 duration-300 hover:bg-red-700 border-2 border-transparent rounded-md px-3 py-1 font-semibold">
                             <i class="fa-solid fa-right-from-bracket mr-2"></i>
-                            Cerrar Sesión
-                            </a>
+                                Cerrar Sesión
+                            </button>
                         </form>
                         
                     </article>
@@ -90,7 +87,7 @@
         </section>
 
         <section class="w-full flex flex-col items-center bg-zinc-800 px-5">
-            <div class="w-full max-w-[1200px] flex gap-10 py-10 text-white">
+            <div class="w-full max-w-[1200px] flex flex-col md:flex-row gap-10 py-10 text-white">
                 <div class="w-full md:w-1/2 flex flex-col gap-2">
                     <h2 class="text-2xl font-bold tracking-tight mb-2">Sobre Nosotros</h2>
                     <p>
@@ -98,7 +95,7 @@
                         y servicio excepcional a la comunidad educativa. Nos dedicamos a diseñar y confeccionar uniformes escolares duraderos, 
                         cómodos y elegantes, utilizando materiales de primera calidad que garantizan tanto la comodidad como la durabilidad.
                     </p>
-                    <p>
+                    <p class="hidden md:block">
                         Estamos comprometidos con la excelencia en cada paso del proceso, desde la selección de telas hasta la atención personalizada, 
                         asegurando que cada detalle cumpla con los estándares más altos. En nuestra empresa de uniformes escolares, nos esforzamos por 
                         hacer de la experiencia de comprar uniformes un momento placentero y satisfactorio para padres y estudiantes.
@@ -144,7 +141,7 @@
                 <div class="w-full text-center flex flex-col items-center gap-3">
                     <h1 class="text-[45px] font-bold tracking-tight">¿Por qué escogernos?</h1>
                 </div>
-                <div class="w-full flex justify-between">
+                <div class="w-full flex flex-col md:flex-row justify-between items-center gap-10">
                     <div class="flex flex-col justify-center items-center gap-10">
                         <article class="w-full max-w-[310px] flex flex-col gap-2 items-center text-center">
                             <span class="size-[60px] flex items-center justify-center rounded-full bg-green-400">
@@ -161,9 +158,9 @@
                             <p class="text-md">Contamos con los mejores materiales para la creación de nuestros uniformes.</p>
                         </article>
                     </div>
-                    <div class="size-[400px] rounded-full overflow-hidden border-dashed border-8 border-orange-400 ">
+                    <div class="w-full aspect-square max-w-[400px] rounded-full overflow-hidden border-dashed border-8 border-orange-400 ">
                         <img src="/images/foto-seccion.jpg"
-                        alt="foto-seccion.jpg" class="min-h-full min-w-full h-auto w-auto object-cover">
+                        alt="foto-seccion.jpg" class="object-cover w-full h-full">
                     </div>
                     <div class="flex flex-col justify-center items-center gap-10">
                         <article class="w-full max-w-[310px] flex flex-col gap-2 items-center text-center">
@@ -213,7 +210,7 @@
                             @endif
                             <x-auth-session-status class="mb-4" :status="session('status_image')" />
 
-                            <div class="flex w-full gap-4">
+                            <div class="flex flex-col md:flex-row w-full gap-4">
                                 <div class="flex flex-col gap-2 w-full md:w-1/2">
                                     <x-input-label for="user_full_name" value="Nombre" />
                                     <x-text-input type="text" id="user_full_name" name="user_full_name" required />

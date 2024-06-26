@@ -1,4 +1,4 @@
-sección de compras hechas (factura).
+facturas.
 
 agregar sección de tallas.
 agregar guias de uso.

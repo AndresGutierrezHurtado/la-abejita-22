@@ -20,6 +20,12 @@ class PaymentDetail extends Model
         'payment_method',
         'payment_amount',
         'payment_buyer_email',
+        'payment_buyer_full_name',
+        'payment_buyer_phone',
+        'payment_buyer_document_type',
+        'payment_buyer_document_number',
+        'payment_delivery_option',
+        'payment_shipping_address',
         'payment_description',
     ];
 

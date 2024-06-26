@@ -332,6 +332,7 @@ INSERT INTO `school_products` (`product_id`, `school_id`) VALUES
 CREATE TABLE `orders` (
   `order_id` INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `user_id` INT NOT NULL,  
+  `order_state` ENUM('pendiente', 'entregado') DEFAULT 'pendiente' NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -343,6 +344,12 @@ CREATE TABLE `payments_details` (
   `payment_method` INT NOT NULL, -- polPaymentMethodType
 	`payment_amount` DECIMAL(10, 2) NOT NULL, -- TX_VALUE
   `payment_buyer_email` VARCHAR(70) NOT NULL, -- buyerEmail
+  `payment_buyer_full_name` VARCHAR(120) NOT NULL, -- buyerFullName
+  `payment_buyer_phone` DECIMAL(10, 0) NOT NULL, -- payerPhone
+  `payment_buyer_document_type` ENUM('CC', 'CE', 'TI', 'PPN', 'NIT', 'SSN', 'EIN') NOT NULL, -- payerDocumentType
+  `payment_buyer_document_number` DECIMAL(10, 0) NOT NULL, -- payerDocument
+  `payment_delivery_option` ENUM('recoger', 'enviar') NOT NULL, -- payerDocument
+  `payment_shipping_address` VARCHAR(150) NULL, -- shippingAddress
   `payment_description` VARCHAR(255) NOT NULL -- IapResponseCode
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

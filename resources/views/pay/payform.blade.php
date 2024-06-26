@@ -1,6 +1,6 @@
 @extends('layouts.secondary')
 
-@section('title', 'Inicio de sesión')
+@section('title', 'Procesa tu compra')
 
 @section('content')
 <main class="w-full min-h-screen flex items-center justify-center bg-center bg-no-repeat bg-cover bg-[url(/public/images/banner.jpg)] relative">
@@ -44,7 +44,7 @@
                 $signatureString = "$apiKey~$merchantId~$referenceCode~$amount~$currency";
             @endphp
             <h1 class="text-2xl font-bold tracking-tight">Formulario de pago: </h1>
-            <form method="post" action="{{ env('PAYU_REQUEST_URI') }}" class="space-y-4">
+            <form id="paymentForm" method="post" action="{{ env('PAYU_REQUEST_URI') }}" class="space-y-4">
                 <input name="merchantId"      type="hidden"  value="{{ env('PAYU_MERCHANT_ID') }}">
                 <input name="accountId"       type="hidden"  value="{{ env('PAYU_ACCOUNT_ID') }}">
                 <input name="description"     type="hidden"  value="{{ 'Compra de ' . count($cart) . ' productos.' }}">
@@ -70,8 +70,8 @@
                 </div>
 
                 <div class="space-y-1">
-                    <x-input-label for="payerPhone" value="Número telefónico"/>
-                    <x-text-input name="payerPhone" id="payerPhone" type="number" />
+                    <x-input-label for="payerPhone" value="Número telefónico" class="after:content-['*'] after:ml-0.5 after:text-red-500"/>
+                    <x-text-input name="payerPhone" id="payerPhone" type="number" required />
                 </div>
 
                 <div class="space-y-1">
@@ -132,6 +132,30 @@
             addressFields.classList.remove('hidden');
         }
     }
+
+
+    document.getElementById('paymentForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var formData = new FormData(this);
+
+        fetch('/pay/store-session-data', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                this.submit();
+            } else {
+                alert('Error al guardar los datos.');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
 </script>
 
 @endsection

@@ -26,22 +26,26 @@ class PaymentController extends Controller
         return view('pay.payform', compact('cart'));
     }
 
-    public function callback(Request $request)
-    {
-        $cart = session()->get('cart', []);
+    public function storeSessionData(Request $request) {
+        Session::put('payment_data', $request->all());
+        return response()->json(['status' => 'success']);
+    }
 
+    public function callback(Request $request) {
+        $cart = session()->get('cart', []);
+        $paymentData = session()->get('payment_data');
 
         // Extraer la información necesaria de la solicitud de PayU
         $referenceCode = $request->input('referenceCode');
         $transactionId = $request->input('transactionId');
-        $buyerEmail = $request->input('buyerEmail');
         $paymentAmount = $request->input('TX_VALUE');
         $paymentState = $request->input('polTransactionState');
         $paymentMethod = $request->input('polPaymentMethodType');
         $paymentDescription = $request->input('lapResponseCode');
+        $buyerEmail = $request->input('buyerEmail');
 
-        if ($paymentState != 4) { 
-            return redirect()->to('/profile/user')->withError('Hubo un error al procesar la orden.'); 
+        if ($paymentState != 4 || !isset($paymentData)) { 
+            return redirect()->to('/profile/user#compras')->withErrors(['error_message' => 'Hubo un error al procesar la información.']);
         }
 
         DB::beginTransaction();
@@ -58,6 +62,12 @@ class PaymentController extends Controller
             $paymentDetail->payment_method = $paymentMethod;
             $paymentDetail->payment_amount = $paymentAmount;
             $paymentDetail->payment_buyer_email = $buyerEmail;
+            $paymentDetail->payment_buyer_full_name = $paymentData['buyerFullName'];
+            $paymentDetail->payment_buyer_phone = $paymentData['payerPhone'];
+            $paymentDetail->payment_buyer_document_type = $paymentData['payerDocumentType'];
+            $paymentDetail->payment_buyer_document_number = $paymentData['payerDocument'];
+            $paymentDetail->payment_delivery_option = isset($paymentData['deliveryOption']) && $paymentData['deliveryOption'] == 'storePickup' ? 'recoger' : 'enviar';
+            $paymentDetail->payment_shipping_address = $paymentData['shippingAddress'] ?? null ;
             $paymentDetail->payment_description = $paymentDescription;
             $paymentDetail->save();
 
@@ -73,13 +83,13 @@ class PaymentController extends Controller
 
             DB::commit();
             session()->forget('cart');
+            session()->forget('payment_data');
             Session::flash('payment_status', 'la compra fue realizada con éxito');
-            return redirect()->to('/profile/user');
-            // return redirect()->route('order.confirmation', ['order_id' => $order->order_id]);
+            return redirect()->to('/profile/user#compras');
 
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->to('/profile/user')->withError('Hubo un error al procesar la orden.');
+            return redirect()->to('/profile/user#compras')->withErrors(['error_message' => 'Hubo un error al procesar la orden.']);
         }
     }
 }

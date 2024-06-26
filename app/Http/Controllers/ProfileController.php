@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\Size;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,12 +17,23 @@ use Illuminate\Support\Facades\Session;
 
 class ProfileController extends Controller
 {
-    public function show($user_id = null) {
-        
+    public function show(Request $request, $user_id = null) {
+
         $user = (!$user_id) ? Auth::user() : User::find($user_id);
 
         if ( Auth::user()->role_id == 2 || Auth::user()->user_id == $user -> user_id) {
-            return view('profile', compact('user'));
+            $orders = Order::where('user_id', $user -> user_id)
+            ->join('payments_details', 'orders.order_id', '=', 'payments_details.order_id')
+            ->with('paymentDetails', 'soldProducts.product')
+            ->orderBy(($request -> input('order') ?? 'created_at'), 'asc')
+            ->paginate(10);
+
+            foreach ($orders as &$order) {
+                foreach ($order -> soldProducts as $product){
+                    $product -> size_name = Size::findOrFail($product -> size_id)->size_name;
+                }                
+            }
+            return view('profile', compact('user', 'orders'));
         } else {
             return redirect('/');
         }
@@ -115,5 +129,19 @@ class ProfileController extends Controller
         return Redirect::back()->withErrors(['error' => 'Unauthorized action.']);
     }
 
+    public function order($order_id) {
+        
+        $order = Order::with('paymentDetails', 'soldProducts.product.sizes')->findOrFail($order_id);
+        foreach ($order -> soldProducts as $product){
+            $product -> size = $product -> product -> sizes -> firstWhere('size_id', $product -> size -> size_id);
+            // $item['size_price'] = $item['product']->sizes->firstWhere('size_id', $item['size_id'])->pivot->product_size_price;
+        }
+
+        if ( Auth::user()->role_id == 2 || Auth::user()->user_id == $order -> user_id) {
+            return view('order', compact('order'));
+        } else {
+            redirect()->to('/');
+        }
+    }
 
 }

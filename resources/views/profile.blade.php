@@ -3,6 +3,11 @@
 @section('title', 'Perfil')
 
 @section('content')
+<style>
+    td, th {
+        padding: 5px;
+    }
+</style>
 <main class="flex flex-col gap-10 py-10 min-h-[90vh] bg-center bg-no-repeat bg-cover bg-[url(/public/images/banner.jpg)] relative">
     <div class="absolute inset-0 bg-gradient-to-b from-black to-black opacity-[20%]"></div>
     <section class="w-full flex justify-center">
@@ -40,7 +45,6 @@
             </div>
             <div class="bg-white flex flex-col justify-between rounded-md p-5 shadow-lg w-full md:w-[1fr]">
                 <div>
-                    <x-auth-session-status class="mb-4" :status="session('payment_status')" />
                     <h2 class="text-xl font-bold mb-4">Información:</h2>
                     <p class="text-xl font-semibold text-gray-900 tracking-tight mb-2">{{ $user->user_first_name . ' ' . $user->user_last_name }}</p>
                     <p><i class="fa-solid fa-user mr-2"></i> {{ $user -> user_username }}</p>
@@ -158,6 +162,57 @@
                 </button>
             </div>
         </form>
+    </section>
+    <section class="w-full flex justify-center">
+        <div class="flex flex-col gap-5 w-full max-w-[1200px] z-10 bg-white rounded-md p-7 shadow-lg space-y-4" id="compras">
+        <h2 class="text-xl font-bold tracking-tight">Compras del Usuario:</h2>
+
+            <x-error-status class="mb-4" :status="$errors->first('error_message')" />
+
+            <x-auth-session-status class="mb-4" :status="session('payment_status')" />
+            
+            <div class="w-full">
+                <table class="w-full text-center border border-gray-300 divide-y divide-gray-300">
+                    <thead class="bg-gray-200 uppercase font-bold">
+                        <tr>
+                            <th><a href="{{ url('/profile/user') . '?' . http_build_query(array_merge(request()->except('order'), ['order' => 'created_at'])) }}">Fecha</a></th>
+                            <th>productos</th>
+                            <th><a href="{{ url('/profile/user') . '?' . http_build_query(array_merge(request()->except('order'), ['order' => 'payment_amount'])) }}">Precio</a></th>
+                            <th>estado</th>
+                            <th>Ver</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-300">
+                        @foreach ( $orders as $order )
+                            <tr class="even:bg-white odd:bg-gray-50">
+                                <td>{{ $order -> created_at }}</td>
+                                <td>
+                                    <ul>
+                                        @foreach($order -> soldProducts as $product)
+                                            <li>{{ $product -> product_quantity }} - {{ $product -> product -> product_name }} (Talla {{ $product -> size_name }} )</li>
+                                        @endforeach
+                                    </ul>
+                                </td>
+                                <td>{{ number_format($order -> paymentDetails -> payment_amount) }} COP</td>
+                                <td>{{ $order -> paymentDetails -> payment_description }}</td>
+                                <td>
+                                    <a href=" {{ url('/order/'. $order -> order_id) }}">
+                                        <button class="border-2 border-black py-1 px-3 rounded-md">
+                                            <i class="fa-regular fa-eye"></i>
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="flex justify-between items-center p-3">
+                {{ $orders -> links() }}
+            </div>
+
+        </div>
     </section>
 </main>
 <script>

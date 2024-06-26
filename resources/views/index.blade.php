@@ -62,7 +62,7 @@
                 @endif
             </div>
         </section>
-        <section class="w-full flex justify-center">
+        <section class="w-full flex justify-center px-5">
             <div class="w-full max-w-[1200px] flex flex-col gap-10 py-10">
                 <div class="w-full text-center flex flex-col items-center gap-3">
                     <h1 class="text-5xl font-bold tracking-tight">Colegios</h1>
@@ -89,7 +89,7 @@
             </div>
         </section>
 
-        <section class="w-full flex flex-col items-center bg-zinc-800">
+        <section class="w-full flex flex-col items-center bg-zinc-800 px-5">
             <div class="w-full max-w-[1200px] flex gap-10 py-10 text-white">
                 <div class="w-full md:w-1/2 flex flex-col gap-2">
                     <h2 class="text-2xl font-bold tracking-tight mb-2">Sobre Nosotros</h2>
@@ -139,7 +139,7 @@
             </div>
         </section>
 
-        <section class="w-full flex flex-col items-center">
+        <section class="w-full flex flex-col items-center px-5">
             <div class="w-full max-w-[1200px] flex flex-col gap-5 py-10">
                 <div class="w-full text-center flex flex-col items-center gap-3">
                     <h1 class="text-[45px] font-bold tracking-tight">¿Por qué escogernos?</h1>
@@ -177,7 +177,7 @@
                                 recíbe los productos en la comodidad de tu casa.
                             </p>
                         </article>
-                        <a href="{{ url('/tallas') }}">
+                        <a href="{{ url('/pdf/Tallas.pdf') }}" target="_blank">
                             <article class="w-full max-w-[310px] flex flex-col gap-2 items-center text-center">
                                 <span class="size-[60px] flex items-center justify-center rounded-full bg-yellow-400">
                                     <i class="fa-solid fa-gem text-[35px] text-white"></i>
@@ -191,7 +191,7 @@
             </div>
         </section>
         
-        <section id="contact" class="w-full flex flex-col items-center">
+        <section id="contact" class="w-full flex flex-col items-center px-5">
             <div class="w-full max-w-[1200px] py-10">
                 <!-- Recuadro con formulario de envío --> 
                 <div class="flex flex-col md:flex-row bg-white rounded-lg overflow-hidden shadow-lg">

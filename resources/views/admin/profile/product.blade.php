@@ -6,7 +6,7 @@
 
 <main class="flex flex-col gap-10 py-10 min-h-[90vh] bg-center bg-no-repeat bg-cover bg-[url(/public/images/banner.jpg)] relative">
     <div class="absolute inset-0 bg-gradient-to-b from-black to-black opacity-[20%]"></div>
-    <section class="w-full flex justify-center">
+    <section class="w-full flex justify-center px-5">
         <div class="flex flex-col md:flex-row gap-10 w-full max-w-[1200px] z-10">
             <div class="flex flex-col gap-10 w-full max-w-[400px]">
                 <div class="bg-white rounded-md p-7 shadow-lg w-full flex flex-col justify-center items-center gap-4 h-fit">

@@ -4,12 +4,12 @@
 
 @section('content')
 <main>
-    <section class="w-full flex justify-center bg-slate-800">
+    <section class="w-full flex justify-center bg-slate-800 px-5">
         <div class="w-full max-w-[1200px] flex flex-col gap-5 py-10">
             <h1 class="text-center text-5xl font-bold text-slate-50 tracking-tight py-10">Colegios</h1>
         </div>
     </section>
-    <section class="w-full flex justify-center">
+    <section class="w-full flex justify-center px-5">
         <div class="w-full max-w-[1200px] flex flex-col gap-5 py-10">            
             <div class="grid grid-cols-[repeat(auto-fill,_minmax(230px,_1fr))] gap-10">
                 @foreach ( $schools as $school )

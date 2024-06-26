@@ -17,10 +17,6 @@ Route::get('/colegios/{id}', [SchoolController::class, 'school']); // Read
 
 Route::get('/producto/{id}', [ProductController::class, 'public']); // Read
 
-Route::get('/tallas', function () {
-    return view('sizes'); // Read
-});
-
 Route::middleware('auth')->group(function () {
     // user profile
     Route::get('/profile/user/{user_id?}', [ProfileController::class, 'show'])->name('profile'); // Read

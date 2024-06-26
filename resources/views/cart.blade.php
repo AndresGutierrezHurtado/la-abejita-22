@@ -3,7 +3,7 @@
 @section('title', 'Inicio')
 
 @section('content')
-<main class="flex flex-col items-center justify-center py-10 min-h-[90vh] bg-center bg-no-repeat bg-cover bg-[url(/public/images/banner.jpg)] relative">
+<main class="flex flex-col items-center justify-center py-10 min-h-[90vh] bg-center bg-no-repeat bg-cover bg-[url(/public/images/banner.jpg)] relative  px-5">
     <div class="absolute inset-0 bg-gradient-to-b from-black to-black opacity-[20%]"></div>
 
     <div class="flex flex-col md:flex-row gap-10 w-full max-w-[1200px] z-10">

@@ -4,7 +4,7 @@
 
 @section('content')
 <main>
-    <section class="w-full flex justify-center bg-slate-800 py-16">
+    <section class="w-full flex justify-center bg-slate-800 py-16 px-5">
         <div class="w-full max-w-[1200px] flex flex-col items-center justify-center gap-4">
             <div class="size-[200px] rounded-full overflow-hidden">
                 <img src="{{$school -> school_image_url}}" class="object-cover w-full h-full">
@@ -13,7 +13,7 @@
             <p class="text-lg font-semibold text-slate-100/75">{{$school -> school_address}}</p>
         </div>
     </section>
-    <section class="w-full flex justify-center">
+    <section class="w-full flex justify-center px-5">
         <div class="w-full max-w-[1200px] flex flex-col gap-5 py-10">
             <span class="w-full flex justify-center">
                 <a href="{{ url( $school -> school_use_guide_url ) }}" target="_blank">

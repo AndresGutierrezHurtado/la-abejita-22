@@ -10,6 +10,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use App\PDF\FacturaPDF;
+use Codedge\Fpdf\Fpdf\Fpdf;
 use Illuminate\View\View;
 use App\Models\User;
 use Carbon\Carbon;
@@ -134,7 +136,6 @@ class ProfileController extends Controller
         $order = Order::with('paymentDetails', 'soldProducts.product.sizes')->findOrFail($order_id);
         foreach ($order -> soldProducts as $product){
             $product -> size = $product -> product -> sizes -> firstWhere('size_id', $product -> size -> size_id);
-            // $item['size_price'] = $item['product']->sizes->firstWhere('size_id', $item['size_id'])->pivot->product_size_price;
         }
 
         if ( Auth::user()->role_id == 2 || Auth::user()->user_id == $order -> user_id) {
@@ -143,5 +144,25 @@ class ProfileController extends Controller
             redirect()->to('/');
         }
     }
+    
+    public function receipt($order_id) {
 
+        $order = Order::with('paymentDetails', 'soldProducts.product.sizes', 'user')->findOrFail($order_id);
+        foreach ($order -> soldProducts as $product){
+            $product -> size = $product -> product -> sizes -> firstWhere('size_id', $product -> size -> size_id);
+        }
+
+        if ( Auth::user()->role_id == 2 || Auth::user()->user_id == $order -> user_id) {
+            $pdf = new FacturaPDF($order);
+            $pdf->SetTitle('Recibo - Uniformes la Abejita 22');
+            $pdf->AliasNbPages();
+            $pdf->AddPage();
+            $pdf->Content();
+            $pdf->Output();
+
+        } else {
+            redirect()->to('/');
+        }
+
+    }
 }

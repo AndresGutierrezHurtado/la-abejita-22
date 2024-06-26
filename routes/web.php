@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/pay/store-session-data', [PaymentController::class, 'storeSessionData']);
     Route::get('/pay/callback', [PaymentController::class, 'callback']);
     Route::get('/order/{order_id}', [ProfileController::class, 'order']);
+    Route::get('/receipt/{order_id}', [ProfileController::class, 'receipt']);
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {

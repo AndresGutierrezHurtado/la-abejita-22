@@ -45,6 +45,10 @@
                     <h1 class="text-2xl font-bold tracking-tight">Información adicional:</h1>
                     <div>
                         <p>
+                            <strong>Precio total: </strong>
+                            {{ number_format($order -> paymentDetails -> payment_amount) }} COP
+                        </p>
+                        <p>
                             <strong>Dirección de entrega: </strong>
                             {{ ($order -> paymentDetails -> payment_delivery_option == 'recoger') ? 'Recoge en la tienda' : $order -> paymentDetails -> payment_shipping_address }} 
                         </p>
@@ -55,11 +59,12 @@
                     </div>
                 </div>
             </div>
-
-            <button class="bg-amber-500 py-1.5 px-4 rounded-md font-semibold">
-                <i class="fas fa-download mr-2" aria-hidden="true"></i>
-                Descarga factura
-            </button>
+            <a href="{{ url('/receipt/'. $order -> order_id) }}" class="w-full">
+                <button class="bg-amber-500 py-1.5 px-4 rounded-md font-semibold w-full">
+                    <i class="fas fa-download mr-2" aria-hidden="true"></i>
+                    Descarga factura
+                </button>
+            </a>
 
             <hr>
 

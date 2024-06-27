@@ -66,7 +66,7 @@
             </section>
             
             <section class="bg-white w-full p-8 rounded-md shadow-lg space-y-4">
-                <div class="flex gap-5">
+                <div class="flex flex-col md:flex-row gap-5">
                     <div class="w-full md:w-1/2">
                         <h1 class="text-3xl font-bold tracking-tight text-gray-800">Pasos para realizar compra: </h1>
                         <p class="text-lg">Para realizar tu compra de manera efectiva, sigue estos pasos:</p>

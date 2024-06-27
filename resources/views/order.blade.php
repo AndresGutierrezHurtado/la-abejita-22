@@ -59,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <a href="{{ url('/receipt/'. $order -> order_id) }}" class="w-full">
+            <a href="{{ url('/receipt/'. $order -> order_id) }}" target="_blank" class="w-full">
                 <button class="bg-amber-500 py-1.5 px-4 rounded-md font-semibold w-full">
                     <i class="fas fa-download mr-2" aria-hidden="true"></i>
                     Descarga factura

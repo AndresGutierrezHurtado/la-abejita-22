@@ -16,7 +16,7 @@
     <section class="w-full flex justify-center px-5">
         <div class="w-full max-w-[1200px] flex flex-col gap-5 py-10">
             <span class="w-full flex justify-center">
-                <a href="{{ url( $school -> school_use_guide_url ) }}" target="_blank">
+                <a href="{{ url( $school->school_use_guide_url ) }}" target="_blank" onclick="event.preventDefault(); alert('Esta opción no está disponible en este momento.');">
                     <button class="py-2 px-7 mb-5 shadow-lg font-semibold text-xl rounded-md bg-slate-700 hover:bg-slate-600 text-zinc-50">
                         Guía de uso
                     </button>

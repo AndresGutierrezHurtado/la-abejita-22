@@ -17,7 +17,7 @@
                     <h2 class="text-xl font-bold">No hay productos aún.</h2>
                 @else
                     @foreach ( $cart as $item )
-                        <article class="flex gap-5 p-5">
+                        <article class="flex flex-col md:flex-row gap-5 p-5">
                             <a href="{{ url('/producto/'. $item['product_id']) }}">
                                 <div class="size-[140px] flex justify-center items-center flex-none">
                                     <img src="{{ $item['product'] -> product_image_url }}" alt="Foto {{ $item['product'] -> product_name }}" class="max-h-full max-w-full">
@@ -46,7 +46,7 @@
                                         class="w-[80px]"
                                         onchange="this.form.submit()"/>
                                     </div>
-                                    <p class="font-bold text-lg">
+                                    <p class="font-bold text-md md:text-lg">
                                         {{ number_format($item['product']->sizes->firstWhere('size_id', $item['size_id'])->pivot->product_size_price * $item['product_quantity']) }} COP
                                     </p>
                                 </form>

@@ -6,14 +6,16 @@
     <main class="flex flex-col">
         <section class="w-full min-h-[400px] px-5 flex justify-center bg-center bg-no-repeat bg-cover bg-[url(/public/images/banner.jpg)] relative">
             <div class="absolute inset-0 bg-gradient-to-b from-black to-black opacity-[20%]"></div>
-            <div class="flex flex-col sm:flex-row justify-between gap-5 w-full max-w-[1200px] z-10">
+            <div class="flex flex-col sm:flex-row justify-between gap-5 w-full max-w-[1200px] z-10 py-10 sm:py-0">
                 <div class="flex flex-col justify-center items-center gap-4 text-center text-white h-full max-w-[750px]">
                     <h1 class="text-5xl font-bold tracking-tight mb-2">Uniformes Escolares</h1>
                     <p class="font-semibold text-[18px]">¡Bienvenidos a nuestra tienda en línea de uniformes escolares en Bogotá! Somos una empresa dedicada a 
                         ofrecer uniformes de alta calidad y durabilidad para estudiantes.</p>
-                    <button class="py-1 px-8 rounded-xl bg-white shadow-lg font-semibold text-zinc-800 text-lg w-fit duration-300 hover:bg-zinc-200">
-                        Ver más
-                    </button>
+                    <a href="{{ url('/colegios') }}">                        
+                        <button class="py-1 px-8 rounded-xl bg-white shadow-lg font-semibold text-zinc-800 text-lg w-fit duration-300 hover:bg-zinc-200">
+                            Ver más
+                        </button>
+                    </a>
                 </div>
                 
                 @if (Route::has('login'))

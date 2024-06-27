@@ -171,7 +171,7 @@
 
             <x-auth-session-status class="mb-4" :status="session('payment_status')" />
             
-            <div class="text-sm md:text-md w-full">
+            <div class="text-[12px] sm:text-sm md:text-md w-full">
                 <table class="w-full text-center border border-gray-300 divide-y divide-gray-300">
                     <thead class="bg-gray-200 uppercase font-bold">
                         <tr>

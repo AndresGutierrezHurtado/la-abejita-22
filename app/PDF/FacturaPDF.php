@@ -149,7 +149,7 @@ class FacturaPDF extends Fpdf {
         $this->Cell(100);
         $posX = $this->GetX();
         $posY = $this->GetY();
-        $this->Image(public_path('images/firma.png'),$posX +10, $posY - 15  ,70);
+        $this->Image(public_path('images/firma.png'),$posX +10, $posY - 25  ,70);
         
         // Dibujar línea 
         $this->SetLineWidth(0.5);

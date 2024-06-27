@@ -5,9 +5,9 @@
 @section('content')
 <main class="w-full min-h-screen flex items-center justify-center bg-center bg-no-repeat bg-cover bg-[url(/public/images/banner.jpg)] relative">
     <div class="absolute inset-0 bg-gradient-to-b from-black to-black opacity-[20%]"></div>
-    <div class="flex flex-col md:flex-row gap-10 w-full max-w-[1200px] z-10">
+    <div class="flex flex-col md:flex-row gap-10 w-full max-w-[1200px] z-10 py-10">
         <div class="w-full max-w-[400px] mx-auto z-50 space-y-10">
-            <div class="p-10 bg-white shadow-lg rounded-md space-y-4 text-md">
+            <div class="p-5 md:p-10 bg-white shadow-lg rounded-md space-y-4 text-md">
                 <h1 class="text-2xl font-bold tracking-tight">Información de la compra: </h1>
                 <ol>
                     @foreach ( $cart as $item )
@@ -26,14 +26,14 @@
                 <p class="text-lg font-semibold">Total: {{ number_format($total) }} COP</p>
             </div>
             
-            <div class="p-10 bg-white shadow-lg rounded-md space-y-4 text-md flex items-center gap-4">
+            <div class="p-5 md:p-10 bg-white shadow-lg rounded-md space-y-4 text-md flex items-center gap-4">
                 <div class="size-[100px] flex-none flex items-center justify-center">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/PayU.svg/1200px-PayU.svg.png" alt="" class="max-h-full max-w-full">
                 </div>
                 <p>El pago se realizará utilizando los servicios de PayU, realizando el débito desde su cuenta corriente o de ahorros.</p>
             </div>
         </div>
-        <div class=" w-full p-10 bg-white shadow-lg rounded-md mx-auto z-50">
+        <div class=" w-full p-5 md:p-10 bg-white shadow-lg rounded-md mx-auto z-50">
             @php
                 $merchantId = env('PAYU_MERCHANT_ID');
                 $apiKey = env('PAYU_API_KEY');
@@ -76,9 +76,9 @@
 
                 <div class="space-y-1">
                     <x-input-label for="payerPhone" value="Número y tipo de documento"  class="after:content-['*'] after:ml-0.5 after:text-red-500"/>
-                    <div class="flex gap-4">
+                    <div class="flex flex-col md:flex-row gap-4">
                         <select name="payerDocumentType" id=""
-                        class="border-gray-300 rounded-md shadow-sm disabled:bg-gray-50 disabled:cursor-not-allowed w-fit" 
+                        class="border-gray-300 rounded-md shadow-sm disabled:bg-gray-50 disabled:cursor-not-allowed w-fit max-w-full" 
                         required>
                             <option value="CC">Cédula de Ciudadanía</option>
                             <option value="CE">Cédula de Extranjería</option>
@@ -97,7 +97,7 @@
                     <label for="deliveryOption">Recoger en tienda</label>
                 </div>
 
-                <div class="flex gap-4" id="addressFields">
+                <div class="flex flex-col md:flex-row gap-4" id="addressFields">
                     <div class="w-full md:w-1/2 space-y-1">
                         <x-input-label for="shippingAddress" value="Dirección"/>
                         <x-text-input name="shippingAddress" id="shippingAddress" type="text" />

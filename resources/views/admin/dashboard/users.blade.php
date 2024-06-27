@@ -27,12 +27,12 @@
                 </select>
 
                 <!-- Título dashboard y búsqueda -->
-                <span class="flex justify-between items-center">
+                <span class="flex flex-col md:flex-row gap-3 justify-between items-center">
 
                     <h1 class="text-2xl font-bold tracking-tight">Tabla de usuarios</h1>
 
                     <form action="{{ url('/dashboard/users/') }}" method="get" class="flex gap-0">
-                        <input type="text" name="search" value="{{ request() -> get('search') }}" placeholder="Buscar..." class="rounded-l-md py-1 px-2 border-gray-300 w-[300px]">
+                        <input type="text" name="search" value="{{ request() -> get('search') }}" placeholder="Buscar..." class="rounded-l-md py-1 px-2 border-gray-300 md:min-w-[300px]">
                         <button type="submit" class="bg-gray-700 rounded-r-md font-semibold text-white py-1 px-2">Buscar</button>                        
                         @if(request()->has('search') || request()->has('order'))
                             <a href="{{ url('/dashboard/users/') }}" class="bg-gray-300 rounded-md font-semibold text-black py-1 px-2 ml-2">Limpiar</a>
@@ -42,14 +42,14 @@
                 </span>
                 
                 <!-- tabla con la información del dashboard -->
-                <div class="w-full">
+                <div class="w-full text-[11px] sm:text-sm md:text-md">
                     <table class="w-full text-center border border-gray-300 divide-y divide-gray-300">
                         <thead class="bg-gray-200 uppercase font-bold">
                             <tr>
                                 <th><a href="{{ url('/dashboard/users') . '?' . http_build_query(array_merge(request()->except('order'), ['order' => 'user_id'])) }}">ID</a></th>
                                 <th><a href="{{ url('/dashboard/users') . '?' . http_build_query(array_merge(request()->except('order'), ['order' => 'user_first_name'])) }}">Nombres</a></th>
-                                <th><a href="{{ url('/dashboard/users') . '?' . http_build_query(array_merge(request()->except('order'), ['order' => 'user_username'])) }}">Usuario</a></th>
-                                <th><a href="{{ url('/dashboard/users') . '?' . http_build_query(array_merge(request()->except('order'), ['order' => 'user_email'])) }}">Correo</a></th>
+                                <th class="hidden md:table-cell"><a href="{{ url('/dashboard/users') . '?' . http_build_query(array_merge(request()->except('order'), ['order' => 'user_username'])) }}">Usuario</a></th>
+                                <th class="hidden md:table-cell"><a href="{{ url('/dashboard/users') . '?' . http_build_query(array_merge(request()->except('order'), ['order' => 'user_email'])) }}">Correo</a></th>
                                 <th><a href="{{ url('/dashboard/users') . '?' . http_build_query(array_merge(request()->except('order'), ['order' => 'role_id'])) }}">Rol</a></th>
                                 <th>Acciones</th>
                             </tr>
@@ -59,10 +59,10 @@
                                 <tr class="odd:bg-white even:bg-gray-50">
                                     <td>{{ $user -> user_id }}</td>
                                     <td>{{ $user -> user_first_name . ' ' . $user -> user_last_name }}</td>
-                                    <td>{{ $user -> user_username }}</td>
-                                    <td>{{ $user -> user_email }}</td>
+                                    <td class="hidden md:table-cell">{{ $user -> user_username }}</td>
+                                    <td class="hidden md:table-cell">{{ $user -> user_email }}</td>
                                     <td class="capitalize">{{ $user -> role -> role_name }}</td>
-                                    <td class="space-x-2 flex justify-center">
+                                    <td class="space-x-2 flex flex-col sm:flex-row  gap-2 justify-center">
                                         <a href="{{ url('/profile/user/'. $user -> user_id ) }}" class="bg-amber-500 border-2 border-amber-500 px-2 py-0.5 rounded-md font-semibold text-white"> <i class="fa-solid fa-pen mr-2"></i> Editar</a>
                                         <form action="{{ url('/profile/user/destroy/' . $user -> user_id) }}" method="post"  onsubmit="return confirm('¿Estás seguro que quieres eliminar a este usuario?');">
                                             @csrf
@@ -80,7 +80,7 @@
                 </div>  
                     
                 <!-- Paginación de la tabla -->
-                <div class="flex justify-between items-center">
+                <div class="flex flex-col md:flex-row gap-2 justify-between items-center">
                     {{ $users -> links() }}
                 </div>
             </div>

@@ -6,7 +6,7 @@
     
     <main class="w-full min-h-screen flex items-center justify-center bg-center bg-no-repeat bg-cover bg-[url(/public/images/banner.jpg)] relative">
         <div class="absolute inset-0 bg-gradient-to-b from-black to-black opacity-[20%]"></div>
-        <div class=" w-full p-10 bg-white shadow-lg rounded-md max-w-[550px] mx-auto z-50">
+        <div class=" w-full p-5 md:p-10 bg-white shadow-lg rounded-md max-w-[550px] mx-auto z-50 my-10">
 
             <div class="text-center flex flex-col items-center justify-center gap-2 py-5">                
                 <a href="{{ route('index') }}">

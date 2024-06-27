@@ -99,11 +99,24 @@ INSERT INTO `product_media` (`product_id`, `media_url`, `media_type`) VALUES
 -- jardinera
 (6, '/images/products/extra/6_0.20240624153959.mp4', 'video'),
 (6, '/images/products/extra/6_1.20240624154000.jpg', 'image'),
+
 -- Caried
 (15, '/images/products/extra/15_3.20240625092530.jpg', 'image'),
 (15, '/images/products/extra/15_1.20240625092530.jpg', 'image'),
 (15, '/images/products/extra/15_2.20240625092530.jpg', 'image'),
-(15, '/images/products/extra/15_0.20240625092530.jpg', 'image');
+(15, '/images/products/extra/15_0.20240625092530.jpg', 'image'),
+
+-- Chaleco
+(2, '/images/products/extra/2_0.20240626212929.jpg', 'image'),
+(2, '/images/products/extra/2_1.20240626212929.jpg', 'image'),
+(2, '/images/products/extra/2_2.20240626212929.jpg', 'image'),
+
+-- Chaqueta
+(7, '/images/products/extra/7_0.20240626213008.mp4', 'video'),
+(7, '/images/products/extra/7_1.20240626213008.jpg', 'image'),
+
+-- Pantaloneta
+(10, '/images/products/extra/10_0.20240626213026.jpg', 'image');
 
 -- Creation of the Sizes table
 CREATE TABLE `sizes` (
@@ -291,36 +304,36 @@ CREATE TABLE `school_products` (
 -- Insertar datos de ejemplo en la tabla school_products
 INSERT INTO `school_products` (`product_id`, `school_id`) VALUES
 (1, 1),
-(2, 1),
-(3, 1),
-(4, 1),
-(5, 1),
-(6, 1),
-(7, 1),
-(8, 1),
-(9, 1),
-(10, 1),
 (1, 2),
-(2, 2),
-(3, 2),
-(4, 2),
-(5, 2),
-(6, 2),
-(7, 2),
-(8, 2),
-(9, 2),
-(10, 2),
 (1, 3),
 (2, 3),
+(2, 1),
+(2, 2),
 (3, 3),
+(3, 2),
+(3, 1),
+(4, 1),
+(4, 2),
 (4, 3),
-(5, 3),
-(6, 3),
-(7, 3),
-(8, 3),
-(9, 3),
-(10, 3),
 (4, 4),
+(5, 1),
+(5, 2),
+(5, 3),
+(6, 1),
+(6, 2),
+(6, 3),
+(7, 1),
+(7, 2),
+(7, 3),
+(8, 1),
+(8, 2),
+(8, 3),
+(9, 1),
+(9, 2),
+(9, 3),
+(10, 1),
+(10, 2),
+(10, 3),
 (11, 4),
 (12, 4),
 (13, 4),

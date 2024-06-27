@@ -206,6 +206,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                @if (count($orders) < 1)
+                    <h1 class="text-center pt-5 font-bold text-xl">No hay compras aún ...</h1>
+                @endif
             </div>
 
             <div class="flex flex-col md:flex-row gap-5 justify-between items-center p-3">

@@ -3,6 +3,18 @@ DROP DATABASE IF EXISTS `la-abejita-22-db`;
 CREATE DATABASE `la-abejita-22-db`;
 USE `la-abejita-22-db`;
 
+-- Eliminar tablas si existen
+DROP TABLE IF EXISTS `password_reset_tokens`;
+DROP TABLE IF EXISTS `sessions`;
+DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `roles`;
+DROP TABLE IF EXISTS `products`;
+DROP TABLE IF EXISTS `product_media`;
+DROP TABLE IF EXISTS `sizes`;
+DROP TABLE IF EXISTS `products_sizes`;
+DROP TABLE IF EXISTS `schools`;
+DROP TABLE IF EXISTS `school_products`;
+
 -- Creation of the password_reset_tokens table
 CREATE TABLE `password_reset_tokens` (
   `email` varchar(255) PRIMARY KEY NOT NULL,
@@ -29,7 +41,7 @@ CREATE TABLE `users` (
   `user_email` VARCHAR(70) NOT NULL UNIQUE, 
   `user_username` VARCHAR(20) NOT NULL, 
   `user_password` TEXT NULL, 
-  `user_address` VARCHAR(30) DEFAULT NULL, 
+  `user_address` VARCHAR(90) DEFAULT NULL, 
   `user_phone_number` DECIMAL(10,0) DEFAULT NULL, 
   `user_image_url` VARCHAR(100) DEFAULT '/images/users/nf.jpg',
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

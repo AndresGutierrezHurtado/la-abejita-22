@@ -62,29 +62,8 @@ Uniformes La Abejita es un sitio web para ofrecer uniformes escolares de la mejo
 - Accede a `http://localhost:8000` en tu navegador para ver el sitio web en funcionamiento.
 - Usa el panel de administración para gestionar productos, pedidos y usuarios.
 
-## Contribuir
-Si deseas contribuir a este proyecto, por favor sigue estos pasos:
-
-1. Realiza un fork del repositorio.
-2. Crea una nueva rama con tus cambios:
-    ```bash
-    git checkout -b mi-nueva-funcionalidad
-    ```
-3. Realiza tus cambios y haz commit:
-    ```bash
-    git commit -m "Añadir nueva funcionalidad"
-    ```
-4. Envía tus cambios a tu repositorio remoto:
-    ```bash
-    git push origin mi-nueva-funcionalidad
-    ```
-5. Crea un pull request en GitHub.
-
-## Licencia
-Este proyecto está licenciado bajo la [MIT License](LICENSE).
-
 ## Contacto
-Para cualquier consulta, puedes contactarnos a través de [email@example.com](mailto:email@example.com).
+Para cualquier consulta, puedes contactarnos a través de [laabejita22.uni@gmail.com](mailto:laabejita22.uni@gmail.com).
 
 ---
 

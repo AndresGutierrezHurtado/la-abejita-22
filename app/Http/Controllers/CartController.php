@@ -59,7 +59,7 @@ class CartController extends Controller
                 $cart[$product_id]['size_id'] = $size_id;
                 $cart[$product_id]['product_quantity'] = $product_quantity;
                 $this->save($cart);
-                return redirect()->back()->with('status', '¡Cantidad actualizada en el carrito!');
+                return redirect()->back()->with('status', '¡Carrito actualizado satisfactoriamente!');
             } else {
                 unset($cart[$product_id]);
                 $this->save($cart);

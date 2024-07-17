@@ -82,7 +82,7 @@
                 </a>
 
                 <a href="{{ url('/login/google/redirect') }}" class="block w-full">
-                    <button class="flex gap-3 items-center justify-center font-semibold text-slate-600 bg-zinc-100 rounded-lg py-1 px-5 border w-full">
+                    <button class="flex gap-3 items-center justify-center font-semibold text-slate-600 bg-zinc-100 duration-300 hover:bg-zinc-200 rounded-lg py-1 px-5 border w-full">
                         <i class="fa-brands fa-google text-xl"></i>
                         Ingresa con google
                     </button>

@@ -23,6 +23,6 @@ class CustomMail extends Mailable
     {
         return $this->view('emails.footer')
                     ->with('details', $this->details)
-                    ->subject('Correo contacto');
+                    ->subject('Contáctanos sitio web | ' . $this -> details['title'] );
     }
 }

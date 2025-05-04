@@ -1,19 +1,12 @@
+START TRANSACTION;
+
 -- Creation of the database and selection of it
 DROP DATABASE IF EXISTS `la-abejita-22-db`;
 CREATE DATABASE `la-abejita-22-db`;
 USE `la-abejita-22-db`;
 
 -- Eliminar tablas si existen
-DROP TABLE IF EXISTS `password_reset_tokens`;
-DROP TABLE IF EXISTS `sessions`;
-DROP TABLE IF EXISTS `users`;
-DROP TABLE IF EXISTS `roles`;
-DROP TABLE IF EXISTS `products`;
-DROP TABLE IF EXISTS `product_media`;
-DROP TABLE IF EXISTS `sizes`;
-DROP TABLE IF EXISTS `products_sizes`;
-DROP TABLE IF EXISTS `schools`;
-DROP TABLE IF EXISTS `school_products`;
+DROP TABLE IF EXISTS `password_reset_tokens`, `sessions`, `users`, `roles`, `products`, `products_medias`, `sizes`, `products_sizes`, `schools`, `schools_products`;
 
 -- Creation of the password_reset_tokens table
 CREATE TABLE `password_reset_tokens` (
@@ -457,12 +450,9 @@ REFERENCES `schools`(`school_id`)
 ON UPDATE CASCADE
 ON DELETE CASCADE;
 
-
 -- ------------------------------- TRIGGER -------------------------------
 
-
 DELIMITER //
-
 CREATE TRIGGER check_multimedia_limit
 BEFORE INSERT ON `product_media`
 FOR EACH ROW
@@ -475,3 +465,5 @@ BEGIN
 END //
 
 DELIMITER ;
+
+COMMIT;

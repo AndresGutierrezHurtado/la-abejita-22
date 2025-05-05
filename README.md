@@ -1,9 +1,23 @@
-# 🐝 Uniformes Escolares La Abejita 22
+# 🐝 School Uniforms La Abejita 22
 
-La empresa **Uniformes La Abejita 22** es un negocio ubicado en el barrio El Ensueño, en la localidad de Ciudad Bolívar, Bogotá, dedicado a la confección y comercialización de uniformes escolares. Su mercado principal está conformado por instituciones educativas de la zona, tales como los colegios Ángela Restrepo Moreno, El Ensueño, María Currea, Agudelo Restrepo, Rogelio Salmona y Carranza, a los cuales les provee uniformes de uso diario y deportivo.
+[Versión en español](./README.es.md)
+
+The company **Uniformes La Abejita 22** is a business located in the El Ensueño neighborhood, in the Ciudad Bolívar district of Bogotá, dedicated to the manufacturing and commercialization of school uniforms. Its main market consists of educational institutions in the area, such as Ángela Restrepo Moreno, El Ensueño, María Currea, Agudelo Restrepo, Rogelio Salmona, and Carranza schools, to which it provides daily and sports uniforms.
 
 ---
 
-## 🚧 Estado del Proyecto
+## 🚧 Project Status
 
-**En construcción** - Este proyecto se encuentra actualmente en desarrollo.
+**Under construction** – This project is currently under development.
+
+---
+
+## 📬 Contact
+
+For questions, support, or collaboration, please contact:
+
+-   Andrés Gutiérrez Hurtado
+-   Email: andres52885241@gmail.com
+-   LinkedIn: https://www.linkedin.com/in/andrés-gutiérrez-hurtado-25946728b/
+-   GitHub: https://github.com/AndresGutierrezHurtado
+-   Portfolio: https://andres-portfolio-b4dv.onrender.com

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Model
 {
@@ -61,5 +62,10 @@ class User extends Model
     public function waitlists()
     {
         return $this->hasMany(Waitlist::class, 'user_id', 'user_id');
+    }
+
+    public function setUserPasswordAttribute($value)
+    {
+        $this->attributes['user_password'] = Hash::make($value);
     }
 }

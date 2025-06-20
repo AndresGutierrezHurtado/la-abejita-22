@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Contracts\SchoolRepositoryInterface;
+use App\Contracts\Repositories\SchoolRepositoryInterface;
 use App\Models\School;
 
 class SchoolRepository implements SchoolRepositoryInterface

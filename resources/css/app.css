@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+/* FlyonUI */
+@plugin "@iconify/tailwind4";
+@plugin "flyonui" {
+    themes: "gourmet";
+}
+@import "../../node_modules/flyonui/variants.css";
+@source "../../node_modules/flyonui/dist/index.js";
+
+/* Laravel components */
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';

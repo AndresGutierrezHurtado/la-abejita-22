@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="gourmet">
 
 <head>
     <meta charset="UTF-8">
@@ -24,9 +24,10 @@
 
     <!-- traer css y js -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="../../../node_modules/flyonui/flyonui.js"></script>
 </head>
 
-<body class="w-full min-h-screen flex flex-col">
+<body class="w-full min-h-screen flex flex-col bg-base-100 text-base-content">
     @yield('navbar', '')
 
     <main class="flex-1">
@@ -35,6 +36,7 @@
 
     @yield('footer', '')
 
+    <script src="../../../node_modules/flyonui/flyonui.js"></script>
     @yield('scripts')
 </body>
 

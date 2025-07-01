@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('navbar')
-<header class="bg-base-100 text-base-content border-b shadow shadow-base-content/10 border-base-content/10 flex w-full flex-wrap py-4 text-sm md:flex-nowrap md:justify-start md:py-0 sticky top-0 z-50">
+<header class="bg-base-200 text-base-content border-b border-base-content/10 flex w-full flex-wrap py-4 text-sm md:flex-nowrap md:justify-start md:py-0 sticky top-0 z-50">
     <nav class="w-full max-w-[1300px] mx-auto py-0.5" aria-label="Global">
         <div class="relative md:flex md:items-center lg:gap-7">
             <div class="flex items-center justify-between text-nowrap">
@@ -25,7 +25,7 @@
             </div>
             <div id="navbar-mega-menu-click" class="collapse hidden grow basis-full overflow-hidden rounded-lg transition-all duration-300 md:block">
                 <div class="flex flex-col rounded-lg max-md:mt-3 max-md:border max-md:p-2 md:flex-row md:items-center md:justify-end md:ps-5 md:pe-0.5 gap-2 max-md:border-base-content/20">
-                    <ul class="menu md:menu-horizontal text-base py-4 px-0 gap-4">
+                    <ul class="menu md:menu-horizontal text-base py-4 px-0 gap-4 bg-transparent">
                         <li><a href="/schools" class="hover:text-primary hover:scale-105 hover:bg-transparent py-0 px-2 duration-300">Colegios</a></li>
                         <li><a href="/products" class="hover:text-primary hover:scale-105 hover:bg-transparent py-0 px-2 duration-300">Catálogo</a></li>
                         <li><a href="/about" class="hover:text-primary hover:scale-105 hover:bg-transparent py-0 px-2 duration-300">Nosotros</a></li>
@@ -92,7 +92,7 @@
             <div class="modal-body bg-base-100 min-h-30 p-4">
                 <!-- schools -->
                 @forelse ($schools ?? [] as $school)
-                    
+
                 @empty
                 <div class="flex items-center justify-center h-full">
                     <p class="text-sm text-base-content/50">
@@ -139,7 +139,27 @@
 @endsection
 
 @section('footer')
-<footer>
-    <h1>Footer</h1>
+<footer class="footer bg-base-200 border-t border-base-content/10 px-6 py-4">
+    <div class="flex w-full items-center justify-between">
+        <aside class="grid-flow-col items-center">
+            <p>
+                &copy; {{ date('Y') }} <a class="hover:underline" href="#">La Abejita 22</a>
+            </p>
+            <p class="text-xs text-base-content/50">
+                Todos los derechos reservados
+            </p>
+        </aside>
+        <div class="flex gap-4 h-5">
+            <a href="https://www.instagram.com/laabejita22/" target="_blank" class="link" aria-label="Instagram Link">
+                <span class="icon-[tabler--brand-instagram] size-6"></span>
+            </a>
+            <a href="https://web.facebook.com/la.abejita.uniformes.escolares/" target="_blank" class="link" aria-label="Facebook Link">
+                <span class="icon-[tabler--brand-facebook] size-6"></span>
+            </a>
+            <a href="https://g.co/kgs/avsEDFL" target="_blank" class="link" aria-label="Google Link">
+                <span class="icon-[tabler--brand-google] size-6"></span>
+            </a>
+        </div>
+    </div>
 </footer>
 @endsection

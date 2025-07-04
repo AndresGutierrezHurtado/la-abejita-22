@@ -17,3 +17,19 @@
 @theme {
     --font-sans: "Poppins", system-ui, sans-serif;
 }
+
+@utility btn {
+    @apply shadow-none;
+}
+
+@utility input-bordered {
+    @apply focus:outline-0 focus:border-primary;
+}
+
+@utility textarea-bordered {
+    @apply focus:outline-0 focus:border-primary;
+}
+
+@utility select-bordered {
+    @apply focus:outline-0 focus:border-primary;
+}

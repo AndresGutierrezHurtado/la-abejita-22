@@ -5,7 +5,7 @@
     <nav class="w-full max-w-[1300px] mx-auto py-0.5" aria-label="Global">
         <div class="relative md:flex md:items-center lg:gap-7">
             <div class="flex items-center justify-between text-nowrap">
-                <div class="tooltip h-14 w-auto">
+                <div class="tooltip h-15 w-auto">
                     <a href="/">
                         <img
                             src="/images/logo.png"
@@ -140,7 +140,7 @@
 
 @section('footer')
 <footer class="footer bg-base-200 border-t border-base-content/10 px-6 py-4">
-    <div class="flex w-full items-center justify-between">
+    <div class="flex w-full max-w-[1300px] mx-auto items-center justify-between">
         <aside class="grid-flow-col items-center">
             <p>
                 &copy; {{ date('Y') }} <a class="hover:underline" href="#">La Abejita 22</a>
@@ -150,13 +150,13 @@
             </p>
         </aside>
         <div class="flex gap-4 h-5">
-            <a href="https://www.instagram.com/laabejita22/" target="_blank" class="link" aria-label="Instagram Link">
+            <a href="https://www.instagram.com/laabejita22/" target="_blank" class="link hover:text-primary duration-300" aria-label="Instagram Link">
                 <span class="icon-[tabler--brand-instagram] size-6"></span>
             </a>
-            <a href="https://web.facebook.com/la.abejita.uniformes.escolares/" target="_blank" class="link" aria-label="Facebook Link">
+            <a href="https://web.facebook.com/la.abejita.uniformes.escolares/" target="_blank" class="link hover:text-primary duration-300" aria-label="Facebook Link">
                 <span class="icon-[tabler--brand-facebook] size-6"></span>
             </a>
-            <a href="https://g.co/kgs/avsEDFL" target="_blank" class="link" aria-label="Google Link">
+            <a href="https://g.co/kgs/avsEDFL" target="_blank" class="link hover:text-primary duration-300" aria-label="Google Link">
                 <span class="icon-[tabler--brand-google] size-6"></span>
             </a>
         </div>

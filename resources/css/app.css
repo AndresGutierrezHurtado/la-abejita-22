@@ -19,17 +19,17 @@
 }
 
 @utility btn {
-    @apply shadow-none;
+    @apply shadow-none h-auto py-1;
 }
 
-@utility input-bordered {
-    @apply focus:outline-0 focus:border-primary;
+@utility input {
+    @apply focus:outline-0 focus:border-primary focus:shadow-none rounded-lg;
 }
 
-@utility textarea-bordered {
-    @apply focus:outline-0 focus:border-primary;
+@utility textarea {
+    @apply focus:outline-0 focus:border-primary focus:shadow-none resize-none rounded-lg;
 }
 
-@utility select-bordered {
-    @apply focus:outline-0 focus:border-primary;
+@utility select {
+    @apply focus:outline-0 focus:border-primary focus:shadow-none rounded-lg;
 }

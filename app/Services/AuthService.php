@@ -35,7 +35,7 @@ class AuthService implements AuthServiceInterface
 
     public function login(array $data): array
     {
-        $user = $this->userRepository->getByEmail($data['user_email']);
+        $user = $this->userRepository->getByEmail($data['user_email'], true);
 
         if (!$user) {
             throw new \Exception('Usuario no encontrado', 404);

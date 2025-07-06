@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Infraestructure\Repositories\Eloquent;
 
 use App\Contracts\Repositories\UserRepositoryInterface;
 use App\Models\User;
@@ -17,9 +17,17 @@ class UserRepository implements UserRepositoryInterface
         return User::with('role')->find($id)->toArray();
     }
 
-    public function getByEmail(string $email): array
+    public function getByEmail(string $email, bool $withPassword = false): array
     {
-        return User::with('role')->where('user_email', $email)->first()->toArray();
+        $user =  User::with('role')->where('user_email', $email)->first();
+
+        $userData = $user->toArray();
+
+        if ($withPassword) {
+            $userData['user_password'] = $user->user_password;
+        }
+
+        return $userData;
     }
 
     public function create(array $data): array

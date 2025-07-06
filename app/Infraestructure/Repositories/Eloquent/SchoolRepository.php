@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Infraestructure\Repositories\Eloquent;
 
 use App\Contracts\Repositories\SchoolRepositoryInterface;
 use App\Models\School;

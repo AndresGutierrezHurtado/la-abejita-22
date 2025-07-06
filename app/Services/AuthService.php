@@ -2,19 +2,24 @@
 
 namespace App\Services;
 
-use App\Contracts\Repositories\UserRepositoryInterface;
-use App\Contracts\Services\AuthServiceInterface;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
+// Contracts
+use App\Contracts\Repositories\UserRepositoryInterface;
+use App\Contracts\Services\AuthServiceInterface;
+use App\Contracts\Services\AuthProviderInterface;
+
 class AuthService implements AuthServiceInterface
 {
     protected $userRepository;
+    protected $authProvider;
 
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(UserRepositoryInterface $userRepository, AuthProviderInterface $authProvider)
     {
         $this->userRepository = $userRepository;
+        $this->authProvider = $authProvider;
     }
 
     public function register(array $data): array
@@ -33,7 +38,7 @@ class AuthService implements AuthServiceInterface
         ];
     }
 
-    public function login(array $data): array
+    public function login(array $data): bool
     {
         $user = $this->userRepository->getByEmail($data['user_email'], true);
 
@@ -45,12 +50,13 @@ class AuthService implements AuthServiceInterface
             throw new \Exception('Contraseña incorrecta', 401);
         }
 
-        Auth::login($user);
+        $response = $this->authProvider->authenticate($user, $data['user_remember']);
 
-        return [
-            'message' => 'Inicio de sesión exitoso',
-            'user' => $user,
-        ];
+        if (!$response['success']) {
+            throw new \Exception('Error al autenticar usuario', 500);
+        }
+
+        return true;
     }
 
     public function logout(): bool

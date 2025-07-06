@@ -35,7 +35,7 @@
 <body class="w-full min-h-screen flex flex-col bg-base-100 text-base-content">
     @yield('navbar', '')
 
-    <main class="flex-1">
+    <main class="flex-1 flex flex-col">
         @yield('content')
     </main>
 

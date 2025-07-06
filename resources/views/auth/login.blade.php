@@ -44,18 +44,22 @@
             </div>
             <div class="space-y-4">
                 <form action="/login" method="post" class="mb-4 space-y-4">
+                    @csrf
                     <div>
                         <label class="label-text after:content-['*'] after:text-red-500 after:ml-1" for="userEmail">
                             Correo electrónico:
                         </label>
-                        <input placeholder="Ingresa tu dirección de correo electrónico" name="user_email" class="input" id="userEmail" />
+                        <input placeholder="Ingresa tu dirección de correo electrónico" name="user_email" class="input" id="userEmail" value="{{ old('user_email') }}" />
+                        @if ($errors->has('user_email'))
+                        <p class="text-red-500 text-sm">{{ $errors->first('user_email') }}</p>
+                        @endif
                     </div>
                     <div>
                         <label class="label-text after:content-['*'] after:text-red-500 after:ml-1" for="userPassword">
                             Contraseña
                         </label>
                         <div class="input">
-                            <input id="userPassword" type="password" name="user_password" placeholder="**********" />
+                            <input id="userPassword" type="password" name="user_password" placeholder="**********" value="{{ old('user_password') }}" />
                             <button
                                 type="button"
                                 data-toggle-password='{ "target": "#userPassword" }'
@@ -65,14 +69,20 @@
                                 <span class="icon-[tabler--eye-off] password-active:hidden block size-5 shrink-0"></span>
                             </button>
                         </div>
+                        @if ($errors->has('user_password'))
+                        <p class="text-red-500 text-sm">{{ $errors->first('user_password') }}</p>
+                        @endif
                     </div>
                     <div class="flex items-center justify-between gap-y-2 text-sm">
                         <div class="flex items-center gap-2">
-                            <input type="checkbox" class="checkbox checkbox-primary rounded size-4" name="user-remember" id="rememberMe" />
+                            <input type="checkbox" class="checkbox checkbox-primary rounded size-4" name="user_remember" id="rememberMe" {{ old('user_remember') ? 'checked' : '' }} />
                             <label class="label-text text-base-content/80 p-0 text-base" for="rememberMe">Mantener la sesión</label>
                         </div>
                         <a href="/forget" class="link link-animated link-primary font-normal">¿Olvidaste tu contraseña?</a>
                     </div>
+                    @if (session('error'))
+                    <p class="text-red-500 text-sm">{{ session('error') }}</p>
+                    @endif
                     <button type="submit" class="btn btn-lg btn-primary btn-block rounded-lg">Iniciar sesión</button>
                 </form>
                 <p class="text-base-content/80 mb-4 text-center">

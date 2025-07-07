@@ -15,9 +15,19 @@ class SanctumProvider implements AuthProviderInterface
 
         Auth::login($user, $remember);
 
-        return [
-            'success' => true,
-        ];
+        return ['success' => true];
+    }
+
+    public function getUser(): ?array
+    {
+        $user = Auth::user();
+        $user = User::with('role')->find($user->user_id);
+
+        if (!$user) {
+            return null;
+        }
+
+        return $user->toArray();
     }
 
     public function logout(): bool

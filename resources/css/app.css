@@ -2,8 +2,15 @@
 
 /* FlyonUI */
 @plugin "@iconify/tailwind4";
-@plugin "flyonui" {
-    themes: "gourmet";
+@plugin "flyonui";
+@plugin "flyonui/theme" {
+    name: "gourmet";
+    default: true;
+
+    /* 
+    --color-primary: #ffde59;
+    --color-primary-content: #0c0a09; 
+    */
 }
 @import "../../node_modules/flyonui/variants.css";
 @source "../../node_modules/flyonui/dist/index.js";

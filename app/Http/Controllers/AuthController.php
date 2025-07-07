@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 use App\Contracts\Services\AuthServiceInterface;
+use App\Infraestructure\Auth\SanctumProvider;
 
 class AuthController extends Controller
 {
@@ -40,11 +41,11 @@ class AuthController extends Controller
                 'user_remember' => $request->user_remember ?? false,
             ]);
 
-            if ($response) {
-                return redirect('/');
+            if (!$response) {
+                return redirect()->back()->with('error', 'Error al autenticar usuario')->withInput($request->all());
             }
 
-            return redirect()->back()->with('error', 'Error al autenticar usuario');
+            return redirect('/');
         } catch (\Illuminate\Validation\ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput($request->all());
         } catch (\Exception $e) {

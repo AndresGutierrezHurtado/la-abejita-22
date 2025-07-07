@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Contracts\Services\AuthProviderInterface;
 use App\Models\User;
 
-class SanctumProvider implements AuthProviderInterface
+class LaravelProvider implements AuthProviderInterface
 {
     public function authenticate(array $data, bool $remember): array
     {

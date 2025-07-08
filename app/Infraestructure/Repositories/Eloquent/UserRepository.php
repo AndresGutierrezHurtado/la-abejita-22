@@ -12,14 +12,24 @@ class UserRepository implements UserRepositoryInterface
         return User::with('role')->get()->toArray();
     }
 
-    public function getById(string $id): array
+    public function getById(string $id): array | null
     {
-        return User::with('role')->find($id)->toArray();
+        $user = User::with('role')->find($id);
+
+        if (!$user) {
+            return null;
+        }
+
+        return $user->toArray();
     }
 
-    public function getByEmail(string $email, bool $withPassword = false): array
+    public function getByEmail(string $email, bool $withPassword = false): array | null
     {
         $user =  User::with('role')->where('user_email', $email)->first();
+
+        if (!$user) {
+            return null;
+        }
 
         $userData = $user->toArray();
 

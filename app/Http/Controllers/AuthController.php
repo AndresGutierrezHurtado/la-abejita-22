@@ -112,4 +112,15 @@ class AuthController extends Controller
             return redirect()->back()->with('error', $e->getMessage())->withInput($request->all());
         }
     }
+
+    public function logout()
+    {
+        try {
+            $this->authService->logout();
+
+            return redirect('/');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
 }

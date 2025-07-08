@@ -67,9 +67,7 @@ class AuthService implements AuthServiceInterface
 
     public function logout(): bool
     {
-        Auth::logout();
-
-        return true;
+        return $this->authProvider->logout();
     }
 
     public function forgotPassword(string $email): bool

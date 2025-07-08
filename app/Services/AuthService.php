@@ -30,12 +30,18 @@ class AuthService implements AuthServiceInterface
             throw new \Exception('Ya existe un usuario con este correo electrónico', 400);
         }
 
-        $user = $this->userRepository->create($data);
+        $user = $this->userRepository->create([
+            'user_name' => $data['user_name'],
+            'user_lastname' => $data['user_lastname'],
+            'user_email' => $data['user_email'],
+            'user_phone' => $data['user_phone'],
+            'user_address' => $data['user_address'],
+            'user_password' => $data['user_password'],
+            'user_image' => 'https://hwchamber.co.uk/wp-content/uploads/2022/04/avatar-placeholder.gif',
+            'role_id' => 1,
+        ]);
 
-        return [
-            'message' => 'Usuario registrado correctamente',
-            'user' => $user,
-        ];
+        return $user;
     }
 
     public function login(array $data): bool

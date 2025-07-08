@@ -8,8 +8,11 @@ use Illuminate\Support\ServiceProvider;
 use App\Contracts\Services\AuthServiceInterface;
 use App\Contracts\Repositories\UserRepositoryInterface;
 use App\Contracts\Services\AuthProviderInterface;
+use App\Contracts\Services\UserServiceInterface;
+
 // Services
 use App\Services\AuthService;
+use App\Services\UserService;
 use App\Infraestructure\Auth\LaravelProvider;
 
 // Repositories
@@ -25,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(AuthServiceInterface::class, AuthService::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(AuthProviderInterface::class, LaravelProvider::class);
+        $this->app->bind(UserServiceInterface::class, UserService::class);
     }
 
     /**

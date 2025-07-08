@@ -17,6 +17,7 @@ class User extends Authenticatable
     protected $keyType = 'string';
 
     public $timestamps = true;
+    public $softDeletes = true;
 
     protected $fillable = [
         'user_name',

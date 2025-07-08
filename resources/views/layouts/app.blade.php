@@ -44,6 +44,7 @@
                     </span>
                 </div>
                 <!-- cart -->
+                @if (auth()->check())
                 <div class="tooltip">
                     <a href="/cart" class="btn btn-soft bg-transparent">
                         <span class="icon-[tabler--shopping-cart] size-5"></span>
@@ -52,6 +53,7 @@
                         <span class="tooltip-body">Carrito</span>
                     </span>
                 </div>
+                @endif
                 <!-- user -->
                 @if (auth()->check())
                 <div class="tooltip">
@@ -59,7 +61,7 @@
                         <span class="icon-[tabler--user] size-5"></span>
                     </a>
                     <span class="tooltip-content tooltip-shown:opacity-100 tooltip-shown:visible" role="tooltip">
-                        <span class="tooltip-body">{{ auth()->user()->name ?? 'Usuario' }}</span>
+                        <span class="tooltip-body">{{ auth()->user()->user_name . ' ' . auth()->user()->user_lastname ?? 'Usuario' }}</span>
                     </span>
                 </div>
                 @else

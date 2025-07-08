@@ -15,7 +15,7 @@ Route::get('/products/{id}', [ViewController::class, 'product']);
 
 // Guest view routes
 Route::middleware('guest')->group(function () {
-    Route::get('/login', [ViewController::class, 'login']);
+    Route::get('/login', [ViewController::class, 'login'])->name('login');
     Route::get('/register', [ViewController::class, 'register']);
     Route::get('/forget', [ViewController::class, 'forget']);
     Route::get('/authcode', [ViewController::class, 'authcode']);

@@ -35,9 +35,14 @@
             </svg>
         </div>
         <div class="bg-base-100 shadow-base-300/20 z-1 w-full space-y-6 rounded-xl p-6 shadow-md sm:min-w-md max-w-md lg:p-8">
-            <figure class="w-full h-20">
-                <img src="/images/logo.png" class="w-full h-full object-contain object-left" alt="brand-logo" />
-            </figure>
+            <div class="tooltip [--placement:right]">
+                <a href="/" class="w-full h-20 block tooltip-toggle">
+                    <img src="/images/logo.png" class="w-full h-full object-contain object-left" alt="brand-logo" />
+                </a>
+                <span class="tooltip-content tooltip-shown:opacity-100 tooltip-shown:visible" role="tooltip">
+                    <span class="tooltip-body">Volver a la página principal</span>
+                </span>
+            </div>
             <div>
                 <h3 class="text-base-content mb-1.5 text-3xl font-bold">Inicia sesión</h3>
                 <p class="text-base-content/80 leading-tight">Ingresa tus credenciales para acceder a la plataforma y realizar tus compras.</p>

@@ -4,6 +4,7 @@ namespace App\Contracts\Services;
 
 interface AuthServiceInterface
 {
+    public function getUser(): array | null;
     public function register(array $data): array;
     public function login(array $data): bool;
     public function logout(): bool;

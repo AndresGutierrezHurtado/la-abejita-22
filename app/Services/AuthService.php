@@ -22,6 +22,11 @@ class AuthService implements AuthServiceInterface
         $this->authProvider = $authProvider;
     }
 
+    public function getUser(): array | null
+    {
+        return $this->authProvider->getUser();
+    }
+
     public function register(array $data): array
     {
         $existingUser = $this->userRepository->getByEmail($data['user_email']);

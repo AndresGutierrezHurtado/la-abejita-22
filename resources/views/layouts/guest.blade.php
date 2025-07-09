@@ -18,10 +18,6 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="@yield('favicon', asset('favicon.ico'))">
 
-    <!-- Preconnect to external domains for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <!-- Bring css and js -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="../../../node_modules/flyonui/flyonui.js"></script>

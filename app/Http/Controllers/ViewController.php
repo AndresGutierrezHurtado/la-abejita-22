@@ -2,8 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Services\UserServiceInterface;
+use App\Contracts\Services\AuthServiceInterface;
+
 class ViewController extends Controller
 {
+    protected $userService;
+    protected $userSession;
+
+    public function __construct(UserServiceInterface $userService, AuthServiceInterface $authService)
+    {
+        $this->userService = $userService;
+        $this->userSession = $authService->getUser();
+    }
+
     public function welcome()
     {
         return view('welcome');
@@ -62,7 +74,9 @@ class ViewController extends Controller
      */
     public function profile()
     {
-        return view('app.profile');
+        return view('app.profile', [
+            'user' => $this->userSession,
+        ]);
     }
 
     public function cart()

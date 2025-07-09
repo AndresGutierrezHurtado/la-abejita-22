@@ -21,11 +21,12 @@ class LaravelProvider implements AuthProviderInterface
     public function getUser(): ?array
     {
         $user = Auth::user();
-        $user = User::with('role')->find($user->user_id);
 
         if (!$user) {
             return null;
         }
+
+        $user = User::with('role')->find($user->user_id);
 
         return $user->toArray();
     }

@@ -138,6 +138,18 @@
         </div>
     </div>
 </div>
+
+<div class="fixed bottom-20 right-20 z-50">
+    <div class="absolute bottom-0 right-0 z-0">
+        <div class="animate-ping bg-green-500 w-12 h-12 rounded-full scale-70"></div>
+    </div>
+    <a href="https://wa.me/573124852078"
+        class="relative z-10 bg-green-500 hover:bg-green-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center"
+        target="_blank"
+        aria-label="Chatea por WhatsApp">
+        <span class="icon-[tabler--brand-whatsapp] size-8"></span>
+    </a>
+</div>
 @endsection
 
 @section('footer')

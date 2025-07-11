@@ -38,6 +38,8 @@
     @yield('footer', '')
 
     <script src="../../../node_modules/flyonui/flyonui.js"></script>
+    <script src="../../../node_modules/lodash/lodash.js"></script>
+    <script src="../../../node_modules/dropzone/dist/dropzone-min.js"></script>
     @yield('scripts')
 </body>
 

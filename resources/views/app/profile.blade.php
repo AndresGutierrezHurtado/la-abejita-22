@@ -14,17 +14,33 @@
             </div>
 
             <div>
-                <h2 class="text-3xl font-bold">
+                <h2 class="text-3xl font-bold leading-[100%]">
                     {{ $user['user_name'] }} {{ $user['user_lastname'] }}
                 </h2>
-                <p class="text-base-content/70">{{ $user['user_email'] }}</p>
-                <p class="text-base-content/70">{{ $user['user_phone'] ?? 'Sin teléfono' }}</p>
+                <p class="text-base-content text-lg capitalize">{{ $user['role']['role_name'] }}</p>
+                <div class="tooltip flex">
+                    <a href="mailto:{{ $user['user_email'] }}" target="_blank" class="text-base-content/70 hover:underline tooltip-toggle">{{ $user['user_email'] }}</a>
+                    <div class="tooltip-content tooltip-shown:opacity-100 tooltip-shown:visible" role="tooltip">
+                        <div class="tooltip-body flex items-center gap-2">
+                            <span class="icon-[tabler--mail] size-4 shrink-0"></span>
+                            Enviar correo
+                        </div>
+                    </div>
+                </div>
+                <div class="tooltip flex">
+                    <a href="https://wa.me/{{ $user['user_phone'] }}" target="_blank" class="text-base-content/70 hover:underline tooltip-toggle">{{ $user['user_phone'] }}</a>
+                    <div class="tooltip-content tooltip-shown:opacity-100 tooltip-shown:visible" role="tooltip">
+                        <div class="tooltip-body flex items-center gap-2">
+                            <span class="icon-[tabler--phone] size-4 shrink-0"></span>
+                            Contactar via whatsapp
+                        </div>
+                    </div>
+                </div>
                 <p class="text-base-content/70">{{ $user['user_address'] ?? 'Sin dirección' }}</p>
-                <p class="text-base-content/70">{{ $user['role']['role_name'] }}</p>
             </div>
         </div>
 
-        <nav class="tabs tabs-bordered overflow-x-auto" aria-label="Tabs" role="tablist" aria-orientation="horizontal">
+        <nav class="tabs tabs-bordered overflow-x-auto text-nowrap no-scrollbar" aria-label="Tabs" role="tablist" aria-orientation="horizontal">
             <button type="button" class="tab active-tab:tab-active active" id="tabs-icons-item-1" data-tab="#tabs-icons-1" aria-controls="tabs-icons-1" role="tab" aria-selected="true">
                 <span class="icon-[tabler--shopping-bag] size-5 shrink-0 me-2"></span>
                 Mis compras
@@ -41,6 +57,20 @@
                 <span class="icon-[tabler--settings] size-5 shrink-0 me-2"></span>
                 Configuración
             </button>
+            @if ($user['role']['role_name'] == 'administrador')
+                <button type="button" class="tab active-tab:tab-active" id="tabs-icons-item-5" data-tab="#tabs-icons-5" aria-controls="tabs-icons-5" role="tab" aria-selected="false">
+                    <span class="icon-[tabler--shield-lock] size-5 shrink-0 me-2"></span>
+                    Administrar usuarios
+                </button>
+                <button type="button" class="tab active-tab:tab-active" id="tabs-icons-item-6" data-tab="#tabs-icons-6" aria-controls="tabs-icons-6" role="tab" aria-selected="false">
+                    <span class="icon-[tabler--shield-lock] size-5 shrink-0 me-2"></span>
+                    Administrar colegios
+                </button>
+                <button type="button" class="tab active-tab:tab-active" id="tabs-icons-item-7" data-tab="#tabs-icons-7" aria-controls="tabs-icons-7" role="tab" aria-selected="false">
+                    <span class="icon-[tabler--shield-lock] size-5 shrink-0 me-2"></span>
+                    Administrar productos
+                </button>
+            @endif
         </nav>
 
         <div class="mt-3">
@@ -64,9 +94,11 @@
             <div id="tabs-icons-3" class="hidden" role="tabpanel" aria-labelledby="tabs-icons-item-3">
                 <!-- EDIT PROFILE -->
                 <h3 class="text-xl font-semibold mb-4">Editar perfil</h3>
-                <form method="POST" action="#" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <form method="PUT" action="/users/{{ $user['user_id'] }}" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     @csrf
                     @method('PUT')
+
+                    <input type="hidden" name="user_">
 
                     <div>
                         <label class="block text-sm font-medium">Nombre</label>
@@ -89,7 +121,7 @@
                     </div>
 
                     <div class="col-span-full">
-                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        <button type="submit" class="btn btn-primary rounded-lg">Guardar cambios</button>
                     </div>
                 </form>
             </div>

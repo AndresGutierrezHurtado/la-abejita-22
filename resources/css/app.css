@@ -12,6 +12,7 @@
     --color-primary-content: #0c0a09; 
     */
 }
+
 @import "../../node_modules/flyonui/variants.css";
 @source "../../node_modules/flyonui/dist/index.js";
 
@@ -39,4 +40,7 @@
 
 @utility select {
     @apply focus:outline-0 focus:border-primary focus:shadow-none rounded-lg;
+}
+@utility no-scrollbar {
+    @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
 }

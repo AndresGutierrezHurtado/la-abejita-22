@@ -120,6 +120,29 @@
                         <input type="text" name="user_address" value="{{ old('user_address', $user['user_address']) }}" class="input input-bordered w-full">
                     </div>
 
+                    <div
+                        class="col-span-full"
+                        data-file-upload='{
+                            "url": "/upload",
+                            "extensions": {
+                            "csv": {
+                                "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4\"/><path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/><path d=\"m5 12-3 3 3 3\"/><path d=\"m9 18 3-3-3-3\"/></svg>",
+                                "class": "shrink-0 size-5"
+                            }
+                            }
+                        }'>
+
+                        <div class="bg-base-200/60 rounded-box flex flex-col justify-center border-2 border-base-content/20 border-dashed">
+                            <div class="text-center cursor-pointer p-12" data-file-upload-trigger="">
+                                <p class="text-base-content/50 mb-3 text-sm">Selecciona una imagen de perfil con un tamaño máximo de 2MB.</p>
+                                <button type="button" class="btn btn-soft btn-sm btn-primary text-nowrap"> <span class="icon-[tabler--file-upload] size-4.5 shrink-0"></span> Arrastra y suelta para subir </button>
+                                <p class="text-base-content/50 my-2 text-xs">o</p>
+                                <p class="link link-animated link-primary font-medium text-sm">Explorar</p>
+                            </div>
+                            <div class="mx-12 mb-8 space-y-2 empty:m-0" data-file-upload-previews=""></div>
+                        </div>
+                    </div>
+
                     <div class="col-span-full">
                         <button type="submit" class="btn btn-primary rounded-lg">Guardar cambios</button>
                     </div>

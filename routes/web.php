@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 // Controllers
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 // Guest view routes
 Route::get('/', [ViewController::class, 'welcome']);
@@ -44,4 +45,5 @@ Route::middleware('guest')->group(function () {
 // Auth routes
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::put('/users/{id}', [UserController::class, 'update']);
 });

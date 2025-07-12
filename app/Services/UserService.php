@@ -40,7 +40,6 @@ class UserService implements UserServiceInterface
         $updated = $this->userRepository->update($id, [
             'user_name' => $data['user_name'],
             'user_lastname' => $data['user_lastname'],
-            'user_email' => $data['user_email'],
             'user_phone' => $data['user_phone'],
             'user_address' => $data['user_address'],
             'user_image' => $data['user_image'],
